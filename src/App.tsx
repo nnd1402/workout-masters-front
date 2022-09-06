@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import { useState } from 'react';
 import { Container, Accordion, Row, Col } from 'react-bootstrap';
@@ -26,7 +27,7 @@ function App() {
 										<DatePicker
 											className='datepicker text-center'
 											selected={startDate}
-											onChange={(date) => setStartDate(date)}
+											onChange={(date: Date) => setStartDate(date)}
 										/>
 									</Col>
 								</Accordion.Header>
@@ -53,7 +54,7 @@ function App() {
 										<DatePicker
 											className='datepicker text-center'
 											selected={startDate}
-											onChange={(date) => setStartDate(date)}
+											onChange={(date: Date) => setStartDate(date)}
 										/>
 									</Col>
 								</Accordion.Header>
@@ -80,7 +81,7 @@ function App() {
 										<DatePicker
 											className='datepicker text-center'
 											selected={startDate}
-											onChange={(date) => setStartDate(date)}
+											onChange={(date: Date) => setStartDate(date)}
 										/>
 									</Col>
 								</Accordion.Header>
