@@ -1,11 +1,12 @@
 import WorkoutBlock from './WorkoutBlock';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 const WorkoutList = () => {
 	return (
 		<>
-			<ul>
+			<ListGroup>
 				<WorkoutBlock />
-			</ul>
+			</ListGroup>
 		</>
 	);
 };
