@@ -2,6 +2,7 @@ import { useState } from 'react';
 import WorkoutBlock from './WorkoutBlock';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { ListGroupItem } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const WorkoutList = () => {
 	const [dateInfo, setDateInfo] = useState([
@@ -62,6 +63,11 @@ const WorkoutList = () => {
 					);
 				})}
 			</ListGroup>
+			<div className='btn-container text-center'>
+				<Link to='/add-workout' className='add-button btn btn-danger'>
+					Add Workout
+				</Link>
+			</div>
 		</>
 	);
 };
