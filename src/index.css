@@ -43,3 +43,8 @@ body {
 	padding: 10px;
 	border-radius: 20px;
 }
+
+.add-button {
+	padding: 15px;
+	margin-top: 7px;
+}

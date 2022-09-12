@@ -6,15 +6,14 @@ import 'react-datepicker/dist/react-datepicker.css';
 const WorkoutBlock = (props: any) => {
 	const workouts = [{ title: 'Push' }, { title: 'Pull' }, { title: 'Leg' }];
 
-	const [workout, setWorkout] = useState();
+	const [workout, setWorkout] = useState(props.workoutTitle);
 
 	const handleWorkoutChange = (e: any) => {
 		setWorkout(e.target.value);
 	};
 
-	function disable(e: any) {
+	function disablePropagation(e: any) {
 		e.stopPropagation();
-		e.preventDefault();
 	}
 
 	return (
@@ -29,16 +28,16 @@ const WorkoutBlock = (props: any) => {
 							<select
 								className='workout-select text-center'
 								onChange={handleWorkoutChange}
-								onClick={disable}
+								onClick={disablePropagation}
 							>
-								<option>Select a workout</option>
+								<option>{workout}</option>
 								{workouts.map((workout) => (
 									<option key={workout.title}>{workout.title}</option>
 								))}
 							</select>
 						</Col>
 						<Col xs lg='2'>
-							<div onClick={disable}>
+							<div onClick={disablePropagation}>
 								<DatePicker
 									className='datepicker text-center'
 									selected={props.workoutDate}
