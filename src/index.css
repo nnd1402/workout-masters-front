@@ -11,8 +11,11 @@ body {
 	color: #fff !important;
 }
 
+.accordion-button:hover {
+	background-color: #919191 !important;
+}
+
 .accordion-button:focus {
-	border-color: aquamarine !important;
 	box-shadow: none;
 }
 
@@ -30,9 +33,13 @@ body {
 	cursor: pointer;
 	width: 170px;
 	padding: 10px;
-	margin: 5px;
 }
 
 .list-group-item {
 	padding: 0;
+}
+
+.workout-select {
+	padding: 10px;
+	border-radius: 20px;
 }
