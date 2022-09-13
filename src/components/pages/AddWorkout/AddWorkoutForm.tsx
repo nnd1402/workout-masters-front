@@ -29,7 +29,13 @@ const AddWorkout = () => {
 							value={workoutTitle}
 							onChange={(e) => setWorkoutTitle(e.target.value)}
 						/>
-						<Form.Select onChange={handleWorkoutTitles}>
+						<Form.Select
+							className='select-workout-title'
+							onChange={handleWorkoutTitles}
+						>
+							<option disabled selected>
+								Choose the title from the list of workouts
+							</option>
 							<option>Push</option>
 							<option>Pull</option>
 						</Form.Select>
@@ -74,8 +80,10 @@ const AddWorkout = () => {
 					<Form.Group className='mb-3 form-group'>
 						<Form.Label className='add-workout-label'>Workout date</Form.Label>
 						<DatePicker
+							className='datepicker-square text-center'
 							selected={startDate}
 							onChange={(date: Date) => setStartDate(date)}
+							dateFormat='eee/dd/MM/yyyy'
 						/>
 					</Form.Group>
 					<div className='text-center'>

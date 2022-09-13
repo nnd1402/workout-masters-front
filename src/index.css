@@ -38,6 +38,13 @@ body {
 	padding: 10px;
 }
 
+.datepicker-square {
+	font-size: 18px;
+	cursor: pointer;
+	width: 200px;
+	padding: 10px;
+}
+
 .list-group-item {
 	padding: 0;
 }
