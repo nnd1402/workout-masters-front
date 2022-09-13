@@ -7,26 +7,35 @@ import RangeSlider from 'react-bootstrap-range-slider';
 
 const AddWorkout = () => {
 	const [startDate, setStartDate] = useState(new Date());
-	const [durationValue, setDurationValue] = useState('15');
+	const [durationValue, setDurationValue] = useState('');
+	const [workoutTitle, setWorkoutTitle] = useState('');
+
+	function handleWorkoutTitles(e: any): void {
+		setWorkoutTitle(e.target.value);
+	}
+
 	return (
 		<>
 			<Container className='add-workout-container'>
 				<Form className='add-workout-form '>
 					<h3 className='add-workout-title'>Form for adding a new workout</h3>
-					<Form.Group className='mb-3 text-left'>
+					<Form.Group className='mb-3 form-group'>
 						<Form.Label className='add-workout-label'>Workout title</Form.Label>
 						<Form.Control
 							size='lg'
 							type='text'
-							placeholder='What workout do you want to add?'
+							placeholder='Enter the title of your workout'
 							className='form-control'
+							value={workoutTitle}
+							onChange={(e) => setWorkoutTitle(e.target.value)}
 						/>
-						<Form.Select>
-							<option>Select workout</option>
+						<Form.Select onChange={handleWorkoutTitles}>
+							<option>Push</option>
+							<option>Pull</option>
 						</Form.Select>
 					</Form.Group>
 
-					<Form.Group className='mb-3' as={Row}>
+					<Form.Group className='mb-3 form-group' as={Row}>
 						<Form.Label className='add-workout-label'>Duration</Form.Label>
 						<Col xs='6'>
 							<Form.Control
@@ -38,7 +47,7 @@ const AddWorkout = () => {
 							/>
 						</Col>
 						<Col xs='6'>
-							<h4>minutes</h4>
+							<p className='minutes'>min</p>
 						</Col>
 
 						<RangeSlider
@@ -53,7 +62,7 @@ const AddWorkout = () => {
 							tooltipLabel={(currentValue) => `${currentValue} minutes`}
 						/>
 					</Form.Group>
-					<Form.Group className='mb-3'>
+					<Form.Group className='mb-3 form-group'>
 						<Form.Label>Description</Form.Label>
 						<Form.Control
 							size='lg'
@@ -62,7 +71,7 @@ const AddWorkout = () => {
 							placeholder='What exercises did you do?'
 						/>
 					</Form.Group>
-					<Form.Group className='mb-3'>
+					<Form.Group className='mb-3 form-group'>
 						<Form.Label className='add-workout-label'>Workout date</Form.Label>
 						<DatePicker
 							selected={startDate}
