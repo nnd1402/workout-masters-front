@@ -34,7 +34,7 @@ const WorkoutAddForm = () => {
 					<WorkoutDatePicker />
 					<div className='text-center'>
 						<Button variant='success' type='submit'>
-							Submit
+							Add Workout
 						</Button>
 					</div>
 				</Form>
