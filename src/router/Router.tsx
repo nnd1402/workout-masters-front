@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import AddWorkoutForm from '../components/pages/AddWorkout/AddWorkoutForm';
+import AddWorkoutForm from '../components/pages/WorkoutAdd/WorkoutAddForm';
 import WorkoutList from '../components/pages/WorkoutList/WorkoutList';
 
 const Router = () => {

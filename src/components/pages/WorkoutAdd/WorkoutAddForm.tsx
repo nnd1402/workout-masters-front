@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Button, Form, Row, Col } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import RangeSlider from 'react-bootstrap-range-slider';
 
-const AddWorkout = () => {
+const WorkoutAddForm = () => {
 	const [startDate, setStartDate] = useState(new Date());
 	const [durationValue, setDurationValue] = useState('');
 	const [workoutTitle, setWorkoutTitle] = useState('');
@@ -18,7 +20,22 @@ const AddWorkout = () => {
 		<>
 			<Container className='add-workout-container'>
 				<Form className='add-workout-form '>
-					<h3 className='add-workout-title'>Form for adding a new workout</h3>
+					<Row>
+						<Col xs={1}>
+							<Link to='/' className=' m-3 text-center'>
+								<FontAwesomeIcon
+									className='arrow-left-icon'
+									icon={faArrowLeft}
+									size='2x'
+								/>
+							</Link>
+						</Col>
+						<Col xs={10}>
+							<h3 className='add-workout-title'>
+								Form for adding a new workout
+							</h3>
+						</Col>
+					</Row>
 					<Form.Group className='mb-3 form-group'>
 						<Form.Label className='add-workout-label'>Workout title</Form.Label>
 						<Form.Control
@@ -90,9 +107,6 @@ const AddWorkout = () => {
 						<Button variant='success' type='submit'>
 							Submit
 						</Button>
-						<Link to='/' className='btn btn-primary m-3 text-center'>
-							To Workout List
-						</Link>
 					</div>
 				</Form>
 			</Container>
@@ -100,4 +114,4 @@ const AddWorkout = () => {
 	);
 };
 
-export default AddWorkout;
+export default WorkoutAddForm;
