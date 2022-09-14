@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 const WorkoutTitle = () => {
 	const [workoutTitle, setWorkoutTitle] = useState('');
 
-	function handleWorkoutTitles(e: any): void {
+	function handleWorkoutTitle(e: any): void {
 		setWorkoutTitle(e.target.value);
 	}
 	return (
@@ -15,16 +15,14 @@ const WorkoutTitle = () => {
 				type='text'
 				placeholder='Enter the title of your workout'
 				className='form-control'
-				value={workoutTitle}
-				onChange={(e) => setWorkoutTitle(e.target.value)}
+				defaultValue={workoutTitle}
+				onChange={handleWorkoutTitle}
 			/>
 			<Form.Select
 				className='select-workout-title'
-				onChange={handleWorkoutTitles}
+				onChange={handleWorkoutTitle}
 			>
-				<option disabled selected>
-					Choose the title from the list of workouts
-				</option>
+				<option disabled>Choose the title from the list of workouts</option>
 				<option>Push</option>
 				<option>Pull</option>
 			</Form.Select>
