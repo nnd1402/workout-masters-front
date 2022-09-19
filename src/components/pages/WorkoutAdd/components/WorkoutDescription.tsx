@@ -1,6 +1,6 @@
 import Form from 'react-bootstrap/Form';
 
-const WorkoutDescription = () => {
+const WorkoutDescription = (props: any) => {
 	return (
 		<Form.Group className='mb-3 form-group'>
 			<Form.Label>Description</Form.Label>
@@ -9,6 +9,8 @@ const WorkoutDescription = () => {
 				as='textarea'
 				rows={4}
 				placeholder='What exercises did you do?'
+				value={props.workoutDescription}
+				onChange={props.handleDescriptionChange}
 			/>
 		</Form.Group>
 	);

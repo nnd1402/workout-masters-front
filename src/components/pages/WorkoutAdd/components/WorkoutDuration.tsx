@@ -1,10 +1,7 @@
-import { useState } from 'react';
 import { Form, Row, Col } from 'react-bootstrap';
 import RangeSlider from 'react-bootstrap-range-slider';
 
-const WorkoutDuration = () => {
-	const [durationValue, setDurationValue] = useState('');
-
+const WorkoutDuration = (props: any) => {
 	return (
 		<Form.Group className='mb-3 form-group' as={Row}>
 			<Form.Label className='add-workout-label'>Duration</Form.Label>
@@ -13,8 +10,8 @@ const WorkoutDuration = () => {
 					className='duration-control'
 					type='text'
 					placeholder='Enter the duration of your workout'
-					value={durationValue}
-					onChange={(e) => setDurationValue(e.target.value)}
+					value={props.workoutDuration}
+					onChange={props.handleDurationChange}
 				/>
 			</Col>
 			<Col xs='6'>
@@ -22,8 +19,8 @@ const WorkoutDuration = () => {
 			</Col>
 
 			<RangeSlider
-				value={durationValue}
-				onChange={(changeEvent) => setDurationValue(changeEvent.target.value)}
+				value={props.workoutDuration}
+				onChange={props.handleDurationChange}
 				variant='success'
 				step={15}
 				min={15}
