@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
 	Container,
 	Button,
@@ -27,6 +27,12 @@ const WorkoutAddForm = () => {
 	const [errorMessage, setErrorMessage] = useState('');
 	const [isShowingAlert, setShowingAlert] = useState(false);
 
+	const navigate = useNavigate();
+
+	function navigateToWorkoutListSuccess() {
+		navigate('/list?showMessage=success');
+	}
+
 	function handleWorkoutTitle(e: any): void {
 		setWorkoutTitle(e.target.value);
 	}
@@ -52,8 +58,7 @@ const WorkoutAddForm = () => {
 			date: startDate
 		})
 			.then(() => {
-				alert('Successfully added workout');
-
+				navigateToWorkoutListSuccess();
 				setIsLoading(false);
 			})
 			.catch(() => {
@@ -71,7 +76,7 @@ const WorkoutAddForm = () => {
 				<Form className='add-workout-form '>
 					<Row>
 						<Col xs={1}>
-							<Link to='/' className=' m-3 text-center'>
+							<Link to='/list' className=' m-3 text-center'>
 								<FontAwesomeIcon
 									className='arrow-left-icon'
 									icon={faArrowLeft}
@@ -111,10 +116,12 @@ const WorkoutAddForm = () => {
 						</Button>
 					</div>
 					<div
-						className={`${isShowingAlert ? 'alert-shown' : 'alert-hidden'}`}
+						className={`${
+							isShowingAlert ? 'alert-shown' : 'alert-hidden'
+						} 'alert-fail'`}
 						onTransitionEnd={() => setShowingAlert(false)}
 					>
-						<Alert className='text-center mt-2' variant={'danger'}>
+						<Alert className='text-center mt-2' variant='danger'>
 							{errorMessage}
 						</Alert>
 					</div>

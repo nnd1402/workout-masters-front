@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import WorkoutBlock from './WorkoutBlock';
-import ListGroup from 'react-bootstrap/ListGroup';
-import ListGroupItem from 'react-bootstrap/ListGroupItem';
+import { ListGroup, ListGroupItem, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 const WorkoutList = () => {
 	const [dateInfo, setDateInfo] = useState([
@@ -38,6 +38,11 @@ const WorkoutList = () => {
 		}
 	]);
 
+	const [isShowingAlert, setShowingAlert] = useState(false);
+
+	const [searchParams] = useSearchParams();
+	const showMessage = searchParams.get('showMessage');
+
 	function setStartDate(index: any, date: any): void {
 		let updatedDates = [...dateInfo];
 		updatedDates[index].workoutDate = date;
@@ -46,6 +51,12 @@ const WorkoutList = () => {
 
 	return (
 		<>
+			{showMessage === 'success' && (
+				<Alert className='text-center' variant='success'>
+					You successfully added workout!
+				</Alert>
+			)}
+
 			<ListGroup>
 				{dateInfo.map((dateInfo: any, index) => {
 					return (

@@ -5,7 +5,7 @@ import WorkoutList from '../components/pages/WorkoutList/WorkoutList';
 const Router = () => {
 	return (
 		<Routes>
-			<Route path='/' element={<WorkoutList />} />
+			<Route path='/list' element={<WorkoutList />} />
 			<Route path='/add-workout' element={<AddWorkoutForm />} />
 		</Routes>
 	);
