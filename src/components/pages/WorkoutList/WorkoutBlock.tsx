@@ -17,11 +17,11 @@ const WorkoutBlock = (props: any) => {
 	}
 
 	return (
-		<div>
+		<>
 			<Accordion>
 				<Accordion.Item eventKey='0'>
 					<Accordion.Header className='accordion-header'>
-						<Col lg='2' className='header-column '>
+						<Col className='header-column '>
 							<h3>{props.workoutDuration}</h3>
 						</Col>
 						<Col className='header-column text-center'>
@@ -36,8 +36,8 @@ const WorkoutBlock = (props: any) => {
 								))}
 							</select>
 						</Col>
-						<Col xs lg='2'>
-							<div onClick={disablePropagation}>
+						<Col>
+							<div className='text-center' onClick={disablePropagation}>
 								<DatePicker
 									className='datepicker text-center'
 									selected={props.workoutDate}
@@ -49,12 +49,13 @@ const WorkoutBlock = (props: any) => {
 							</div>
 						</Col>
 					</Accordion.Header>
+
 					<Accordion.Body>
 						<p>{props.workoutDescription}</p>
 					</Accordion.Body>
 				</Accordion.Item>
 			</Accordion>
-		</div>
+		</>
 	);
 };
 

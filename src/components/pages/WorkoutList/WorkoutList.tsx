@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import WorkoutBlock from './WorkoutBlock';
-import { ListGroup, ListGroupItem, Alert } from 'react-bootstrap';
+import { ListGroup, ListGroupItem, Alert, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+
 import { useSearchParams } from 'react-router-dom';
+import WorkoutDeleteBtn from './components/WorkoutDeleteBtn';
 
 const WorkoutList = () => {
 	const [dateInfo, setDateInfo] = useState([
@@ -38,7 +40,7 @@ const WorkoutList = () => {
 		}
 	]);
 
-	const [isShowingAlert, setShowingAlert] = useState(false);
+	//const [isShowingAlert, setShowingAlert] = useState(false);
 
 	const [searchParams] = useSearchParams();
 	const showMessage = searchParams.get('showMessage');
@@ -61,15 +63,23 @@ const WorkoutList = () => {
 				{dateInfo.map((dateInfo: any, index) => {
 					return (
 						<ListGroupItem key={index}>
-							<WorkoutBlock
-								key={index}
-								workoutIndex={index}
-								workoutTitle={dateInfo.workoutTitle}
-								workoutDuration={dateInfo.workoutDuration}
-								workoutDescription={dateInfo.workoutDescription}
-								workoutDate={dateInfo.workoutDate}
-								setStartDate={setStartDate}
-							/>
+							<Row>
+								<Col sm='11'>
+									<WorkoutBlock
+										key={index}
+										workoutIndex={index}
+										workoutTitle={dateInfo.workoutTitle}
+										workoutDuration={dateInfo.workoutDuration}
+										workoutDescription={dateInfo.workoutDescription}
+										workoutDate={dateInfo.workoutDate}
+										setStartDate={setStartDate}
+									/>
+								</Col>
+
+								<Col xs>
+									<WorkoutDeleteBtn workoutTitle={dateInfo.workoutTitle} />
+								</Col>
+							</Row>
 						</ListGroupItem>
 					);
 				})}

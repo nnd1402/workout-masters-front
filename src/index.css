@@ -124,3 +124,23 @@ input[type='number'] {
 	opacity: 0;
 	transition: all 250ms linear 5s;
 }
+
+.trashcan-btn {
+	padding: 20px;
+	border: 2px solid #fff;
+	margin-top: 6px;
+}
+
+.trashcan-btn:hover {
+	background-color: aquamarine !important;
+	color: black !important;
+	border: 2px solid black !important;
+}
+
+.row {
+	background-color: #238596;
+}
+
+.list-group-item {
+	border: none;
+}
