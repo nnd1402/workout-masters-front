@@ -63,7 +63,7 @@ const WorkoutList = () => {
 				{dateInfo.map((dateInfo: any, index) => {
 					return (
 						<ListGroupItem key={index}>
-							<Row>
+							<Row className='row-list'>
 								<Col sm='11'>
 									<WorkoutBlock
 										key={index}
