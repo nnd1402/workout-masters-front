@@ -1,7 +1,15 @@
 import { useState } from 'react';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
-import { Container, Button, Form, Row, Col, Spinner } from 'react-bootstrap';
+import {
+	Container,
+	Button,
+	Form,
+	Row,
+	Col,
+	Spinner,
+	Alert
+} from 'react-bootstrap';
 import WorkoutTitle from '././components/WorkoutTitle';
 import WorkoutDuration from '././components/WorkoutDuration';
 import WorkoutDescription from '././components/WorkoutDescription';
@@ -48,10 +56,12 @@ const WorkoutAddForm = () => {
 				setIsLoading(false);
 			})
 			.catch(() => {
-				setErrorMessage(
-					'Something went wrong, please check that you entered the fields correctly!'
-				);
-				setIsLoading(false);
+				setTimeout(() => {
+					setErrorMessage(
+						'There was a problem adding your workout. Please try again later.'
+					);
+					setIsLoading(false);
+				}, 10000);
 			});
 	};
 
@@ -100,8 +110,14 @@ const WorkoutAddForm = () => {
 							)}
 						</Button>
 					</div>
-					<div className='text-center'>
-						<small className='error-message'>{errorMessage}</small>
+					<div>
+						{isLoading ? (
+							<Alert className='text-center mt-3' variant={'danger'}>
+								{errorMessage}
+							</Alert>
+						) : (
+							''
+						)}
 					</div>
 				</Form>
 			</Container>
