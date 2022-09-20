@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import WorkoutBlock from './WorkoutBlock';
 import ListGroup from 'react-bootstrap/ListGroup';
-import { ListGroupItem } from 'react-bootstrap';
+import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import { Link } from 'react-router-dom';
 
 const WorkoutList = () => {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
-import { Container, Button, Form, Row, Col } from 'react-bootstrap';
+import { Container, Button, Form, Row, Col, Spinner } from 'react-bootstrap';
 import WorkoutTitle from '././components/WorkoutTitle';
 import WorkoutDuration from '././components/WorkoutDuration';
 import WorkoutDescription from '././components/WorkoutDescription';
@@ -14,6 +14,9 @@ const WorkoutAddForm = () => {
 	const [workoutDuration, setWorkoutDuration] = useState('');
 	const [workoutDescription, setWorkoutDescription] = useState('');
 	const [startDate, setStartDate] = useState(new Date());
+
+	const [isLoading, setIsLoading] = useState(false);
+	const [errorMessage, setErrorMessage] = useState('');
 
 	function handleWorkoutTitle(e: any): void {
 		setWorkoutTitle(e.target.value);
@@ -32,14 +35,24 @@ const WorkoutAddForm = () => {
 	}
 
 	const addWorkout = () => {
+		setIsLoading(true);
 		Axios.post('https://localhost:7116/api/Workout', {
 			title: workoutTitle,
 			duration: workoutDuration,
 			description: workoutDescription,
 			date: startDate
-		}).then(() => {
-			console.log('success');
-		});
+		})
+			.then(() => {
+				alert('Successfully added workout');
+				setErrorMessage('');
+				setIsLoading(false);
+			})
+			.catch(() => {
+				setErrorMessage(
+					'Something went wrong, please check that you entered the fields correctly!'
+				);
+				setIsLoading(false);
+			});
 	};
 
 	return (
@@ -79,9 +92,16 @@ const WorkoutAddForm = () => {
 						handleDateChange={handleDateChange}
 					/>
 					<div className='text-center'>
-						<Button variant='success' onClick={addWorkout}>
-							Add Workout
+						<Button variant='success' onClick={addWorkout} disabled={isLoading}>
+							{isLoading ? (
+								<Spinner animation='border' size='sm' />
+							) : (
+								'Add Workout'
+							)}
 						</Button>
+					</div>
+					<div className='text-center'>
+						<small className='error-message'>{errorMessage}</small>
 					</div>
 				</Form>
 			</Container>

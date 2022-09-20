@@ -5,6 +5,18 @@ body {
 	background-color: #238596 !important;
 }
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+	-moz-appearance: textfield;
+}
+
 .title {
 	color: #fff;
 }
@@ -96,4 +108,8 @@ body {
 
 .arrow-left-icon:hover {
 	color: grey;
+}
+
+.error-message {
+	color: red;
 }

@@ -8,10 +8,15 @@ const WorkoutDuration = (props: any) => {
 			<Col xs='6'>
 				<Form.Control
 					className='duration-control'
-					type='text'
+					type='number'
 					placeholder='Enter the duration of your workout'
 					value={props.workoutDuration}
 					onChange={props.handleDurationChange}
+					onKeyPress={(e) => {
+						if (!/[0-9]/.test(e.key)) {
+							e.preventDefault();
+						}
+					}}
 				/>
 			</Col>
 			<Col xs='6'>
