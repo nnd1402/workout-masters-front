@@ -25,6 +25,7 @@ const WorkoutAddForm = () => {
 
 	const [isLoading, setIsLoading] = useState(false);
 	const [errorMessage, setErrorMessage] = useState('');
+	const [isShowingAlert, setShowingAlert] = useState(false);
 
 	function handleWorkoutTitle(e: any): void {
 		setWorkoutTitle(e.target.value);
@@ -52,16 +53,15 @@ const WorkoutAddForm = () => {
 		})
 			.then(() => {
 				alert('Successfully added workout');
-				setErrorMessage('');
+
 				setIsLoading(false);
 			})
 			.catch(() => {
-				setTimeout(() => {
-					setErrorMessage(
-						'There was a problem adding your workout. Please try again later.'
-					);
-					setIsLoading(false);
-				}, 10000);
+				setShowingAlert(true);
+				setErrorMessage(
+					'There was a problem adding your workout. Please try again later.'
+				);
+				setIsLoading(false);
 			});
 	};
 
@@ -110,14 +110,13 @@ const WorkoutAddForm = () => {
 							)}
 						</Button>
 					</div>
-					<div>
-						{isLoading ? (
-							<Alert className='text-center mt-3' variant={'danger'}>
-								{errorMessage}
-							</Alert>
-						) : (
-							''
-						)}
+					<div
+						className={`${isShowingAlert ? 'alert-shown' : 'alert-hidden'}`}
+						onTransitionEnd={() => setShowingAlert(false)}
+					>
+						<Alert className='text-center mt-2' variant={'danger'}>
+							{errorMessage}
+						</Alert>
 					</div>
 				</Form>
 			</Container>

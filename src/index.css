@@ -110,6 +110,17 @@ input[type='number'] {
 	color: grey;
 }
 
-.error-message {
-	color: red;
+.alert {
+	padding: 10px;
+	margin-bottom: -20px;
+}
+
+.alert-shown {
+	opacity: 1;
+	transition: all 250ms linear;
+}
+
+.alert-hidden {
+	opacity: 0;
+	transition: all 250ms linear 5s;
 }
