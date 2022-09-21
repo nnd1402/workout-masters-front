@@ -1,83 +1,94 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Axios from 'axios';
 import WorkoutBlock from './WorkoutBlock';
 import { ListGroup, ListGroupItem, Alert, Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
 import WorkoutDeleteBtn from './components/WorkoutDeleteBtn';
 
 const WorkoutList = () => {
-	const [dateInfo, setDateInfo] = useState([
-		{
-			workoutTitle: 'Push Day',
-			workoutDuration: '80 minutes',
-			workoutDescription: 'Pushed for Jesus',
-			workoutDate: new Date()
-		},
-		{
-			workoutTitle: 'Pull Day',
-			workoutDuration: '52 minutes',
-			workoutDescription: 'Pulled all day',
-			workoutDate: new Date('December 9, 1996 03:24:00')
-		},
-		{
-			workoutTitle: 'Leg Day',
-			workoutDuration: '45 minutes',
-			workoutDescription: 'Meh',
-			workoutDate: new Date('December 12, 1997 03:24:00')
-		},
-		{
-			workoutTitle: 'Calisthenics Day',
-			workoutDuration: '90 minutes',
-			workoutDescription: 'wtf',
-			workoutDate: new Date('December 13, 1998 03:24:00')
-		},
-		{
-			workoutTitle: 'Arm Day',
-			workoutDuration: '9 hours',
-			workoutDescription: 'Rich Piana',
-			workoutDate: new Date('December 14, 1999 03:24:00')
-		}
-	]);
-
-	//const [isShowingAlert, setShowingAlert] = useState(false);
-
 	const [searchParams] = useSearchParams();
 	const showMessage = searchParams.get('showMessage');
 
-	function setStartDate(index: any, date: any): void {
-		let updatedDates = [...dateInfo];
-		updatedDates[index].workoutDate = date;
-		setDateInfo(updatedDates);
+	const [workoutList, setWorkoutList] = useState([]);
+
+	const [showAlert, setShowAlert] = useState(false);
+
+	const navigate = useNavigate();
+
+	function navigateToWorkoutListSuccess() {
+		navigate('/list');
+	}
+
+	useEffect(() => {
+		function updateAlertMessage() {
+			if (showMessage === 'success') {
+				setShowAlert(true);
+				setTimeout(() => {
+					setShowAlert(false);
+				}, 5000);
+			}
+		}
+		updateAlertMessage();
+		getWorkouts();
+	}, [showMessage]);
+
+	const getWorkouts = () => {
+		Axios.get('https://localhost:7116/api/Workout').then((response) => {
+			setWorkoutList(response.data);
+		});
+	};
+
+	function deleteWorkout(id: any) {
+		Axios.delete(`https://localhost:7116/api/Workout/${id}`)
+
+			.then((response: any) => {
+				setWorkoutList(
+					workoutList.filter((val: any) => {
+						return val.id !== id;
+					})
+				);
+				console.log(workoutList);
+				navigateToWorkoutListSuccess();
+			})
+			.catch(() => {
+				console.log('fail');
+			});
 	}
 
 	return (
 		<>
-			{showMessage === 'success' && (
-				<Alert className='text-center' variant='success'>
-					You successfully added workout!
-				</Alert>
-			)}
+			<Alert
+				className={`${
+					showAlert ? 'alert-shown' : 'alert-hidden'
+				} 'alert-fail' text-center`}
+				variant='success'
+			>
+				You successfully added workout!
+			</Alert>
 
 			<ListGroup>
-				{dateInfo.map((dateInfo: any, index) => {
+				{workoutList.map((workoutList: any, id) => {
 					return (
-						<ListGroupItem key={index}>
+						<ListGroupItem key={id}>
 							<Row className='row-list'>
 								<Col sm='11'>
 									<WorkoutBlock
-										key={index}
-										workoutIndex={index}
-										workoutTitle={dateInfo.workoutTitle}
-										workoutDuration={dateInfo.workoutDuration}
-										workoutDescription={dateInfo.workoutDescription}
-										workoutDate={dateInfo.workoutDate}
-										setStartDate={setStartDate}
+										key={workoutList.id}
+										workoutId={workoutList.id}
+										workoutTitle={workoutList.title}
+										workoutDuration={workoutList.duration}
+										workoutDescription={workoutList.description}
+										workoutDate={workoutList.date}
 									/>
 								</Col>
 
 								<Col xs>
-									<WorkoutDeleteBtn workoutTitle={dateInfo.workoutTitle} />
+									<WorkoutDeleteBtn
+										workoutId={workoutList.id}
+										workoutTitle={workoutList.title}
+										deleteWorkout={deleteWorkout}
+									/>
 								</Col>
 							</Row>
 						</ListGroupItem>

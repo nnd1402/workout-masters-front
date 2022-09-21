@@ -30,7 +30,12 @@ const WorkoutDeleteBtn = (props: any) => {
 					<Button variant='secondary' onClick={handleClose}>
 						Close
 					</Button>
-					<Button variant='primary'>Delete</Button>
+					<Button
+						variant='primary'
+						onClick={() => props.deleteWorkout(props.workoutId)}
+					>
+						Delete
+					</Button>
 				</Modal.Footer>
 			</Modal>
 		</>

@@ -46,7 +46,7 @@ input[type='number'] {
 	border-radius: 20px;
 	font-size: 18px;
 	cursor: pointer;
-	width: 170px;
+	width: 300px;
 	padding: 10px;
 }
 
@@ -122,7 +122,7 @@ input[type='number'] {
 
 .alert-hidden {
 	opacity: 0;
-	transition: all 250ms linear 5s;
+	transition: all 250ms linear;
 }
 
 .trashcan-btn {

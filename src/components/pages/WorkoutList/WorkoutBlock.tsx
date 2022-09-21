@@ -8,6 +8,8 @@ const WorkoutBlock = (props: any) => {
 
 	const [workout, setWorkout] = useState(props.workoutTitle);
 
+	const [startDate, setStartDate] = useState(new Date(props.workoutDate));
+
 	const handleWorkoutChange = (e: any) => {
 		setWorkout(e.target.value);
 	};
@@ -22,7 +24,7 @@ const WorkoutBlock = (props: any) => {
 				<Accordion.Item eventKey='0'>
 					<Accordion.Header className='accordion-header'>
 						<Col className='header-column '>
-							<h3>{props.workoutDuration}</h3>
+							<h3>{props.workoutDuration} minutes</h3>
 						</Col>
 						<Col className='header-column text-center'>
 							<select
@@ -40,11 +42,10 @@ const WorkoutBlock = (props: any) => {
 							<div className='text-center' onClick={disablePropagation}>
 								<DatePicker
 									className='datepicker text-center'
-									selected={props.workoutDate}
-									onChange={(date: Date) =>
-										props.setStartDate(props.workoutIndex, date)
-									}
-									dateFormat='eee/dd/MM/yyyy'
+									selected={startDate}
+									onChange={(date: Date) => setStartDate(date)}
+									showTimeSelect
+									dateFormat='eee/dd/MM/yyyy HH:mm:ss'
 								/>
 							</div>
 						</Col>

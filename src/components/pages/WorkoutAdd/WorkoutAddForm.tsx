@@ -119,7 +119,11 @@ const WorkoutAddForm = () => {
 						className={`${
 							isShowingAlert ? 'alert-shown' : 'alert-hidden'
 						} 'alert-fail'`}
-						onTransitionEnd={() => setShowingAlert(false)}
+						onTransitionEnd={() =>
+							setTimeout(() => {
+								setShowingAlert(false);
+							}, 5000)
+						}
 					>
 						<Alert className='text-center mt-2' variant='danger'>
 							{errorMessage}
