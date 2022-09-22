@@ -58,7 +58,11 @@ const WorkoutBlock = (props: any) => {
 								<p>{props.workoutDescription}</p>
 							</Col>
 							<Col md={1}>
-								<WorkoutDeleteBtn />
+								<WorkoutDeleteBtn
+									deleteWorkout={props.deleteWorkout}
+									workoutId={props.workoutId}
+									workoutTitle={props.workoutTitle}
+								/>
 							</Col>
 						</Row>
 					</Accordion.Body>

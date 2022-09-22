@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import Axios from 'axios';
 import WorkoutBlock from './WorkoutBlock';
-import { ListGroup, ListGroupItem, Alert, Row, Col } from 'react-bootstrap';
+import { ListGroup, ListGroupItem, Alert } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
-import WorkoutDeleteBtn from './components/WorkoutDeleteBtn';
 
 const WorkoutList = () => {
 	const [searchParams] = useSearchParams();
@@ -71,26 +70,15 @@ const WorkoutList = () => {
 				{workoutList.map((workoutList: any, id) => {
 					return (
 						<ListGroupItem key={id}>
-							<Row className='row-list'>
-								<Col sm='11'>
-									<WorkoutBlock
-										key={workoutList.id}
-										workoutId={workoutList.id}
-										workoutTitle={workoutList.title}
-										workoutDuration={workoutList.duration}
-										workoutDescription={workoutList.description}
-										workoutDate={workoutList.date}
-									/>
-								</Col>
-
-								<Col xs>
-									<WorkoutDeleteBtn
-										workoutId={workoutList.id}
-										workoutTitle={workoutList.title}
-										deleteWorkout={deleteWorkout}
-									/>
-								</Col>
-							</Row>
+							<WorkoutBlock
+								key={workoutList.id}
+								workoutId={workoutList.id}
+								workoutTitle={workoutList.title}
+								workoutDuration={workoutList.duration}
+								workoutDescription={workoutList.description}
+								workoutDate={workoutList.date}
+								deleteWorkout={deleteWorkout}
+							/>
 						</ListGroupItem>
 					);
 				})}
