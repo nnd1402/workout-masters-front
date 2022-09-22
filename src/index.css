@@ -2,7 +2,13 @@
 
 body {
 	font-family: 'Poppins', sans-serif;
-	background-color: #238596 !important;
+	background: rgb(0, 0, 0);
+	background: linear-gradient(
+		90deg,
+		rgba(0, 0, 0, 1) 0%,
+		rgba(0, 0, 0, 1) 35%,
+		rgba(92, 92, 92, 1) 100%
+	);
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -21,25 +27,36 @@ input[type='number'] {
 	color: #fff;
 }
 
-.accordion-button {
-	background-color: #282828 !important;
-	color: #fff !important;
+.card-header {
+	background-color: lightgray;
 }
 
-.accordion-button:hover {
-	background-color: #919191 !important;
+.accordion-button {
+	background-color: lightgray;
+	border: none;
+	padding: 0px;
+	margin-left: 50px;
+	margin-top: 16px;
+	width: 20px;
 }
 
 .accordion-button:focus {
 	box-shadow: none;
+	background-color: lightgrey !important;
 }
 
 .accordion-button:not(.collapsed) {
-	color: aquamarine !important;
+	background-image: none !important;
+	background-color: lightgrey !important;
 }
 
-.accordion-button:after {
-	background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
+.accordion-button:not(.collapsed)::after {
+	background-image: none;
+	background-image: var(--bs-accordion-btn-icon);
+}
+
+.accordion-button:hover {
+	background-color: lightgrey !important;
 }
 
 .datepicker {
@@ -62,6 +79,7 @@ input[type='number'] {
 }
 
 .workout-select {
+	width: 200px;
 	padding: 10px;
 	border-radius: 20px;
 }
@@ -157,4 +175,12 @@ input[type='number'] {
 }
 .toolbar-class {
 	border: 1px solid #ccc;
+}
+
+.arrow-down {
+	margin-top: 10px;
+}
+
+.h3-duration {
+	margin-top: 10px;
 }
