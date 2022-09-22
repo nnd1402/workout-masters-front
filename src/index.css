@@ -126,15 +126,15 @@ input[type='number'] {
 }
 
 .trashcan-btn {
-	padding: 20px;
+	padding: 5 10px;
 	border: 2px solid #fff;
 	margin-top: 6px;
+	color: grey !important;
 }
 
 .trashcan-btn:hover {
-	background-color: aquamarine !important;
+	background-color: lightgrey !important;
 	color: black !important;
-	border: 2px solid black !important;
 }
 
 .row-list {
@@ -143,4 +143,18 @@ input[type='number'] {
 
 .list-group-item {
 	border: none;
+}
+
+.wrapper-class {
+	padding: 1rem;
+	border: 1px solid #ccc;
+}
+.editor-class {
+	background-color: #fff;
+	padding: 1rem;
+	border: 1px solid #ccc;
+	height: 150px;
+}
+.toolbar-class {
+	border: 1px solid #ccc;
 }

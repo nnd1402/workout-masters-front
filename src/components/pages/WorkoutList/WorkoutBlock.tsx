@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Accordion, Col } from 'react-bootstrap';
+import { Accordion, Row, Col } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import WorkoutDeleteBtn from './components/WorkoutDeleteBtn';
 
 const WorkoutBlock = (props: any) => {
 	const workouts = [{ title: 'Push' }, { title: 'Pull' }, { title: 'Leg' }];
@@ -52,7 +53,14 @@ const WorkoutBlock = (props: any) => {
 					</Accordion.Header>
 
 					<Accordion.Body>
-						<p>{props.workoutDescription}</p>
+						<Row>
+							<Col md={11}>
+								<p>{props.workoutDescription}</p>
+							</Col>
+							<Col md={1}>
+								<WorkoutDeleteBtn />
+							</Col>
+						</Row>
 					</Accordion.Body>
 				</Accordion.Item>
 			</Accordion>

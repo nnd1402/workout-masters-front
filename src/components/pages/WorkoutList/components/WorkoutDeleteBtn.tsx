@@ -11,8 +11,12 @@ const WorkoutDeleteBtn = (props: any) => {
 
 	return (
 		<>
-			<Button variant='danger' className='trashcan-btn' onClick={handleShow}>
-				<FontAwesomeIcon className='trashcan-icon' size='xl' icon={faTrash} />
+			<Button
+				variant='transparent'
+				className='trashcan-btn'
+				onClick={handleShow}
+			>
+				<FontAwesomeIcon className='trashcan-icon' icon={faTrash} />
 			</Button>
 			<Modal
 				show={show}
