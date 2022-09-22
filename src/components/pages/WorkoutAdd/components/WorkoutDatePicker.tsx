@@ -10,7 +10,8 @@ const WorkoutDatePicker = (props: any) => {
 				className='datepicker-square text-center'
 				selected={props.startDate}
 				onChange={props.handleDateChange}
-				dateFormat='eee/dd/MM/yyyy'
+				showTimeSelect
+				dateFormat='eee/dd/MM/yyyy HH:mm:ss'
 			/>
 		</Form.Group>
 	);
