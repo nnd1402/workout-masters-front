@@ -33,8 +33,13 @@ const WorkoutAddForm = () => {
 		navigate('/list?showMessage=success');
 	}
 
-	function handleWorkoutTitle(e: any): void {
+	function typeWorkoutTitle(e: any): void {
 		setWorkoutTitle(e.target.value);
+		console.log(workoutTitle);
+	}
+
+	function selectWorkoutTitle(selectedOption: any): void {
+		setWorkoutTitle(selectedOption.label);
 	}
 
 	function handleDurationChange(e: any): void {
@@ -92,7 +97,8 @@ const WorkoutAddForm = () => {
 					</Row>
 					<WorkoutTitle
 						workoutTitle={workoutTitle}
-						handleWorkoutTitle={handleWorkoutTitle}
+						typeWorkoutTitle={typeWorkoutTitle}
+						selectWorkoutTitle={selectWorkoutTitle}
 					/>
 					<WorkoutDuration
 						workoutDuration={workoutDuration}

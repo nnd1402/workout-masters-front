@@ -40,7 +40,6 @@ const WorkoutList = () => {
 
 	function deleteWorkout(id: any) {
 		Axios.delete(`https://localhost:7116/api/Workout/${id}`)
-
 			.then((response: any) => {
 				setWorkoutList(
 					workoutList.filter((val: any) => {

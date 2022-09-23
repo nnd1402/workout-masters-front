@@ -3,25 +3,35 @@ import { Accordion, Row, Col, Card, Button, Collapse } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import WorkoutDeleteBtn from './components/WorkoutDeleteBtn';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import Select from 'react-select';
+import { options } from '../../WorkoutOptions';
 
 const WorkoutBlock = (props: any) => {
-	const workouts = [{ title: 'Push' }, { title: 'Pull' }, { title: 'Leg' }];
+	const [workoutTitle, setWorkoutTitle] = useState(props.workoutTitle);
 
-	const [workout, setWorkout] = useState(props.workoutTitle);
+	const [open, setOpen] = useState(false);
 
 	const [startDate, setStartDate] = useState(new Date(props.workoutDate));
 
-	const handleWorkoutChange = (e: any) => {
-		setWorkout(e.target.value);
-	};
-
-	function disablePropagation(e: any) {
-		e.stopPropagation();
+	function selectWorkoutTitle(selectedOption: any): void {
+		setWorkoutTitle(selectedOption.label);
 	}
 
-	const [open, setOpen] = useState(false);
+	const customStyles = {
+		placeholder: (provided: any) => ({
+			...provided,
+			color: 'black'
+		}),
+		control: (provided: any) => ({
+			...provided,
+			'&:hover': {
+				borderColor: 'black'
+			},
+
+			padding: '5px',
+			borderRadius: '20px'
+		})
+	};
 
 	return (
 		<>
@@ -33,19 +43,16 @@ const WorkoutBlock = (props: any) => {
 								<h3 className='h3-duration'>{props.workoutDuration} minutes</h3>
 							</Col>
 							<Col md={4} className='header-column text-center'>
-								<select
-									className='workout-select text-center'
-									onChange={handleWorkoutChange}
-									onClick={disablePropagation}
-								>
-									<option>{workout}</option>
-									{workouts.map((workout) => (
-										<option key={workout.title}>{workout.title}</option>
-									))}
-								</select>
+								<Select
+									styles={customStyles}
+									placeholder={workoutTitle}
+									defaultValue={workoutTitle}
+									options={options}
+									onChange={selectWorkoutTitle}
+								/>
 							</Col>
 							<Col md={4}>
-								<div className='text-center' onClick={disablePropagation}>
+								<div className='text-end'>
 									<DatePicker
 										className='datepicker text-center'
 										selected={startDate}

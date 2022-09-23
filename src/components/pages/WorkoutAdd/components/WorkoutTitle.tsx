@@ -1,4 +1,6 @@
 import Form from 'react-bootstrap/Form';
+import Select from 'react-select';
+import { options } from '../../../WorkoutOptions';
 
 const WorkoutTitle = (props: any) => {
 	return (
@@ -10,16 +12,13 @@ const WorkoutTitle = (props: any) => {
 				placeholder='Enter the title of your workout'
 				className='form-control'
 				defaultValue={props.workoutTitle}
-				onChange={props.handleWorkoutTitle}
+				onChange={props.typeWorkoutTitle}
 			/>
-			<Form.Select
-				className='select-workout-title'
-				onChange={props.handleWorkoutTitle}
-			>
-				<option disabled>Choose the title from the list of workouts</option>
-				<option>Push</option>
-				<option>Pull</option>
-			</Form.Select>
+			<Select
+				placeholder='Choose your workout from predefined options'
+				options={options}
+				onChange={props.selectWorkoutTitle}
+			/>
 		</Form.Group>
 	);
 };

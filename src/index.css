@@ -60,6 +60,7 @@ input[type='number'] {
 }
 
 .datepicker {
+	border: none;
 	border-radius: 20px;
 	font-size: 18px;
 	cursor: pointer;
@@ -76,12 +77,6 @@ input[type='number'] {
 
 .list-group-item {
 	padding: 0;
-}
-
-.workout-select {
-	width: 200px;
-	padding: 10px;
-	border-radius: 20px;
 }
 
 .add-button {
