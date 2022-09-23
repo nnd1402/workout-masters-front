@@ -16,12 +16,18 @@ import WorkoutDescription from '././components/WorkoutDescription';
 import WorkoutDatePicker from '././components/WorkoutDatePicker';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { EditorState, convertToRaw } from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 const WorkoutAddForm = () => {
 	const [workoutTitle, setWorkoutTitle] = useState('');
 	const [workoutDuration, setWorkoutDuration] = useState('');
 	const [workoutDescription, setWorkoutDescription] = useState('');
 	const [startDate, setStartDate] = useState(new Date());
+	const [editorState, setEditorState] = useState(() =>
+		EditorState.createEmpty()
+	);
 
 	const [isLoading, setIsLoading] = useState(false);
 	const [errorMessage, setErrorMessage] = useState('');
@@ -35,7 +41,6 @@ const WorkoutAddForm = () => {
 
 	function typeWorkoutTitle(e: any): void {
 		setWorkoutTitle(e.target.value);
-		console.log(workoutTitle);
 	}
 
 	function selectWorkoutTitle(selectedOption: any): void {
@@ -46,16 +51,20 @@ const WorkoutAddForm = () => {
 		setWorkoutDuration(e.target.value);
 	}
 
-	function handleDescriptionChange(e: any): void {
-		setWorkoutDescription(e.target.value);
-	}
-
 	function handleDateChange(date: Date): void {
 		setStartDate(date);
 	}
 
+	function handleWorkoutDescriptionState(state: EditorState) {
+		setEditorState(state);
+		const stateToHtml = draftToHtml(convertToRaw(state.getCurrentContent()));
+		setWorkoutDescription(stateToHtml);
+	}
+
 	const addWorkout = () => {
 		setIsLoading(true);
+		handleWorkoutDescriptionState(editorState);
+
 		Axios.post('https://localhost:7116/api/Workout', {
 			title: workoutTitle,
 			duration: workoutDuration,
@@ -104,9 +113,11 @@ const WorkoutAddForm = () => {
 						workoutDuration={workoutDuration}
 						handleDurationChange={handleDurationChange}
 					/>
+
 					<WorkoutDescription
 						workoutDescription={workoutDescription}
-						handleDescriptionChange={handleDescriptionChange}
+						editorState={editorState}
+						handleWorkoutDescriptionState={handleWorkoutDescriptionState}
 					/>
 					<WorkoutDatePicker
 						startDate={startDate}

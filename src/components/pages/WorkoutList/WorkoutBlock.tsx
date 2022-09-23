@@ -1,5 +1,13 @@
 import { useState } from 'react';
-import { Accordion, Row, Col, Card, Button, Collapse } from 'react-bootstrap';
+import {
+	Form,
+	Accordion,
+	Row,
+	Col,
+	Card,
+	Button,
+	Collapse
+} from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import WorkoutDeleteBtn from './components/WorkoutDeleteBtn';
@@ -78,7 +86,9 @@ const WorkoutBlock = (props: any) => {
 					<Collapse className='collapse-body' in={open}>
 						<Row>
 							<Col md={11}>
-								<p>{props.workoutDescription}</p>
+								<Form.Text>
+									<p>{props.workoutDescription}</p>
+								</Form.Text>
 							</Col>
 							<Col md={1}>
 								<WorkoutDeleteBtn
