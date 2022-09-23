@@ -8,7 +8,7 @@ const WorkoutDescription = (props: any) => {
 			<Form.Label>Description</Form.Label>
 			<Editor
 				defaultEditorState={props.editorState}
-				onEditorStateChange={() => props.handleWorkoutDescriptionState}
+				onEditorStateChange={props.handleWorkoutDescriptionState}
 				wrapperClassName='wrapper-class'
 				editorClassName='editor-class'
 				toolbarClassName='toolbar-class'
