@@ -16,6 +16,7 @@
 		"axios": "^0.27.2",
 		"bootstrap": "^5.2.1",
 		"draft-js": "^0.11.7",
+		"draftjs-to-html": "^0.9.1",
 		"react": "^18.2.0",
 		"react-bootstrap": "^2.5.0",
 		"react-bootstrap-range-slider": "^3.0.8",
@@ -52,6 +53,7 @@
 		]
 	},
 	"devDependencies": {
+		"@types/draftjs-to-html": "^0.8.1",
 		"@types/react-datepicker": "^4.4.2",
 		"@types/react-draft-wysiwyg": "^1.13.4",
 		"react-scripts": "^5.0.1"

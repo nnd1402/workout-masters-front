@@ -1,7 +1,15 @@
 import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import { Editor } from 'react-draft-wysiwyg';
-import { EditorState } from 'draft-js';
+import {
+	ContentBlock,
+	ContentState,
+	convertFromHTML,
+	convertFromRaw,
+	convertToRaw,
+	EditorState
+} from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 const WorkoutDescription = (props: any) => {
@@ -10,12 +18,8 @@ const WorkoutDescription = (props: any) => {
 	);
 
 	const updateTextDescription = (state: any) => {
+		state = draftToHtml(convertToRaw(editorState.getCurrentContent()));
 		setEditorState(state);
-
-		//const data = convertToRaw(editorState.getCurrentContent());
-
-		//need to json.stringify something somewhere blabla
-		//convertFromRaw, convertToRaw
 	};
 
 	return (
