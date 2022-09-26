@@ -13,6 +13,7 @@ const WorkoutDeleteBtn = (props: any) => {
 		<>
 			<Button
 				variant='transparent'
+				title='Delete Workout'
 				className='trashcan-btn'
 				onClick={handleShow}
 			>

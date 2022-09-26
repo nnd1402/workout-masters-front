@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
 	Form,
 	Accordion,
@@ -13,6 +13,9 @@ import 'react-datepicker/dist/react-datepicker.css';
 import WorkoutDeleteBtn from './components/WorkoutDeleteBtn';
 import Select from 'react-select';
 import { options } from '../../WorkoutOptions';
+import { EditorState, ContentState } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
+import htmlToDraft from 'html-to-draftjs';
 
 const WorkoutBlock = (props: any) => {
 	const [workoutTitle, setWorkoutTitle] = useState(props.workoutTitle);
@@ -20,6 +23,29 @@ const WorkoutBlock = (props: any) => {
 	const [open, setOpen] = useState(false);
 
 	const [startDate, setStartDate] = useState(new Date(props.workoutDate));
+
+	const [workoutDescription] = useState(props.workoutDescription);
+
+	const [editorState, setEditorState] = useState(() =>
+		EditorState.createEmpty()
+	);
+
+	const contentBlock = htmlToDraft(workoutDescription);
+
+	useEffect(() => {
+		if (contentBlock) {
+			const contentState = ContentState.createFromBlockArray(
+				contentBlock.contentBlocks
+			);
+			const editorState = EditorState.createWithContent(contentState);
+			setEditorState(editorState);
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	const onEditorStateChange = (editorState: EditorState) => {
+		setEditorState(editorState);
+	};
 
 	function selectWorkoutTitle(selectedOption: any): void {
 		setWorkoutTitle(selectedOption.label);
@@ -87,7 +113,13 @@ const WorkoutBlock = (props: any) => {
 						<Row>
 							<Col md={11}>
 								<Form.Text>
-									<p>{props.workoutDescription}</p>
+									<Editor
+										editorState={editorState}
+										onEditorStateChange={onEditorStateChange}
+										wrapperClassName='wrapper-class'
+										toolbarClassName='toolbar-class gap'
+										editorClassName='editor-class'
+									/>
 								</Form.Text>
 							</Col>
 							<Col md={1}>
