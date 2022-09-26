@@ -33,13 +33,13 @@ const WorkoutList = () => {
 	}, [showMessage]);
 
 	const getWorkouts = () => {
-		Axios.get('https://localhost:7116/api/Workout').then((response) => {
+		Axios.get('https://localhost:7116/api/InMemoryWorkout').then((response) => {
 			setWorkoutList(response.data);
 		});
 	};
 
 	function deleteWorkout(id: any) {
-		Axios.delete(`https://localhost:7116/api/Workout/${id}`)
+		Axios.delete(`https://localhost:7116/api/InMemoryWorkout/${id}`)
 			.then((response: any) => {
 				setWorkoutList(
 					workoutList.filter((val: any) => {
