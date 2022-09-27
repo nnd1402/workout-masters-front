@@ -1,21 +1,12 @@
 import { useEffect, useState } from 'react';
-import {
-	Form,
-	Accordion,
-	Row,
-	Col,
-	Card,
-	Button,
-	Collapse
-} from 'react-bootstrap';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import WorkoutDeleteBtn from './components/WorkoutDeleteBtn';
-import Select from 'react-select';
-import { options } from '../../WorkoutOptions';
+import { Accordion, Row, Col, Card, Collapse } from 'react-bootstrap';
 import { EditorState, ContentState } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
 import htmlToDraft from 'html-to-draftjs';
+import WorkoutBlockDescription from './block-components/WorkoutBlockDescription';
+import WorkoutBlockAccordionButton from './block-components/WorkoutBlockAccordionButton';
+import WorkoutBlockDatePicker from './block-components/WorkoutBlockDatePicker';
+import WorkoutBlockTitleSelect from './block-components/WorkoutBlockTitleSelect';
+import WorkoutBlockDeleteBtn from './block-components/WorkoutBlockDeleteBtn';
 
 const WorkoutBlock = (props: any) => {
 	const [workoutTitle, setWorkoutTitle] = useState(props.workoutTitle);
@@ -24,11 +15,10 @@ const WorkoutBlock = (props: any) => {
 
 	const [startDate, setStartDate] = useState(new Date(props.workoutDate));
 
-	const [workoutDescription] = useState(props.workoutDescription);
-
 	const [editorState, setEditorState] = useState(() =>
 		EditorState.createEmpty()
 	);
+	const workoutDescription = props.workoutDescription;
 
 	const contentBlock = htmlToDraft(workoutDescription);
 
@@ -51,21 +41,13 @@ const WorkoutBlock = (props: any) => {
 		setWorkoutTitle(selectedOption.label);
 	}
 
-	const customStyles = {
-		placeholder: (provided: any) => ({
-			...provided,
-			color: 'black'
-		}),
-		control: (provided: any) => ({
-			...provided,
-			'&:hover': {
-				borderColor: 'black'
-			},
+	function showDescription() {
+		setOpen(!open);
+	}
 
-			padding: '5px',
-			borderRadius: '20px'
-		})
-	};
+	function handleDateChange(date: Date): void {
+		setStartDate(date);
+	}
 
 	return (
 		<>
@@ -77,53 +59,37 @@ const WorkoutBlock = (props: any) => {
 								<h3 className='h3-duration'>{props.workoutDuration} minutes</h3>
 							</Col>
 							<Col md={4} className='header-column text-center'>
-								<Select
-									styles={customStyles}
-									placeholder={workoutTitle}
-									defaultValue={workoutTitle}
-									options={options}
-									onChange={selectWorkoutTitle}
+								<WorkoutBlockTitleSelect
+									workoutTitle={workoutTitle}
+									selectWorkoutTitle={selectWorkoutTitle}
 								/>
 							</Col>
 							<Col md={4}>
 								<div className='text-end'>
-									<DatePicker
-										className='datepicker text-center'
-										selected={startDate}
-										onChange={(date: Date) => setStartDate(date)}
-										showTimeSelect
-										dateFormat='eee/dd/MM/yyyy HH:mm:ss'
+									<WorkoutBlockDatePicker
+										startDate={startDate}
+										handleDateChange={handleDateChange}
 									/>
 								</div>
 							</Col>
 							<Col md={1} className='text-center'>
-								<Button
-									className={`${
-										open ? 'accordion-button' : 'accordion-button collapsed'
-									}`}
-									variant='transparent'
-									onClick={() => setOpen(!open)}
-									aria-controls='example-collapse-text'
-									aria-expanded={open}
-								></Button>
+								<WorkoutBlockAccordionButton
+									open={open}
+									showDescription={showDescription}
+								/>
 							</Col>
 						</Row>
 					</Card.Header>
 					<Collapse className='collapse-body' in={open}>
 						<Row>
 							<Col md={11}>
-								<Form.Text>
-									<Editor
-										editorState={editorState}
-										onEditorStateChange={onEditorStateChange}
-										wrapperClassName='wrapper-class'
-										toolbarClassName='toolbar-class gap'
-										editorClassName='editor-class'
-									/>
-								</Form.Text>
+								<WorkoutBlockDescription
+									editorState={editorState}
+									onEditorStateChange={onEditorStateChange}
+								/>
 							</Col>
 							<Col md={1}>
-								<WorkoutDeleteBtn
+								<WorkoutBlockDeleteBtn
 									deleteWorkout={props.deleteWorkout}
 									workoutId={props.workoutId}
 									workoutTitle={props.workoutTitle}

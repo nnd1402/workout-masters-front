@@ -3,7 +3,7 @@ import { Button, Modal } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-const WorkoutDeleteBtn = (props: any) => {
+const WorkoutBlockDeleteBtn = (props: any) => {
 	const [show, setShow] = useState(false);
 
 	const handleClose = () => setShow(false);
@@ -47,4 +47,4 @@ const WorkoutDeleteBtn = (props: any) => {
 	);
 };
 
-export default WorkoutDeleteBtn;
+export default WorkoutBlockDeleteBtn;

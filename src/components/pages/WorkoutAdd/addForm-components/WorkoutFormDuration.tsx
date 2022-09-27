@@ -1,7 +1,7 @@
 import { Form, Row, Col } from 'react-bootstrap';
 import RangeSlider from 'react-bootstrap-range-slider';
 
-const WorkoutDuration = (props: any) => {
+const WorkoutFormDuration = (props: any) => {
 	return (
 		<Form.Group className='mb-3 form-group' as={Row}>
 			<Form.Label className='add-workout-label'>Duration</Form.Label>
@@ -36,4 +36,4 @@ const WorkoutDuration = (props: any) => {
 	);
 };
 
-export default WorkoutDuration;
+export default WorkoutFormDuration;

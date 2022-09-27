@@ -10,10 +10,10 @@ import {
 	Spinner,
 	Alert
 } from 'react-bootstrap';
-import WorkoutTitle from '././components/WorkoutTitle';
-import WorkoutDuration from '././components/WorkoutDuration';
-import WorkoutDescription from '././components/WorkoutDescription';
-import WorkoutDatePicker from '././components/WorkoutDatePicker';
+import WorkoutFormTitle from './addForm-components/WorkoutFormTitle';
+import WorkoutFormDuration from './addForm-components/WorkoutFormDuration';
+import WorkoutFormDescription from './addForm-components/WorkoutFormDescription';
+import WorkoutFormDatePicker from './addForm-components/WorkoutFormDatePicker';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { EditorState, convertToRaw } from 'draft-js';
@@ -87,10 +87,10 @@ const WorkoutAddForm = () => {
 	return (
 		<>
 			<Container className='add-workout-container'>
-				<Form className='add-workout-form '>
+				<Form className='add-workout-form'>
 					<Row>
 						<Col xs={1}>
-							<Link to='/list' className=' m-3 text-center'>
+							<Link to='/list' className='text-center'>
 								<FontAwesomeIcon
 									className='arrow-left-icon'
 									icon={faArrowLeft}
@@ -104,22 +104,22 @@ const WorkoutAddForm = () => {
 							</h3>
 						</Col>
 					</Row>
-					<WorkoutTitle
+					<WorkoutFormTitle
 						workoutTitle={workoutTitle}
 						typeWorkoutTitle={typeWorkoutTitle}
 						selectWorkoutTitle={selectWorkoutTitle}
 					/>
-					<WorkoutDuration
+					<WorkoutFormDuration
 						workoutDuration={workoutDuration}
 						handleDurationChange={handleDurationChange}
 					/>
 
-					<WorkoutDescription
+					<WorkoutFormDescription
 						workoutDescription={workoutDescription}
 						editorState={editorState}
 						handleWorkoutDescriptionState={handleWorkoutDescriptionState}
 					/>
-					<WorkoutDatePicker
+					<WorkoutFormDatePicker
 						startDate={startDate}
 						handleDateChange={handleDateChange}
 					/>

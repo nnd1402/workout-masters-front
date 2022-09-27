@@ -2,7 +2,7 @@ import Form from 'react-bootstrap/Form';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
-const WorkoutDescription = (props: any) => {
+const WorkoutFormDescription = (props: any) => {
 	return (
 		<Form.Group className='mb-3 form-group'>
 			<Form.Label>Description</Form.Label>
@@ -17,4 +17,4 @@ const WorkoutDescription = (props: any) => {
 	);
 };
 
-export default WorkoutDescription;
+export default WorkoutFormDescription;

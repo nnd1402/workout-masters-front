@@ -2,7 +2,7 @@ import Form from 'react-bootstrap/Form';
 import Select from 'react-select';
 import { options } from '../../../WorkoutOptions';
 
-const WorkoutTitle = (props: any) => {
+const WorkoutFormTitle = (props: any) => {
 	return (
 		<Form.Group className='mb-3 form-group'>
 			<Form.Label className='add-workout-label'>Workout title</Form.Label>
@@ -23,4 +23,4 @@ const WorkoutTitle = (props: any) => {
 	);
 };
 
-export default WorkoutTitle;
+export default WorkoutFormTitle;
