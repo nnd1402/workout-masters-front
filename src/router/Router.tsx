@@ -1,12 +1,14 @@
 import { Routes, Route } from 'react-router-dom';
-import AddWorkoutForm from '../components/pages/WorkoutAdd/WorkoutAddForm';
+import WorkoutAddForm from '../components/pages/WorkoutAdd/WorkoutAddForm';
+import WorkoutEditForm from '../components/pages/WorkoutEdit/WorkoutEditForm';
 import WorkoutList from '../components/pages/WorkoutList/WorkoutList';
 
 const Router = () => {
 	return (
 		<Routes>
 			<Route path='/list' element={<WorkoutList />} />
-			<Route path='/add-workout' element={<AddWorkoutForm />} />
+			<Route path='/add-workout' element={<WorkoutAddForm />} />
+			<Route path='/edit-workout' element={<WorkoutEditForm />} />
 		</Routes>
 	);
 };

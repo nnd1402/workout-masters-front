@@ -1,7 +1,12 @@
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const WorkoutBlockDatePicker = (props: any) => {
+type DatePickerProps = {
+	startDate: Date;
+	handleDateChange: (date: Date) => void;
+};
+
+const WorkoutBlockDatePicker = (props: DatePickerProps) => {
 	return (
 		<div className='text-end'>
 			<DatePicker
@@ -10,6 +15,7 @@ const WorkoutBlockDatePicker = (props: any) => {
 				onChange={props.handleDateChange}
 				showTimeSelect
 				dateFormat='eee/dd/MM/yyyy HH:mm:ss'
+				disabled
 			/>
 		</div>
 	);

@@ -54,6 +54,7 @@ input[type='number'] {
 }
 
 .datepicker-rounded {
+	background-color: #fff;
 	border: none;
 	border-radius: 20px;
 	font-size: 18px;
@@ -91,6 +92,11 @@ input[type='number'] {
 
 .add-workout-label {
 	font-size: 18px;
+}
+
+.title-list {
+	color: black;
+	margin-top: 8px;
 }
 
 .add-workout-form {
@@ -132,16 +138,20 @@ input[type='number'] {
 	transition: all 250ms linear;
 }
 
-.trashcan-btn {
+.block-btn {
 	padding: 5 10px;
 	border: 2px solid #fff;
 	margin-top: 6px;
 	color: grey !important;
 }
 
-.trashcan-btn:hover {
+.block-btn:hover {
 	background-color: lightgrey !important;
 	color: black !important;
+}
+
+.block-workout-description {
+	margin: 20px;
 }
 
 .row-list {

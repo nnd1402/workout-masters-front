@@ -2,7 +2,12 @@ import Form from 'react-bootstrap/Form';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const WorkoutFormDatePicker = (props: any) => {
+type WorkoutFormDatePickerProps = {
+	startDate: Date;
+	handleDateChange: (date: Date) => void;
+};
+
+const WorkoutFormDatePicker = (props: WorkoutFormDatePickerProps) => {
 	return (
 		<Form.Group className='mb-3 form-group'>
 			<Form.Label className='add-workout-label'>Workout date</Form.Label>

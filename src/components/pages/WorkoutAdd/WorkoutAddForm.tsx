@@ -39,15 +39,15 @@ const WorkoutAddForm = () => {
 		navigate('/list?showMessage=success');
 	}
 
-	function typeWorkoutTitle(e: any): void {
+	function typeWorkoutTitle(e: React.ChangeEvent<HTMLInputElement>): void {
 		setWorkoutTitle(e.target.value);
 	}
 
-	function selectWorkoutTitle(selectedOption: any): void {
+	function selectWorkoutTitle(selectedOption: { label: string }): void {
 		setWorkoutTitle(selectedOption.label);
 	}
 
-	function handleDurationChange(e: any): void {
+	function handleDurationChange(e: React.ChangeEvent<HTMLInputElement>): void {
 		setWorkoutDuration(e.target.value);
 	}
 
@@ -55,7 +55,7 @@ const WorkoutAddForm = () => {
 		setStartDate(date);
 	}
 
-	function handleWorkoutDescriptionState(state: EditorState) {
+	function handleWorkoutDescriptionState(state: EditorState): void {
 		setEditorState(state);
 		const stateToHtml = draftToHtml(convertToRaw(state.getCurrentContent()));
 		setWorkoutDescription(stateToHtml);
@@ -115,7 +115,6 @@ const WorkoutAddForm = () => {
 					/>
 
 					<WorkoutFormDescription
-						workoutDescription={workoutDescription}
 						editorState={editorState}
 						handleWorkoutDescriptionState={handleWorkoutDescriptionState}
 					/>

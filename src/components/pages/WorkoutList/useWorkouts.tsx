@@ -24,11 +24,11 @@ export const useWorkouts = () => {
 		});
 	};
 
-	function deleteWorkout(id: any) {
+	function deleteWorkout(id: string): void {
 		Axios.delete(`https://localhost:7116/api/Workout/${id}`)
-			.then((response: any) => {
+			.then(() => {
 				setWorkoutList(
-					workoutList.filter((val: any) => {
+					workoutList.filter((val: { id: string }) => {
 						return val.id !== id;
 					})
 				);

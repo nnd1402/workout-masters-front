@@ -1,8 +1,13 @@
 import Form from 'react-bootstrap/Form';
-import { Editor } from 'react-draft-wysiwyg';
+import { Editor, EditorState } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
-const WorkoutFormDescription = (props: any) => {
+type WorkoutFormDescriptionProps = {
+	editorState: EditorState;
+	handleWorkoutDescriptionState: (state: EditorState) => void;
+};
+
+const WorkoutFormDescription = (props: WorkoutFormDescriptionProps) => {
 	return (
 		<Form.Group className='mb-3 form-group'>
 			<Form.Label>Description</Form.Label>

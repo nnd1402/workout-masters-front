@@ -3,7 +3,13 @@ import { Button, Modal } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-const WorkoutBlockDeleteBtn = (props: any) => {
+type WorkoutBlockDeleteButtonProps = {
+	workoutTitle: string;
+	workoutId: string;
+	deleteWorkout: (id: string) => void;
+};
+
+const WorkoutBlockDeleteButton = (props: WorkoutBlockDeleteButtonProps) => {
 	const [show, setShow] = useState(false);
 
 	const handleClose = () => setShow(false);
@@ -14,11 +20,12 @@ const WorkoutBlockDeleteBtn = (props: any) => {
 			<Button
 				variant='transparent'
 				title='Delete Workout'
-				className='trashcan-btn'
+				className='block-btn'
 				onClick={handleShow}
 			>
 				<FontAwesomeIcon className='trashcan-icon' icon={faTrash} />
 			</Button>
+
 			<Modal
 				show={show}
 				onHide={handleClose}
@@ -47,4 +54,4 @@ const WorkoutBlockDeleteBtn = (props: any) => {
 	);
 };
 
-export default WorkoutBlockDeleteBtn;
+export default WorkoutBlockDeleteButton;

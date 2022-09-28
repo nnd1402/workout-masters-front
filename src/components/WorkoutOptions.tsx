@@ -1,4 +1,9 @@
-export const options = [
+type OptionType = {
+	value: string;
+	label: string;
+};
+
+export const options: OptionType[] = [
 	{ value: 'Push Training', label: 'Push Training' },
 	{ value: 'Pull Training', label: 'Pull Training' },
 	{ value: 'Arm Training', label: 'Arm Training' },

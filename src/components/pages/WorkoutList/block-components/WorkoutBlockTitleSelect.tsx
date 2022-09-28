@@ -1,31 +1,15 @@
-import Select from 'react-select';
-import { options } from '../../../WorkoutOptions';
+import { Form } from 'react-bootstrap';
 
-const WorkoutBlockTitleSelect = (props: any) => {
-	const customStyles = {
-		placeholder: (provided: any) => ({
-			...provided,
-			color: 'black'
-		}),
-		control: (provided: any) => ({
-			...provided,
-			'&:hover': {
-				borderColor: 'black'
-			},
+type WorkoutBlockTitleSelectProps = {
+	workoutTitle: string;
+};
 
-			padding: '5px',
-			borderRadius: '20px'
-		})
-	};
+const WorkoutBlockTitleSelect = (props: WorkoutBlockTitleSelectProps) => {
 	return (
 		<>
-			<Select
-				styles={customStyles}
-				placeholder={props.workoutTitle}
-				defaultValue={props.workoutTitle}
-				options={options}
-				onChange={props.selectWorkoutTitle}
-			/>
+			<Form.Text>
+				<h2 className='title-list'>{props.workoutTitle}</h2>
+			</Form.Text>
 		</>
 	);
 };

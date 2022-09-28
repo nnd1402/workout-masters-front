@@ -1,47 +1,27 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Accordion, Row, Col, Card, Collapse } from 'react-bootstrap';
-import { EditorState, ContentState } from 'draft-js';
-import htmlToDraft from 'html-to-draftjs';
-import WorkoutBlockDescription from './block-components/WorkoutBlockDescription';
+import parse from 'html-react-parser';
 import WorkoutBlockAccordionButton from './block-components/WorkoutBlockAccordionButton';
 import WorkoutBlockDatePicker from './block-components/WorkoutBlockDatePicker';
 import WorkoutBlockTitleSelect from './block-components/WorkoutBlockTitleSelect';
-import WorkoutBlockDeleteBtn from './block-components/WorkoutBlockDeleteBtn';
+import WorkoutBlockDeleteButton from './block-components/WorkoutBlockDeleteButton';
+import WorkoutBlockEditButton from './block-components/WorkoutBlockEditButton';
 
-const WorkoutBlock = (props: any) => {
-	const [workoutTitle, setWorkoutTitle] = useState(props.workoutTitle);
+type WorkoutBlockProps = {
+	workoutDuration: number;
+	workoutDescription: string;
+	workoutId: string;
+	workoutTitle: string;
+	workoutDate: Date;
+	deleteWorkout: (id: string) => void;
+};
 
+const WorkoutBlock = (props: WorkoutBlockProps) => {
 	const [open, setOpen] = useState(false);
 
 	const [startDate, setStartDate] = useState(new Date(props.workoutDate));
 
-	const [editorState, setEditorState] = useState(() =>
-		EditorState.createEmpty()
-	);
-	const workoutDescription = props.workoutDescription;
-
-	const contentBlock = htmlToDraft(workoutDescription);
-
-	useEffect(() => {
-		if (contentBlock) {
-			const contentState = ContentState.createFromBlockArray(
-				contentBlock.contentBlocks
-			);
-			const editorState = EditorState.createWithContent(contentState);
-			setEditorState(editorState);
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
-	const onEditorStateChange = (editorState: EditorState) => {
-		setEditorState(editorState);
-	};
-
-	function selectWorkoutTitle(selectedOption: any): void {
-		setWorkoutTitle(selectedOption.label);
-	}
-
-	function showDescription() {
+	function showDescription(): void {
 		setOpen(!open);
 	}
 
@@ -49,6 +29,7 @@ const WorkoutBlock = (props: any) => {
 		setStartDate(date);
 	}
 
+	const parsedWorkoutDescription = parse(props.workoutDescription);
 	return (
 		<>
 			<Accordion defaultActiveKey='0'>
@@ -59,10 +40,7 @@ const WorkoutBlock = (props: any) => {
 								<h3 className='h3-duration'>{props.workoutDuration} minutes</h3>
 							</Col>
 							<Col md={4} className='header-column text-center'>
-								<WorkoutBlockTitleSelect
-									workoutTitle={workoutTitle}
-									selectWorkoutTitle={selectWorkoutTitle}
-								/>
+								<WorkoutBlockTitleSelect workoutTitle={props.workoutTitle} />
 							</Col>
 							<Col md={4}>
 								<div className='text-end'>
@@ -81,21 +59,21 @@ const WorkoutBlock = (props: any) => {
 						</Row>
 					</Card.Header>
 					<Collapse className='collapse-body' in={open}>
-						<Row>
-							<Col md={11}>
-								<WorkoutBlockDescription
-									editorState={editorState}
-									onEditorStateChange={onEditorStateChange}
-								/>
+						<div>
+							<Col md={12}>
+								<div className='block-workout-description'>
+									{parsedWorkoutDescription}
+								</div>
 							</Col>
-							<Col md={1}>
-								<WorkoutBlockDeleteBtn
+							<div className='text-end'>
+								<WorkoutBlockEditButton />
+								<WorkoutBlockDeleteButton
 									deleteWorkout={props.deleteWorkout}
 									workoutId={props.workoutId}
 									workoutTitle={props.workoutTitle}
 								/>
-							</Col>
-						</Row>
+							</div>
+						</div>
 					</Collapse>
 				</Card>
 			</Accordion>

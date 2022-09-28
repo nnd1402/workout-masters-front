@@ -5,7 +5,7 @@ import Router from '../../router/Router';
 const DefaultLayout = () => {
 	return (
 		<>
-			<Container>
+			<Container className='mt-5'>
 				{/* Header instead of h1, navbar */}
 				<h1 className='title text-center'>Workout Tracker</h1>
 				<Router />

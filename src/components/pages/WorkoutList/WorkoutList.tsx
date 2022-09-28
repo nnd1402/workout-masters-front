@@ -15,25 +15,32 @@ const WorkoutList = () => {
 				} 'alert-fail' text-center`}
 				variant='success'
 			>
-				You successfully added workout!
+				Workout added successfully!
 			</Alert>
 
 			<ListGroup>
-				{workoutList.map((workoutList: any, id) => {
-					return (
-						<ListGroupItem key={id}>
-							<WorkoutBlock
-								key={workoutList.id}
-								workoutId={workoutList.id}
-								workoutTitle={workoutList.title}
-								workoutDuration={workoutList.duration}
-								workoutDescription={workoutList.description}
-								workoutDate={workoutList.date}
-								deleteWorkout={deleteWorkout}
-							/>
-						</ListGroupItem>
-					);
-				})}
+				{workoutList.map(
+					(workoutList: {
+						id: string;
+						title: string;
+						duration: number;
+						description: string;
+						date: Date;
+					}) => {
+						return (
+							<ListGroupItem key={workoutList.id}>
+								<WorkoutBlock
+									workoutId={workoutList.id}
+									workoutTitle={workoutList.title}
+									workoutDuration={workoutList.duration}
+									workoutDescription={workoutList.description}
+									workoutDate={workoutList.date}
+									deleteWorkout={deleteWorkout}
+								/>
+							</ListGroupItem>
+						);
+					}
+				)}
 			</ListGroup>
 			<div className='btn-container text-center'>
 				<Link to='/add-workout' className='add-button btn btn-danger'>

@@ -1,6 +1,13 @@
 import { Button } from 'react-bootstrap';
 
-const WorkoutBlockAccordionButton = (props: any) => {
+type WorkoutBlockAccordionButtonProps = {
+	showDescription: () => void;
+	open: boolean;
+};
+
+const WorkoutBlockAccordionButton = (
+	props: WorkoutBlockAccordionButtonProps
+) => {
 	return (
 		<>
 			<Button
