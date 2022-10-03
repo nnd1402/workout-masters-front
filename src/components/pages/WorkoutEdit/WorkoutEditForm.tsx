@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Container, Button, Form, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,8 +7,18 @@ import WorkoutEditFormTitle from './editForm-components/WorkoutEditFormTitle';
 import WorkoutEditFormDuration from './editForm-components/WorkoutEditFormDuration';
 import WorkoutEditFormDescription from './editForm-components/WorkoutEditFormDescription';
 import WorkoutEditFormDatePicker from './editForm-components/WorkoutEditFormDatePicker';
+import axios from 'axios';
 
 const WorkoutEditForm = () => {
+	const [data, setData] = useState();
+
+	useEffect(() => {
+		axios
+			.get('https://localhost:7116/api/Workout')
+			.then((res) => console.log(res.data));
+		setData(data);
+	}, [data]);
+
 	return (
 		<>
 			<Container className='add-workout-container'>

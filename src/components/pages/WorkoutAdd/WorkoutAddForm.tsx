@@ -65,7 +65,7 @@ const WorkoutAddForm = () => {
 		setIsLoading(true);
 		handleWorkoutDescriptionState(editorState);
 
-		Axios.post('https://localhost:7116/api/Workout', {
+		Axios.post(`${process.env.REACT_APP_WORKOUT_BASE_URL}`, {
 			title: workoutTitle,
 			duration: workoutDuration,
 			description: workoutDescription,

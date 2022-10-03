@@ -1,7 +1,7 @@
 import Axios from 'axios';
 
 export const getWorkouts = () => {
-	return Axios.get('https://localhost:7116/api/Workout').then(
+	return Axios.get(`${process.env.REACT_APP_WORKOUT_BASE_URL}`).then(
 		(response) => response.data
 	);
 };

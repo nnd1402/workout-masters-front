@@ -25,7 +25,7 @@ export const useWorkouts = () => {
 	};
 
 	function deleteWorkout(id: string): void {
-		Axios.delete(`https://localhost:7116/api/Workout/${id}`)
+		Axios.delete(`${process.env.REACT_APP_WORKOUT_BASE_URL}/${id}`)
 			.then(() => {
 				setWorkoutList(
 					workoutList.filter((val: { id: string }) => {

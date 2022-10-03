@@ -30,6 +30,7 @@ const WorkoutBlock = (props: WorkoutBlockProps) => {
 	}
 
 	const parsedWorkoutDescription = parse(props.workoutDescription);
+
 	return (
 		<>
 			<Accordion defaultActiveKey='0'>
@@ -66,7 +67,7 @@ const WorkoutBlock = (props: WorkoutBlockProps) => {
 								</div>
 							</Col>
 							<div className='text-end'>
-								<WorkoutBlockEditButton />
+								<WorkoutBlockEditButton workoutId={props.workoutId} />
 								<WorkoutBlockDeleteButton
 									deleteWorkout={props.deleteWorkout}
 									workoutId={props.workoutId}
