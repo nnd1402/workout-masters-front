@@ -8,7 +8,7 @@ const Router = () => {
 		<Routes>
 			<Route path='/list' element={<WorkoutList />} />
 			<Route path='/add-workout' element={<WorkoutAddForm />} />
-			<Route path='/edit-workout' element={<WorkoutEditForm />} />
+			<Route path='/edit-workout/:id' element={<WorkoutEditForm />} />
 		</Routes>
 	);
 };
