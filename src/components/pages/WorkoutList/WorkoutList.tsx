@@ -1,11 +1,13 @@
+import { useState } from 'react';
+import { useWorkouts } from './useWorkouts';
 import WorkoutBlock from './WorkoutBlock';
 import { ListGroup, ListGroupItem, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-import { useWorkouts } from './useWorkouts';
-
 const WorkoutList = () => {
 	const { workoutList, showAlert, deleteWorkout } = useWorkouts();
+
+	const [query, setQuery] = useState('');
 
 	return (
 		<>
@@ -17,30 +19,48 @@ const WorkoutList = () => {
 			>
 				Workout added successfully!
 			</Alert>
-
+			<div className='text-end mb-3'>
+				<input
+					type='text'
+					placeholder='Search workout...'
+					className='search'
+					onChange={(e) => setQuery(e.target.value)}
+				/>
+			</div>
 			<ListGroup>
-				{workoutList.map(
-					(workoutList: {
-						id: string;
-						title: string;
-						duration: number;
-						description: string;
-						date: Date;
-					}) => {
-						return (
-							<ListGroupItem key={workoutList.id}>
-								<WorkoutBlock
-									workoutId={workoutList.id}
-									workoutTitle={workoutList.title}
-									workoutDuration={workoutList.duration}
-									workoutDescription={workoutList.description}
-									workoutDate={workoutList.date}
-									deleteWorkout={deleteWorkout}
-								/>
-							</ListGroupItem>
-						);
-					}
-				)}
+				{workoutList
+					.filter(
+						(workout: {
+							title: string;
+							duration: number;
+							description: string;
+						}) =>
+							workout.title.toLowerCase().includes(query) ||
+							workout.duration.toString().includes(query) ||
+							workout.description.toLowerCase().includes(query)
+					)
+					.map(
+						(workout: {
+							id: string;
+							title: string;
+							duration: number;
+							description: string;
+							date: Date;
+						}) => {
+							return (
+								<ListGroupItem key={workout.id}>
+									<WorkoutBlock
+										workoutId={workout.id}
+										workoutTitle={workout.title}
+										workoutDuration={workout.duration}
+										workoutDescription={workout.description}
+										workoutDate={workout.date}
+										deleteWorkout={deleteWorkout}
+									/>
+								</ListGroupItem>
+							);
+						}
+					)}
 			</ListGroup>
 			<div className='btn-container text-center'>
 				<Link to='/add-workout' className='add-button btn btn-danger'>
