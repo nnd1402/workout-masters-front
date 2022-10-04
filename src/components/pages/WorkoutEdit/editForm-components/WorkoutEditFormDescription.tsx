@@ -4,8 +4,8 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 type WorkoutFormDescriptionProps = {
 	editorState: EditorState;
-	onEditorStateChange: (state: EditorState) => void;
 	handleWorkoutDescriptionState: (state: EditorState) => void;
+	workoutDescription: string;
 };
 
 const WorkoutEditFormDescription = (props: WorkoutFormDescriptionProps) => {
@@ -13,8 +13,12 @@ const WorkoutEditFormDescription = (props: WorkoutFormDescriptionProps) => {
 		<Form.Group className='mb-3 form-group'>
 			<Form.Label>Description</Form.Label>
 			<Editor
+				//placeholder={props.workoutDescription}
 				editorState={props.editorState}
-				onEditorStateChange={props.handleWorkoutDescriptionState}
+				//onEditorStateChange={props.onEditorStateChange}
+				onEditorStateChange={(editorState) =>
+					props.handleWorkoutDescriptionState(editorState)
+				}
 				wrapperClassName='wrapper-class'
 				editorClassName='editor-class'
 				toolbarClassName='toolbar-class'

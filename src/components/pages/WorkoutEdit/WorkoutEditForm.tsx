@@ -17,12 +17,7 @@ import WorkoutEditFormDescription from './editForm-components/WorkoutEditFormDes
 import WorkoutEditFormDatePicker from './editForm-components/WorkoutEditFormDatePicker';
 import Axios from 'axios';
 import { parseISO } from 'date-fns';
-import {
-	EditorState,
-	ContentState,
-	convertToRaw,
-	convertFromRaw
-} from 'draft-js';
+import { EditorState, ContentState, convertToRaw } from 'draft-js';
 import htmlToDraft from 'html-to-draftjs';
 import draftToHtml from 'draftjs-to-html';
 
@@ -37,6 +32,9 @@ const WorkoutEditForm = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [errorMessage, setErrorMessage] = useState('');
 	const [isShowingAlert, setShowingAlert] = useState(false);
+	const [editorState, setEditorState] = useState(() =>
+		EditorState.createEmpty()
+	);
 
 	function navigateToWorkoutListSuccess() {
 		navigate('/list?showMessage=success');
@@ -58,32 +56,28 @@ const WorkoutEditForm = () => {
 		setWorkoutDate(date);
 	}
 
-	const [editorState, setEditorState] = useState(() =>
-		EditorState.createEmpty()
-	);
+	function handleWorkoutDescriptionState(state: EditorState): void {
+		setEditorState(state);
+		convertEditorStateToHtml(state);
+	}
 
-	const htmlToDraftBlocks = (html: string) => {
-		const blocksFromHtml = htmlToDraft(html);
+	function convertEditorStateToHtml(state: EditorState): void {
+		const stateToHtml = draftToHtml(convertToRaw(state.getCurrentContent()));
+		setWorkoutDescription(stateToHtml);
+	}
+
+	function convertEditorStateToRawDraft(workoutDescription: any): void {
+		const blocksFromHtml = htmlToDraft(workoutDescription);
 		const { contentBlocks, entityMap } = blocksFromHtml;
 		const contentState = ContentState.createFromBlockArray(
 			contentBlocks,
 			entityMap
 		);
 		const editorState = EditorState.createWithContent(contentState);
-		return editorState;
-	};
-
-	function handleWorkoutDescriptionState(state: EditorState): void {
-		setEditorState(state);
-		const stateToHtml = draftToHtml(convertToRaw(state.getCurrentContent()));
-		setWorkoutDescription(stateToHtml);
-	}
-
-	function onEditorStateChange(editorState: EditorState) {
 		setEditorState(editorState);
 	}
 
-	useEffect(() => {
+	function setFieldsOnPageLoad() {
 		if (workoutId) {
 			Axios.get(`${process.env.REACT_APP_WORKOUT_BASE_URL}/${workoutId}`)
 				.then((response) => {
@@ -91,18 +85,21 @@ const WorkoutEditForm = () => {
 					setWorkoutDuration(response.data.duration);
 					setWorkoutDescription(response.data.description);
 					setWorkoutDate(parseISO(response.data.date));
-					setEditorState(htmlToDraftBlocks(workoutDescription));
+					convertEditorStateToRawDraft(response.data.description);
 				})
 				.catch((error) => {
 					console.log(error);
 				});
 		}
-	}, [workoutId]);
+	}
+
+	useEffect(() => {
+		setFieldsOnPageLoad();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	const editWorkout = () => {
 		setIsLoading(true);
-		handleWorkoutDescriptionState(editorState);
-
 		Axios.put(`${process.env.REACT_APP_WORKOUT_BASE_URL}/${workoutId}`, {
 			id: workoutId,
 			title: workoutTitle,
@@ -153,8 +150,8 @@ const WorkoutEditForm = () => {
 
 					<WorkoutEditFormDescription
 						editorState={editorState}
-						onEditorStateChange={onEditorStateChange}
 						handleWorkoutDescriptionState={handleWorkoutDescriptionState}
+						workoutDescription={workoutDescription}
 					/>
 					<WorkoutEditFormDatePicker
 						workoutDate={workoutDate}
