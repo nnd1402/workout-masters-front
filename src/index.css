@@ -183,3 +183,14 @@ input[type='number'] {
 .h3-duration {
 	margin-top: 10px;
 }
+
+.filter-wrapper {
+	display: flex;
+	justify-content: right;
+	margin-bottom: 10px;
+}
+
+#filter-control {
+	width: 400px;
+	border-radius: 5px;
+}

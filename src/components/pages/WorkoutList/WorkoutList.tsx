@@ -3,11 +3,16 @@ import { useWorkouts } from './useWorkouts';
 import WorkoutBlock from './WorkoutBlock';
 import { ListGroup, ListGroupItem, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import WorkoutListFilter from './WorkoutListFilter';
 
 const WorkoutList = () => {
 	const { workoutList, showAlert, deleteWorkout } = useWorkouts();
 
 	const [query, setQuery] = useState('');
+
+	function handleFilterQuery(e: React.ChangeEvent<HTMLInputElement>): void {
+		setQuery(e.target.value);
+	}
 
 	return (
 		<>
@@ -19,14 +24,7 @@ const WorkoutList = () => {
 			>
 				Workout added successfully!
 			</Alert>
-			<div className='text-end mb-3'>
-				<input
-					type='text'
-					placeholder='Search workout...'
-					className='search'
-					onChange={(e) => setQuery(e.target.value)}
-				/>
-			</div>
+			<WorkoutListFilter query={query} handleFilterQuery={handleFilterQuery} />
 			<ListGroup>
 				{workoutList
 					.filter(
