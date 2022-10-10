@@ -194,3 +194,7 @@ input[type='number'] {
 	width: 400px;
 	border-radius: 5px;
 }
+
+.register-form {
+	background-color: #fff;
+}

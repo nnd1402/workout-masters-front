@@ -65,6 +65,9 @@ const WorkoutList = () => {
 					Add Workout
 				</Link>
 			</div>
+			<Link to='/register' className='add-button btn btn-danger'>
+				Register User
+			</Link>
 		</>
 	);
 };
