@@ -86,8 +86,8 @@ const WorkoutAddForm = () => {
 
 	return (
 		<>
-			<Container className='add-workout-container'>
-				<Form className='add-workout-form'>
+			<Container className='form-container'>
+				<Form className='form'>
 					<Row>
 						<Col xs={1}>
 							<Link to='/list' className='text-center'>

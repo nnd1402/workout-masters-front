@@ -79,7 +79,7 @@ input[type='number'] {
 	margin-top: 7px;
 }
 
-.add-workout-container {
+.form-container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -99,7 +99,7 @@ input[type='number'] {
 	margin-top: 8px;
 }
 
-.add-workout-form {
+.form {
 	width: 100%;
 	max-width: 700px;
 	padding: 40px;
