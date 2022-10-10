@@ -198,3 +198,27 @@ input[type='number'] {
 .register-form {
 	background-color: #fff;
 }
+
+.card-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.success-card {
+	height: 500px;
+}
+
+.success-card-header {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 300px;
+	background-color: green;
+}
+
+.success-registration-icon {
+	color: #fff;
+	width: 120px;
+	height: 120px;
+}

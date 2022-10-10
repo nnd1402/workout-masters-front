@@ -38,9 +38,11 @@ const UserRegisterForm = () => {
 					<Form.Control type='password' placeholder='Password' />
 				</Form.Group>
 				<div className='text-center'>
-					<Button variant='success' type='submit'>
-						Submit
-					</Button>
+					<Link to='/register-success'>
+						<Button variant='success' type='submit'>
+							Submit
+						</Button>
+					</Link>
 				</div>
 			</Form>
 		</Container>

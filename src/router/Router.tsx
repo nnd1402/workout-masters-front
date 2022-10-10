@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import RegistrationSuccessful from '../components/pages/UserRegister/RegistrationSuccessful';
 import UserRegisterForm from '../components/pages/UserRegister/UserRegisterForm';
 import WorkoutAddForm from '../components/pages/WorkoutAdd/WorkoutAddForm';
 import WorkoutEditForm from '../components/pages/WorkoutEdit/WorkoutEditForm';
@@ -11,6 +12,7 @@ const Router = () => {
 			<Route path='/add-workout' element={<WorkoutAddForm />} />
 			<Route path='/edit-workout/:workoutId' element={<WorkoutEditForm />} />
 			<Route path='/register' element={<UserRegisterForm />} />
+			<Route path='/register-success' element={<RegistrationSuccessful />} />
 		</Routes>
 	);
 };
