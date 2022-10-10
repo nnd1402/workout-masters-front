@@ -32,7 +32,7 @@ const UserLoginForm = () => {
 				</Form.Group>
 				<Link to='/register'>Create a new account</Link>
 				<div className='text-center'>
-					<Link to='/register-success'>
+					<Link to='/list'>
 						<Button variant='success' type='submit'>
 							Login
 						</Button>
