@@ -1,14 +1,18 @@
 import { Button, Card, Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
 const RegistrationSuccessful = () => {
 	const navigateToList = useNavigate();
 
 	useEffect(() => {
-		setTimeout(() => navigateToList('/list'), 5000);
+		const redirectToList = setTimeout(() => navigateToList('/list'), 5000);
+
+		return () => {
+			clearTimeout(redirectToList);
+		};
 	}, [navigateToList]);
 
 	return (
@@ -26,7 +30,9 @@ const RegistrationSuccessful = () => {
 					<Card.Text>
 						Confirmation email has been sent and you will be redirected shortly.
 					</Card.Text>
-					<Button variant='primary'>Back to login</Button>
+					<Link to='/login'>
+						<Button variant='primary'>Back to login</Button>
+					</Link>
 				</Card.Body>
 			</Card>
 		</Container>

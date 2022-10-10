@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
-const UserRegisterForm = () => {
+const UserLoginForm = () => {
 	return (
 		<Container className='form-container'>
 			<Form className='form'>
@@ -18,7 +18,7 @@ const UserRegisterForm = () => {
 						</Link>
 					</Col>
 					<Col xs={10}>
-						<h3 className='add-workout-title'>Register user</h3>
+						<h3 className='add-workout-title'>Login</h3>
 					</Col>
 				</Row>
 				<Form.Group className='mb-3' controlId='formBasicEmail'>
@@ -30,14 +30,11 @@ const UserRegisterForm = () => {
 					<Form.Label>Password</Form.Label>
 					<Form.Control type='password' placeholder='Password' />
 				</Form.Group>
-				<Form.Group className='mb-3' controlId='formBasicConfirmPassword'>
-					<Form.Label>Confirm password</Form.Label>
-					<Form.Control type='password' placeholder='Password' />
-				</Form.Group>
+				<Link to='/register'>Create a new account</Link>
 				<div className='text-center'>
 					<Link to='/register-success'>
 						<Button variant='success' type='submit'>
-							Register
+							Login
 						</Button>
 					</Link>
 				</div>
@@ -46,4 +43,4 @@ const UserRegisterForm = () => {
 	);
 };
 
-export default UserRegisterForm;
+export default UserLoginForm;

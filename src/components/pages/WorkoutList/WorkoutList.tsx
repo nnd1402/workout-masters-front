@@ -66,7 +66,10 @@ const WorkoutList = () => {
 				</Link>
 			</div>
 			<Link to='/register' className='add-button btn btn-danger'>
-				Register User
+				Register
+			</Link>
+			<Link to='/login' className='add-button btn btn-danger'>
+				Login
 			</Link>
 		</>
 	);
