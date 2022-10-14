@@ -19,6 +19,8 @@ const UserRegisterForm = () => {
 	const [isShowingAlert, setShowingAlert] = useState(false);
 	const [userName, setUserName] = useState('');
 	const [password, setPassword] = useState('');
+	const [confirmPassword, setConfirmPassword] = useState('');
+	const [validated, setValidated] = useState(false);
 
 	const navigate = useNavigate();
 
@@ -38,8 +40,18 @@ const UserRegisterForm = () => {
 		setPassword(e.target.value);
 	}
 
+	function handleOnChangeConfirmPassword(
+		e: React.ChangeEvent<HTMLInputElement>
+	): void {
+		setConfirmPassword(e.target.value);
+	}
+
 	function handleRegister() {
+		if (password !== confirmPassword) {
+			alert('Please match password');
+		}
 		setIsLoading(true);
+		setValidated(true);
 		AuthService.register(userName, password)
 			.then(() => {
 				navigateRegisterSuccess();
@@ -54,7 +66,7 @@ const UserRegisterForm = () => {
 
 	return (
 		<Container className='form-container'>
-			<Form className='form'>
+			<Form className='form' noValidate validated={validated}>
 				<Row>
 					<Col xs={1}>
 						<Link to='/list' className='text-center'>
@@ -70,30 +82,47 @@ const UserRegisterForm = () => {
 					</Col>
 				</Row>
 				<Form.Group className='mb-3' controlId='formBasicEmail'>
-					<Form.Label>Username</Form.Label>
+					<Form.Label>Email address:</Form.Label>
 					<Form.Control
 						type='email'
-						placeholder='Username'
 						defaultValue={userName}
 						onChange={handleOnChangeUserName}
+						pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$'
 					/>
+					<span className='validation-error'>
+						Email should be in standard email format (e.g. my@example.com)
+					</span>
 				</Form.Group>
 
 				<Form.Group className='mb-3' controlId='formBasicPassword'>
-					<Form.Label>Password</Form.Label>
+					<Form.Label>Password:</Form.Label>
 					<Form.Control
 						type='password'
-						placeholder='Password'
 						defaultValue={password}
 						onChange={handleOnChangePassword}
+						pattern='^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}'
 					/>
+					<span className='validation-error'>
+						Password must contain at least one number and one uppercase and
+						lowercase letter, and at least 6 or more characters
+					</span>
 				</Form.Group>
 				<Form.Group className='mb-3' controlId='formBasicConfirmPassword'>
-					<Form.Label>Confirm password</Form.Label>
-					<Form.Control type='password' placeholder='Password' />
+					<Form.Label>Confirm password:</Form.Label>
+					<Form.Control
+						type='password'
+						name='confirmPassword'
+						defaultValue={confirmPassword}
+						onChange={handleOnChangeConfirmPassword}
+						pattern={password}
+					/>
+					<span className='validation-error'>
+						Confirm password is not matched
+					</span>
 				</Form.Group>
 				<div className='text-center'>
 					<Button
+						type='submit'
 						variant='success'
 						onClick={handleRegister}
 						disabled={isLoading}

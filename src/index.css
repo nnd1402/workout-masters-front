@@ -5,18 +5,6 @@ body {
 	background-color: #222425;
 }
 
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
-}
-
-/* Firefox */
-input[type='number'] {
-	-moz-appearance: textfield;
-}
-
 .title {
 	color: #fff;
 }
@@ -221,4 +209,15 @@ input[type='number'] {
 	color: #fff;
 	width: 120px;
 	height: 120px;
+}
+
+.validation-error {
+	font-size: 12px;
+	color: red;
+	padding: 3px;
+	display: none;
+}
+
+input:invalid ~ span {
+	display: block;
 }

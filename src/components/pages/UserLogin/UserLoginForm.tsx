@@ -19,6 +19,7 @@ const UserLoginForm = () => {
 	const [isShowingAlert, setShowingAlert] = useState(false);
 	const [userName, setUserName] = useState('');
 	const [password, setPassword] = useState('');
+	const [validated, setValidated] = useState(false);
 
 	const navigate = useNavigate();
 
@@ -40,7 +41,7 @@ const UserLoginForm = () => {
 
 	function handleLogin() {
 		setIsLoading(true);
-
+		setValidated(true);
 		AuthService.login(userName, password)
 			.then(() => {
 				navigateToWorkoutListSuccess();
@@ -53,27 +54,9 @@ const UserLoginForm = () => {
 			});
 	}
 
-	// const loginAccount = () => {
-	// 	setIsLoading(true);
-
-	// 	Axios.post(`${process.env.REACT_APP_WORKOUT_BASE_URL}/Account/login`, {
-	// 		userName: userName,
-	// 		password: password
-	// 	})
-	// 		.then(() => {
-	// 			navigateToWorkoutListSuccess();
-	// 			setIsLoading(false);
-	// 		})
-	// 		.catch(() => {
-	// 			setShowingAlert(true);
-	// 			setErrorMessage('Invalid email or password');
-	// 			setIsLoading(false);
-	// 		});
-	// };
-
 	return (
 		<Container className='form-container'>
-			<Form className='form'>
+			<Form className='form' noValidate validated={validated}>
 				<Row>
 					<Col xs={1}>
 						<Link to='/list' className='text-center'>
@@ -89,12 +72,12 @@ const UserLoginForm = () => {
 					</Col>
 				</Row>
 				<Form.Group className='mb-3' controlId='formBasicEmail'>
-					<Form.Label>Username</Form.Label>
+					<Form.Label>Email address</Form.Label>
 					<Form.Control
 						type='email'
-						placeholder='Username'
 						defaultValue={userName}
 						onChange={handleOnChangeUserName}
+						pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$'
 					/>
 				</Form.Group>
 
@@ -102,9 +85,9 @@ const UserLoginForm = () => {
 					<Form.Label>Password</Form.Label>
 					<Form.Control
 						type='password'
-						placeholder='Password'
 						defaultValue={password}
 						onChange={handleOnChangePassword}
+						pattern='^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}'
 					/>
 				</Form.Group>
 				<Link to='/register'>Create a new account</Link>
