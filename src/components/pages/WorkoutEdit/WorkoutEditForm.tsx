@@ -100,13 +100,16 @@ const WorkoutEditForm = () => {
 
 	const editWorkout = () => {
 		setIsLoading(true);
-		Axios.put(`${process.env.REACT_APP_WORKOUT_BASE_URL}/${workoutId}`, {
-			id: workoutId,
-			title: workoutTitle,
-			duration: workoutDuration,
-			description: workoutDescription,
-			date: workoutDate
-		})
+		Axios.put(
+			`${process.env.REACT_APP_WORKOUT_BASE_URL}/Workout/${workoutId}`,
+			{
+				id: workoutId,
+				title: workoutTitle,
+				duration: workoutDuration,
+				description: workoutDescription,
+				date: workoutDate
+			}
+		)
 			.then(() => {
 				navigateToWorkoutListSuccess();
 				setIsLoading(false);
