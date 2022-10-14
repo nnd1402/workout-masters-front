@@ -20,6 +20,7 @@ import { parseISO } from 'date-fns';
 import { EditorState, ContentState, convertToRaw } from 'draft-js';
 import htmlToDraft from 'html-to-draftjs';
 import draftToHtml from 'draftjs-to-html';
+import authHeader from '../../../services/AuthHeader';
 
 const WorkoutEditForm = () => {
 	let { workoutId } = useParams();
@@ -108,7 +109,8 @@ const WorkoutEditForm = () => {
 				duration: workoutDuration,
 				description: workoutDescription,
 				date: workoutDate
-			}
+			},
+			{ headers: authHeader() }
 		)
 			.then(() => {
 				navigateToWorkoutListSuccess();

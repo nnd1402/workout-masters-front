@@ -11,7 +11,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
-import Axios from 'axios';
+import AuthService from '../../../services/AuthService';
 
 const UserLoginForm = () => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -38,13 +38,10 @@ const UserLoginForm = () => {
 		setPassword(e.target.value);
 	}
 
-	const loginAccount = () => {
+	function handleLogin() {
 		setIsLoading(true);
 
-		Axios.post(`${process.env.REACT_APP_WORKOUT_BASE_URL}/Account/login`, {
-			userName: userName,
-			password: password
-		})
+		AuthService.login(userName, password)
 			.then(() => {
 				navigateToWorkoutListSuccess();
 				setIsLoading(false);
@@ -54,7 +51,25 @@ const UserLoginForm = () => {
 				setErrorMessage('Invalid email or password');
 				setIsLoading(false);
 			});
-	};
+	}
+
+	// const loginAccount = () => {
+	// 	setIsLoading(true);
+
+	// 	Axios.post(`${process.env.REACT_APP_WORKOUT_BASE_URL}/Account/login`, {
+	// 		userName: userName,
+	// 		password: password
+	// 	})
+	// 		.then(() => {
+	// 			navigateToWorkoutListSuccess();
+	// 			setIsLoading(false);
+	// 		})
+	// 		.catch(() => {
+	// 			setShowingAlert(true);
+	// 			setErrorMessage('Invalid email or password');
+	// 			setIsLoading(false);
+	// 		});
+	// };
 
 	return (
 		<Container className='form-container'>
@@ -94,7 +109,7 @@ const UserLoginForm = () => {
 				</Form.Group>
 				<Link to='/register'>Create a new account</Link>
 				<div className='text-center'>
-					<Button variant='success' onClick={loginAccount} disabled={isLoading}>
+					<Button variant='success' onClick={handleLogin} disabled={isLoading}>
 						{isLoading ? <Spinner animation='border' size='sm' /> : 'Login'}
 					</Button>
 				</div>

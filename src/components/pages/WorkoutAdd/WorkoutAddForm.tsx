@@ -19,6 +19,7 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { EditorState, convertToRaw } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import authHeader from '../../../services/AuthHeader';
 
 const WorkoutAddForm = () => {
 	const [workoutTitle, setWorkoutTitle] = useState('');
@@ -65,12 +66,16 @@ const WorkoutAddForm = () => {
 		setIsLoading(true);
 		handleWorkoutDescriptionState(editorState);
 
-		Axios.post(`${process.env.REACT_APP_WORKOUT_BASE_URL}/Workout`, {
-			title: workoutTitle,
-			duration: workoutDuration,
-			description: workoutDescription,
-			date: startDate
-		})
+		Axios.post(
+			`${process.env.REACT_APP_WORKOUT_BASE_URL}/Workout`,
+			{
+				title: workoutTitle,
+				duration: workoutDuration,
+				description: workoutDescription,
+				date: startDate
+			},
+			{ headers: authHeader() }
+		)
 			.then(() => {
 				navigateToWorkoutListSuccess();
 				setIsLoading(false);

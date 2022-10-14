@@ -1,12 +1,68 @@
-import { useState } from 'react';
-import { useWorkouts } from './useWorkouts';
+import { useEffect, useState } from 'react';
 import WorkoutBlock from './WorkoutBlock';
-import { ListGroup, ListGroupItem, Alert } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { ListGroup, ListGroupItem, Alert, Button } from 'react-bootstrap';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import WorkoutListFilter from './WorkoutListFilter';
+import Axios from 'axios';
+import authHeader from './../../../services/AuthHeader';
+import AuthService from '../../../services/AuthService';
 
 const WorkoutList = () => {
-	const { workoutList, showAlert, deleteWorkout } = useWorkouts();
+	const [searchParams] = useSearchParams();
+	const showMessage = searchParams.get('showMessage');
+
+	const [workoutList, setWorkoutList] = useState([]);
+
+	const [showAlert, setShowAlert] = useState(false);
+
+	const navigate = useNavigate();
+
+	function navigateToWorkoutListSuccess() {
+		navigate('/list');
+	}
+
+	function handleLogout() {
+		AuthService.logout();
+		navigateToWorkoutListSuccess();
+	}
+
+	function fetchWorkouts(): void {
+		Axios.get(`${process.env.REACT_APP_WORKOUT_BASE_URL}/Workout`, {
+			headers: authHeader()
+		}).then((response) => {
+			setWorkoutList(response.data);
+		});
+	}
+
+	function deleteWorkout(id: string): void {
+		Axios.delete(`${process.env.REACT_APP_WORKOUT_BASE_URL}/Workout/${id}`, {
+			headers: authHeader()
+		})
+			.then(() => {
+				setWorkoutList(
+					workoutList.filter((val: { id: string }) => {
+						return val.id !== id;
+					})
+				);
+				navigateToWorkoutListSuccess();
+			})
+			.catch(() => {
+				console.log('delete failed');
+			});
+	}
+
+	useEffect(() => {
+		fetchWorkouts();
+		function updateAlertMessage() {
+			if (showMessage === 'success') {
+				setShowAlert(true);
+				setTimeout(() => {
+					setShowAlert(false);
+				}, 5000);
+			}
+		}
+		updateAlertMessage();
+	}, [showMessage]);
 
 	const [query, setQuery] = useState('');
 
@@ -71,6 +127,7 @@ const WorkoutList = () => {
 			<Link to='/login' className='add-button btn btn-danger'>
 				Login
 			</Link>
+			<Button onClick={handleLogout}>Logout</Button>
 		</>
 	);
 };
