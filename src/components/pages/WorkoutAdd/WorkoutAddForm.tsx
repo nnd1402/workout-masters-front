@@ -104,9 +104,7 @@ const WorkoutAddForm = () => {
 							</Link>
 						</Col>
 						<Col xs={10}>
-							<h3 className='add-workout-title'>
-								Form for adding a new workout
-							</h3>
+							<h3 className='form-title'>Form for adding a new workout</h3>
 						</Col>
 					</Row>
 					<WorkoutFormTitle

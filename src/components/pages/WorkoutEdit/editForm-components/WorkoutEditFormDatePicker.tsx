@@ -10,7 +10,7 @@ type WorkoutFormDatePickerProps = {
 const WorkoutEditFormDatePicker = (props: WorkoutFormDatePickerProps) => {
 	return (
 		<Form.Group className='mb-3 form-group'>
-			<Form.Label className='add-workout-label'>Workout date</Form.Label>
+			<Form.Label className='form-label'>Workout date</Form.Label>
 			<DatePicker
 				className='datepicker-square text-center'
 				selected={props.workoutDate}

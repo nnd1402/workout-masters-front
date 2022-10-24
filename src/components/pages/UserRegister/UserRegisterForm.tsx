@@ -78,11 +78,11 @@ const UserRegisterForm = () => {
 						</Link>
 					</Col>
 					<Col xs={10}>
-						<h3 className='add-workout-title'>Register user</h3>
+						<h3 className='form-title'>Register user</h3>
 					</Col>
 				</Row>
 				<Form.Group className='mb-3' controlId='formBasicEmail'>
-					<Form.Label>Email address:</Form.Label>
+					<Form.Label className='form-label'>Email address:</Form.Label>
 					<Form.Control
 						type='email'
 						defaultValue={userName}
@@ -95,7 +95,7 @@ const UserRegisterForm = () => {
 				</Form.Group>
 
 				<Form.Group className='mb-3' controlId='formBasicPassword'>
-					<Form.Label>Password:</Form.Label>
+					<Form.Label className='form-label'>Password:</Form.Label>
 					<Form.Control
 						type='password'
 						defaultValue={password}
@@ -108,7 +108,7 @@ const UserRegisterForm = () => {
 					</span>
 				</Form.Group>
 				<Form.Group className='mb-3' controlId='formBasicConfirmPassword'>
-					<Form.Label>Confirm password:</Form.Label>
+					<Form.Label className='form-label'>Confirm password:</Form.Label>
 					<Form.Control
 						type='password'
 						name='confirmPassword'

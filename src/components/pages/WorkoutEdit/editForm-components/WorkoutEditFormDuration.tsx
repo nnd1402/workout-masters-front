@@ -9,12 +9,12 @@ type WorkoutFormDurationProps = {
 const WorkoutEditFormDuration = (props: WorkoutFormDurationProps) => {
 	return (
 		<Form.Group className='mb-3 form-group' as={Row}>
-			<Form.Label className='add-workout-label'>Duration</Form.Label>
+			<Form.Label className='form-label'>Duration</Form.Label>
 			<Col xs='6'>
 				<Form.Control
 					className='duration-control'
 					type='number'
-					placeholder='Enter the duration of your workout'
+					placeholder='Your workout duration'
 					value={props.workoutDuration}
 					onChange={props.handleDurationChange}
 					onKeyPress={(e) => {

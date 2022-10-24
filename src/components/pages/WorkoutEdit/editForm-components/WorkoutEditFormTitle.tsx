@@ -5,7 +5,7 @@ import { options } from '../../../WorkoutOptions';
 const WorkoutEditFormTitle = (props: any) => {
 	return (
 		<Form.Group className='mb-3 form-group'>
-			<Form.Label className='add-workout-label'>Workout title</Form.Label>
+			<Form.Label className='form-label'>Workout title</Form.Label>
 			<Form.Control
 				size='lg'
 				type='text'

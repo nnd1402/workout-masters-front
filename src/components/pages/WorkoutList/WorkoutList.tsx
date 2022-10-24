@@ -23,7 +23,6 @@ const WorkoutList = () => {
 
 	function handleLogout() {
 		AuthService.logout();
-		navigateToWorkoutListSuccess();
 	}
 
 	function fetchWorkouts(): void {

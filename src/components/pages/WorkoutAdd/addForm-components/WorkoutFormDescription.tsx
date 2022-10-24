@@ -10,7 +10,7 @@ type WorkoutFormDescriptionProps = {
 const WorkoutFormDescription = (props: WorkoutFormDescriptionProps) => {
 	return (
 		<Form.Group className='mb-3 form-group'>
-			<Form.Label>Description</Form.Label>
+			<Form.Label className='form-label'>Description</Form.Label>
 			<Editor
 				defaultEditorState={props.editorState}
 				onEditorStateChange={props.handleWorkoutDescriptionState}

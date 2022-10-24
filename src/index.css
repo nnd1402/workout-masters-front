@@ -41,6 +41,10 @@ body {
 	background-color: lightgrey !important;
 }
 
+.datepicker-wrapper {
+	margin-top: 5px;
+}
+
 .datepicker-rounded {
 	background-color: #fff;
 	border: none;
@@ -49,6 +53,7 @@ body {
 	cursor: pointer;
 	width: 300px;
 	padding: 10px;
+	margin-top: 3px;
 }
 
 .datepicker-square {
@@ -73,12 +78,12 @@ body {
 	align-items: center;
 }
 
-.add-workout-title {
+.form-title {
 	text-align: center;
 	padding-bottom: 30px;
 }
 
-.add-workout-label {
+.form-label {
 	font-size: 18px;
 }
 
@@ -90,7 +95,8 @@ body {
 .form {
 	width: 100%;
 	max-width: 700px;
-	padding: 40px;
+	padding: 30px;
+	margin-bottom: 10px;
 	background-color: #fff;
 	border-radius: 10px;
 	box-sizing: border-box;
@@ -102,6 +108,15 @@ body {
 	border-radius: 0px;
 }
 
+/* Remove arrows from input with type number */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	margin: 0;
+}
+
 .minutes {
 	margin-top: 8px;
 	margin-right: 15px;
@@ -111,19 +126,16 @@ body {
 	color: grey;
 }
 
-.alert-fail {
-	padding: 10px;
-	margin-bottom: -20px;
-}
-
 .alert-shown {
 	opacity: 1;
 	transition: all 250ms linear;
+	margin-bottom: -25px;
 }
 
 .alert-hidden {
 	opacity: 0;
 	transition: all 250ms linear;
+	margin-bottom: -60px;
 }
 
 .block-btn {

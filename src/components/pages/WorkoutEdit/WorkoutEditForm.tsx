@@ -80,7 +80,10 @@ const WorkoutEditForm = () => {
 
 	function setFieldsOnPageLoad() {
 		if (workoutId) {
-			Axios.get(`${process.env.REACT_APP_WORKOUT_BASE_URL}/${workoutId}`)
+			Axios.get(
+				`${process.env.REACT_APP_WORKOUT_BASE_URL}/Workout/${workoutId}`,
+				{ headers: authHeader() }
+			)
 				.then((response) => {
 					setWorkoutTitle(response.data.title);
 					setWorkoutDuration(response.data.duration);
@@ -140,7 +143,7 @@ const WorkoutEditForm = () => {
 							</Link>
 						</Col>
 						<Col xs={10}>
-							<h3 className='add-workout-title'>Edit the selected workout</h3>
+							<h3 className='form-title'>Edit the selected workout</h3>
 						</Col>
 					</Row>
 					<WorkoutEditFormTitle
