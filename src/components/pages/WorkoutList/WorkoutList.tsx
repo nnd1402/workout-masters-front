@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import WorkoutBlock from './WorkoutBlock';
-import { ListGroup, ListGroupItem, Alert, Button } from 'react-bootstrap';
+import { ListGroup, ListGroupItem, Alert } from 'react-bootstrap';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import WorkoutListFilter from './WorkoutListFilter';
 import Axios from 'axios';
 import authHeader from './../../../services/AuthHeader';
-import AuthService from '../../../services/AuthService';
 
 const WorkoutList = () => {
 	const [searchParams] = useSearchParams();
@@ -19,10 +20,6 @@ const WorkoutList = () => {
 
 	function navigateToWorkoutListSuccess() {
 		navigate('/list');
-	}
-
-	function handleLogout() {
-		AuthService.logout();
 	}
 
 	function fetchWorkouts(): void {
@@ -115,18 +112,11 @@ const WorkoutList = () => {
 						}
 					)}
 			</ListGroup>
-			<div className='btn-container text-center'>
-				<Link to='/add-workout' className='add-button btn btn-danger'>
-					Add Workout
+			<div className='btn-container text-end'>
+				<Link to='/add-workout' className='add-workout-button btn btn-danger'>
+					<FontAwesomeIcon icon={faPlus} size='2xl' />
 				</Link>
 			</div>
-			<Link to='/register' className='add-button btn btn-danger'>
-				Register
-			</Link>
-			<Link to='/login' className='add-button btn btn-danger'>
-				Login
-			</Link>
-			<Button onClick={handleLogout}>Logout</Button>
 		</>
 	);
 };

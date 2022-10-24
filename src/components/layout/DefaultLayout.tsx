@@ -1,13 +1,13 @@
 import { Container } from 'react-bootstrap';
 import 'react-datepicker/dist/react-datepicker.css';
 import Router from '../../router/Router';
+import Nav from '../header/Nav';
 
 const DefaultLayout = () => {
 	return (
 		<>
+			<Nav />
 			<Container className='mt-5'>
-				{/* Header instead of h1, navbar */}
-				<h1 className='title text-center'>Workout Tracker</h1>
 				<Router />
 				{/* Footer */}
 			</Container>

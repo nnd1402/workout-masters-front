@@ -1,15 +1,5 @@
-import {
-	Container,
-	Form,
-	Button,
-	Row,
-	Col,
-	Spinner,
-	Alert
-} from 'react-bootstrap';
+import { Container, Form, Button, Spinner, Alert } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import AuthService from '../../../services/AuthService';
 
@@ -57,20 +47,9 @@ const UserLoginForm = () => {
 	return (
 		<Container className='form-container'>
 			<Form className='form' noValidate validated={validated}>
-				<Row>
-					<Col xs={1}>
-						<Link to='/list' className='text-center'>
-							<FontAwesomeIcon
-								className='arrow-left-icon'
-								icon={faArrowLeft}
-								size='2x'
-							/>
-						</Link>
-					</Col>
-					<Col xs={10}>
-						<h3 className='form-title'>Login</h3>
-					</Col>
-				</Row>
+				<header>
+					<h3 className='form-title'>Login</h3>
+				</header>
 				<Form.Group className='mb-3' controlId='formBasicEmail'>
 					<Form.Label className='form-label'>Email address</Form.Label>
 					<Form.Control

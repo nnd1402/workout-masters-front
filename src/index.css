@@ -5,6 +5,29 @@ body {
 	background-color: #222425;
 }
 
+.navbar-wrapper {
+	background-color: lightgray;
+}
+
+.navbar-brand {
+	font-size: 40px;
+}
+
+.navbar-username {
+	font-size: 20px;
+}
+
+.logout {
+	margin-left: 10px;
+	padding: 0;
+}
+
+.sign-in {
+	font-size: 20px;
+	color: black;
+	text-decoration: none;
+}
+
 .title {
 	color: #fff;
 }
@@ -67,7 +90,7 @@ body {
 	padding: 0;
 }
 
-.add-button {
+.add-workout-button {
 	padding: 15px;
 	margin-top: 7px;
 }
@@ -80,7 +103,6 @@ body {
 
 .form-title {
 	text-align: center;
-	padding-bottom: 30px;
 }
 
 .form-label {
