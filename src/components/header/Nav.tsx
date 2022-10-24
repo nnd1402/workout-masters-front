@@ -42,7 +42,6 @@ const Nav = () => {
 					{userLoggedIn ? (
 						<div>
 							<Navbar.Text>
-								Signed in as:{' '}
 								<span className='navbar-username'>{username}</span>
 							</Navbar.Text>
 							<Button
