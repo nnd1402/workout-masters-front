@@ -1,21 +1,20 @@
 import { Container, Form, Button, Spinner, Alert } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import AuthService from '../../../services/AuthService';
+import { UserContext } from '../../../contexts/UserContext';
 
 const UserLoginForm = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [errorMessage, setErrorMessage] = useState('');
 	const [isShowingAlert, setShowingAlert] = useState(false);
-	const [userName, setUserName] = useState('');
 	const [password, setPassword] = useState('');
 	const [validated, setValidated] = useState(false);
 
-	const navigate = useNavigate();
+	const { userName, setUserName } = useContext(UserContext);
+	const { setUserLoggedIn } = useContext(UserContext);
 
-	function navigateToWorkoutListSuccess() {
-		navigate('/list');
-	}
+	const navigate = useNavigate();
 
 	function handleOnChangeUserName(
 		e: React.ChangeEvent<HTMLInputElement>
@@ -29,18 +28,21 @@ const UserLoginForm = () => {
 		setPassword(e.target.value);
 	}
 
-	function handleLogin() {
+	async function handleLogin() {
 		setIsLoading(true);
 		setValidated(true);
-		AuthService.login(userName, password)
+		setUserLoggedIn(false);
+		await AuthService.login(userName, password)
 			.then(() => {
-				navigateToWorkoutListSuccess();
+				navigate('/list');
 				setIsLoading(false);
+				setUserLoggedIn(true);
 			})
 			.catch(() => {
 				setShowingAlert(true);
 				setErrorMessage('Invalid email or password');
 				setIsLoading(false);
+				setUserLoggedIn(false);
 			});
 	}
 

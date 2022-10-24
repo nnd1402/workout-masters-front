@@ -1,48 +1,44 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import AuthService from '../../services/AuthService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from '../../contexts/UserContext';
 
 const Nav = () => {
-	const [username, setUserName] = useState('');
-	const [userLoggedIn, setUserLoggedIn] = useState(false);
+	const { userName, setUserName } = useContext(UserContext);
+	const { userLoggedIn, setUserLoggedIn } = useContext(UserContext);
 
-	function getUser() {
-		setUserLoggedIn(false);
-		let user = AuthService.getCurrentUser();
-		if (user) {
-			setUserName(user.userName);
-			setUserLoggedIn(true);
-		} else {
-			setUserName('');
-		}
-	}
+	const navigate = useNavigate();
 
 	function handleLogout() {
 		AuthService.logout();
 		setUserLoggedIn(false);
+		navigate('/login');
 	}
 
 	useEffect(() => {
-		getUser();
-	}, []);
+		setUserLoggedIn(false);
+		let user = AuthService.getCurrentUser();
+		if (user) {
+			setUserLoggedIn(true);
+			setUserName(user.userName);
+		}
+	}, [setUserName, setUserLoggedIn]);
 
 	return (
 		<Navbar className='navbar-wrapper'>
 			<Container>
-				<Navbar.Brand className='navbar-brand' href='/list'>
-					Workout Tracker
-				</Navbar.Brand>
+				<Navbar.Brand className='navbar-brand'>Workout Tracker</Navbar.Brand>
 				<Navbar.Toggle />
 				<Navbar.Collapse className='justify-content-end'>
 					{userLoggedIn ? (
 						<div>
 							<Navbar.Text>
-								<span className='navbar-username'>{username}</span>
+								<span className='navbar-username'>{userName}</span>
 							</Navbar.Text>
 							<Button
 								className='logout'
