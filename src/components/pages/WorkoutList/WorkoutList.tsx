@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import WorkoutBlock from './WorkoutBlock';
-import { ListGroup, ListGroupItem, Alert } from 'react-bootstrap';
+import { ListGroup, ListGroupItem, Alert, Container } from 'react-bootstrap';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -67,16 +67,21 @@ const WorkoutList = () => {
 	}
 
 	return (
-		<>
-			<Alert
-				className={`${
-					showAlert ? 'alert-shown' : 'alert-hidden'
-				} 'alert-fail' text-center`}
-				variant='success'
-			>
-				Workout added successfully!
-			</Alert>
-			<WorkoutListFilter query={query} handleFilterQuery={handleFilterQuery} />
+		<Container>
+			<div className='alert-wrapper text-center'>
+				<Alert
+					className={`${showAlert ? 'list-alert-shown' : 'list-alert-hidden'} `}
+					variant='success'
+				>
+					Workout added successfully!
+				</Alert>
+			</div>
+			<div>
+				<WorkoutListFilter
+					query={query}
+					handleFilterQuery={handleFilterQuery}
+				/>
+			</div>
 			<ListGroup>
 				{workoutList
 					.filter(
@@ -113,11 +118,15 @@ const WorkoutList = () => {
 					)}
 			</ListGroup>
 			<div className='btn-container text-end'>
-				<Link to='/add-workout' className='add-workout-button btn btn-danger'>
+				<Link
+					to='/add-workout'
+					title='Add Workout'
+					className='add-workout-button btn btn-danger'
+				>
 					<FontAwesomeIcon icon={faPlus} size='2xl' />
 				</Link>
 			</div>
-		</>
+		</Container>
 	);
 };
 

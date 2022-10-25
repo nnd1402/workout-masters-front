@@ -1,16 +1,18 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Container, Form, Button, Spinner, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../../contexts/UserContext';
 import AuthService from '../../../services/AuthService';
 
 const UserRegisterForm = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [errorMessage, setErrorMessage] = useState('');
 	const [isShowingAlert, setShowingAlert] = useState(false);
-	const [userName, setUserName] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
 	const [validated, setValidated] = useState(false);
+	const { setUserLoggedIn } = useContext(UserContext);
+	const { userName, setUserName } = useContext(UserContext);
 
 	const navigate = useNavigate();
 
@@ -45,6 +47,8 @@ const UserRegisterForm = () => {
 		AuthService.register(userName, password)
 			.then(() => {
 				navigateRegisterSuccess();
+				AuthService.login(userName, password);
+				setUserLoggedIn(true);
 				setIsLoading(false);
 			})
 			.catch(() => {
