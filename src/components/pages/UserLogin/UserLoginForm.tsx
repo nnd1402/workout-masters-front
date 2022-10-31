@@ -56,7 +56,7 @@ const UserLoginForm = () => {
 					<Form.Label className='form-label'>Email address</Form.Label>
 					<Form.Control
 						type='email'
-						defaultValue={userName}
+						value={userName}
 						onChange={handleOnChangeUserName}
 						pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$'
 					/>
@@ -68,7 +68,7 @@ const UserLoginForm = () => {
 						type='password'
 						defaultValue={password}
 						onChange={handleOnChangePassword}
-						pattern='^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}'
+						pattern='^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'
 					/>
 				</Form.Group>
 				<Link to='/register'>Create a new account</Link>

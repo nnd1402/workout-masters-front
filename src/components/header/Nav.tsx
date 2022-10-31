@@ -18,6 +18,7 @@ const Nav = () => {
 		AuthService.logout();
 		setUserLoggedIn(false);
 		navigate('/login');
+		setUserName('');
 	}
 
 	useEffect(() => {

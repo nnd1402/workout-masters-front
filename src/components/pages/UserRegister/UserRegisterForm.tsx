@@ -68,7 +68,7 @@ const UserRegisterForm = () => {
 					<Form.Label className='form-label'>Email address:</Form.Label>
 					<Form.Control
 						type='email'
-						defaultValue={userName}
+						value={userName}
 						onChange={handleOnChangeUserName}
 						pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$'
 					/>
@@ -83,11 +83,11 @@ const UserRegisterForm = () => {
 						type='password'
 						defaultValue={password}
 						onChange={handleOnChangePassword}
-						pattern='^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}'
+						pattern='^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'
 					/>
 					<span className='validation-error'>
 						Password must contain at least one number and one uppercase and
-						lowercase letter, and at least 6 or more characters
+						lowercase letter, and at least 8 or more characters
 					</span>
 				</Form.Group>
 				<Form.Group className='mb-3' controlId='formBasicConfirmPassword'>
