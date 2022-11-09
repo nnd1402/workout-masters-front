@@ -5,15 +5,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
 const RegistrationSuccessful = () => {
-	const navigateToList = useNavigate();
+	const navigateToLogin = useNavigate();
 
 	useEffect(() => {
-		const redirectToList = setTimeout(() => navigateToList('/list'), 5000);
+		const redirectToList = setTimeout(() => navigateToLogin('/login'), 5000);
 
 		return () => {
 			clearTimeout(redirectToList);
 		};
-	}, [navigateToList]);
+	}, [navigateToLogin]);
 
 	return (
 		<Container className='card-container text-center'>
@@ -28,10 +28,11 @@ const RegistrationSuccessful = () => {
 					<Card.Title>Registration Successful!</Card.Title>
 					<Card.Text>Your account has been successfully created.</Card.Text>
 					<Card.Text>
-						Confirmation email has been sent and you will be redirected shortly.
+						Confirmation email has been sent and you will be redirected shortly
+						to login page. Please login after confirming your account.
 					</Card.Text>
 					<Link to='/login'>
-						<Button variant='primary'>Back to login</Button>
+						<Button variant='primary'>Go to login</Button>
 					</Link>
 				</Card.Body>
 			</Card>

@@ -11,7 +11,7 @@ const UserRegisterForm = () => {
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
 	const [validated, setValidated] = useState(false);
-	const { setUserLoggedIn } = useContext(UserContext);
+	//const { setUserLoggedIn } = useContext(UserContext);
 	const { userName, setUserName } = useContext(UserContext);
 
 	const navigate = useNavigate();
@@ -39,23 +39,25 @@ const UserRegisterForm = () => {
 	}
 
 	function handleRegister() {
-		if (password !== confirmPassword) {
-			alert('Please match password');
-		}
 		setIsLoading(true);
 		setValidated(true);
-		AuthService.register(userName, password)
-			.then(() => {
-				navigateRegisterSuccess();
-				AuthService.login(userName, password);
-				setUserLoggedIn(true);
-				setIsLoading(false);
-			})
-			.catch(() => {
-				setShowingAlert(true);
-				setErrorMessage('Invalid email or password');
-				setIsLoading(false);
-			});
+		if (password !== confirmPassword) {
+			setShowingAlert(true);
+			setErrorMessage('Please match the password');
+			setIsLoading(false);
+		} else {
+			AuthService.register(userName, password)
+				.then(() => {
+					navigateRegisterSuccess();
+					//setUserLoggedIn(true);
+					setIsLoading(false);
+				})
+				.catch(() => {
+					setShowingAlert(true);
+					setErrorMessage('Invalid email or password');
+					setIsLoading(false);
+				});
+		}
 	}
 
 	return (
