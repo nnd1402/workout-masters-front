@@ -2,25 +2,38 @@
 
 body {
 	font-family: 'Poppins', sans-serif;
-	background-color: #222425;
+	/* background-color: #222425; */
+	background-color: #1c1c1c;
 }
 
 .navbar-wrapper {
-	background-color: lightgray;
+	/* background-color: #097969; */
+	background-color: #000;
+}
+
+.navbar-title {
+	text-decoration: none;
 }
 
 .navbar-brand {
 	font-size: 40px;
+	color: #eed400;
+}
+
+.navbar-brand:hover {
+	color: #eed400;
+	cursor: pointer;
 }
 
 .navbar-username {
 	font-size: 20px;
-	color: black;
+	color: #eed400;
 }
 
 .logout {
 	margin-left: 10px;
 	padding: 0;
+	color: #fff;
 }
 
 .sign-in {
@@ -33,12 +46,33 @@ body {
 	color: #fff;
 }
 
+.workout-list-heading {
+	font-size: 100px;
+	font-weight: bold;
+	color: #fff;
+}
+
+.accordion {
+	background-color: black;
+}
+
+.card {
+	border: 1px solid black;
+}
+
 .card-header {
-	background-color: lightgray;
+	/* background-color: #097969; */
+	/* background-color: #dfee06; */
+	background-color: #eed400;
+}
+
+.title-list {
+	margin-top: 8px;
+	color: black;
 }
 
 .accordion-button {
-	background-color: lightgray;
+	background-color: #eed400;
 	border: none;
 	padding: 0px;
 	margin-left: 50px;
@@ -48,12 +82,12 @@ body {
 
 .accordion-button:focus {
 	box-shadow: none;
-	background-color: lightgrey !important;
+	background-color: #eed400 !important;
 }
 
 .accordion-button:not(.collapsed) {
 	background-image: none !important;
-	background-color: lightgrey !important;
+	background-color: #eed400 !important;
 }
 
 .accordion-button:not(.collapsed)::after {
@@ -62,7 +96,7 @@ body {
 }
 
 .accordion-button:hover {
-	background-color: lightgrey !important;
+	background-color: #eed400 !important;
 }
 
 .datepicker-wrapper {
@@ -71,7 +105,7 @@ body {
 
 .datepicker-rounded {
 	background-color: #fff;
-	border: none;
+	border: 2px solid black;
 	border-radius: 20px;
 	font-size: 18px;
 	cursor: pointer;
@@ -94,6 +128,15 @@ body {
 .add-workout-button {
 	padding: 15px;
 	margin-top: 7px;
+	border: 1px solid black;
+	background-color: black;
+	color: #eed400;
+}
+
+.add-workout-button:hover {
+	border: 1px solid #eed400 !important;
+	background-color: #eed400 !important;
+	color: black !important;
 }
 
 .form-container {
@@ -108,11 +151,6 @@ body {
 
 .form-label {
 	font-size: 18px;
-}
-
-.title-list {
-	color: black;
-	margin-top: 8px;
 }
 
 .form {
@@ -187,6 +225,7 @@ input[type='number']::-webkit-outer-spin-button {
 
 .block-workout-description {
 	margin: 20px;
+	color: black;
 }
 
 .row-list {
@@ -216,12 +255,13 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .h3-duration {
-	margin-top: 10px;
+	margin-top: 13px;
+	font-size: 26px;
 }
 
 .filter-wrapper {
 	display: flex;
-	justify-content: left;
+	justify-content: center;
 	margin-bottom: 10px;
 }
 

@@ -33,7 +33,9 @@ const Nav = () => {
 	return (
 		<Navbar className='navbar-wrapper'>
 			<Container>
-				<Navbar.Brand className='navbar-brand'>Workout Tracker</Navbar.Brand>
+				<Link to='/list' className='navbar-title'>
+					<Navbar.Brand className='navbar-brand'>Workout Tracker</Navbar.Brand>
+				</Link>
 				<Navbar.Toggle />
 				<Navbar.Collapse className='justify-content-end'>
 					{userLoggedIn ? (

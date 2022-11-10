@@ -68,6 +68,7 @@ const WorkoutList = () => {
 
 	return (
 		<Container>
+			<h1 className='workout-list-heading text-center'>Workout list</h1>
 			<div className='alert-wrapper text-center'>
 				<Alert
 					className={`${showAlert ? 'list-alert-shown' : 'list-alert-hidden'} `}

@@ -10,7 +10,7 @@ const WorkoutListFilter = (props: WorkoutListFilterProps) => {
 		<Form className='filter-wrapper'>
 			<Form.Control
 				type='text'
-				placeholder='Filter displayed workouts, eg. "Pull"'
+				placeholder='Filter displayed workouts, eg. "Calisthenics"'
 				id='filter-control'
 				onChange={props.handleFilterQuery}
 			/>
