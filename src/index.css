@@ -1,14 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap');
 
+html body .App {
+	min-height: 100vmin;
+}
+
 body {
 	font-family: 'Poppins', sans-serif;
-	/* background-color: #222425; */
+	/* background-color: #1c1c1c; */
+}
+
+#light {
+	background-color: #f4f1d6;
+}
+
+#dark {
 	background-color: #1c1c1c;
 }
 
 .navbar-wrapper {
 	/* background-color: #097969; */
 	background-color: #000;
+}
+
+#light .navbar-wrapper {
+	background-color: #fdfd96;
 }
 
 .navbar-title {
@@ -18,6 +33,15 @@ body {
 .navbar-brand {
 	font-size: 40px;
 	color: #eed400;
+}
+
+.switch-wrapper {
+	margin-left: 260px;
+	margin-top: 7px;
+}
+
+#light .navbar-brand {
+	color: #000;
 }
 
 .navbar-brand:hover {
@@ -30,16 +54,35 @@ body {
 	color: #eed400;
 }
 
+#light .navbar-username {
+	color: #000;
+}
+
 .logout {
+	background-color: transparent !important;
 	margin-left: 10px;
 	padding: 0;
-	color: #fff;
+	color: #eed400 !important;
+}
+
+#light .logout {
+	background-color: transparent !important;
+	color: #000 !important;
+}
+
+#light .logout:hover {
+	background-color: transparent !important;
+	color: #000 !important;
 }
 
 .sign-in {
 	font-size: 20px;
-	color: black;
+	color: #eed400;
 	text-decoration: none;
+}
+
+#light .sign-in {
+	color: #000;
 }
 
 .title {
@@ -50,6 +93,10 @@ body {
 	font-size: 100px;
 	font-weight: bold;
 	color: #fff;
+}
+
+#light .workout-list-heading {
+	color: black;
 }
 
 .accordion {
@@ -66,6 +113,10 @@ body {
 	background-color: #eed400;
 }
 
+#light .card-header {
+	background-color: #fdfd96;
+}
+
 .title-list {
 	margin-top: 8px;
 	color: black;
@@ -80,9 +131,17 @@ body {
 	width: 20px;
 }
 
+#light .accordion-button {
+	background-color: #fdfd96;
+}
+
 .accordion-button:focus {
 	box-shadow: none;
 	background-color: #eed400 !important;
+}
+
+#light .accordion-button:focus {
+	background-color: #fdfd96 !important;
 }
 
 .accordion-button:not(.collapsed) {
@@ -90,13 +149,25 @@ body {
 	background-color: #eed400 !important;
 }
 
+#light .accordion-button:not(.collapsed) {
+	background-color: #fdfd96 !important;
+}
+
 .accordion-button:not(.collapsed)::after {
 	background-image: none;
 	background-image: var(--bs-accordion-btn-icon);
 }
 
+#light .accordion-button:not(.collapsed)::after {
+	color: #fdfd96 !important;
+}
+
 .accordion-button:hover {
 	background-color: #eed400 !important;
+}
+
+#light .accordion-button:hover {
+	background-color: #fdfd96 !important;
 }
 
 .datepicker-wrapper {
@@ -133,10 +204,21 @@ body {
 	color: #eed400;
 }
 
+#light .add-workout-button {
+	background-color: #fdfd96;
+	color: #000;
+}
+
 .add-workout-button:hover {
 	border: 1px solid #eed400 !important;
 	background-color: #eed400 !important;
 	color: black !important;
+}
+
+#light .add-workout-button:hover {
+	border: 1px solid #000 !important;
+	background-color: black !important;
+	color: #fdfd96 !important;
 }
 
 .form-container {
@@ -211,7 +293,18 @@ input[type='number']::-webkit-outer-spin-button {
 	margin-bottom: -60px;
 }
 
+.btn {
+	background-color: #eed400;
+	color: black;
+}
+
+.btn:hover {
+	background-color: #000 !important;
+	color: #eed400 !important;
+}
+
 .block-btn {
+	background-color: transparent !important;
 	padding: 5 10px;
 	border: 2px solid #fff;
 	margin-top: 6px;
@@ -306,4 +399,20 @@ input[type='number']::-webkit-outer-spin-button {
 
 input:invalid ~ span {
 	display: block;
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+#light .footer {
+	color: black;
+	background-color: #fdfd96;
+}
+
+#dark .footer {
+	color: #eed400;
+	background-color: #000;
 }

@@ -7,10 +7,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../contexts/UserContext';
+import { ThemeContext } from '../../contexts/ThemeContext';
+import ReactSwitch from 'react-switch';
 
 const Nav = () => {
 	const { userName, setUserName } = useContext(UserContext);
 	const { userLoggedIn, setUserLoggedIn } = useContext(UserContext);
+	const { toggleTheme } = useContext(ThemeContext);
+	const { theme } = useContext(ThemeContext);
 
 	const navigate = useNavigate();
 
@@ -37,6 +41,22 @@ const Nav = () => {
 					<Navbar.Brand className='navbar-brand'>Workout Tracker</Navbar.Brand>
 				</Link>
 				<Navbar.Toggle />
+				<div className='switch-wrapper'>
+					<ReactSwitch
+						onChange={toggleTheme}
+						checked={theme === 'dark'}
+						onColor='#eed400'
+						onHandleColor='#eed400'
+						handleDiameter={30}
+						uncheckedIcon={false}
+						checkedIcon={false}
+						boxShadow='0px 1px 5px rgba(0, 0, 0, 0.6)'
+						activeBoxShadow='0px 0px 1px 10px rgba(0, 0, 0, 0.2)'
+						height={20}
+						width={48}
+					/>
+				</div>
+
 				<Navbar.Collapse className='justify-content-end'>
 					{userLoggedIn ? (
 						<div>
