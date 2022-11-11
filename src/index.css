@@ -63,6 +63,7 @@ body {
 	margin-left: 10px;
 	padding: 0;
 	color: #eed400 !important;
+	border: none;
 }
 
 #light .logout {
@@ -299,12 +300,14 @@ input[type='number']::-webkit-outer-spin-button {
 
 .btn {
 	background-color: #eed400;
-	color: black;
+	color: #000;
+	border-color: #000;
 }
 
 .btn:hover {
 	background-color: #000 !important;
 	color: #eed400 !important;
+	border-color: #000;
 }
 
 .block-btn {

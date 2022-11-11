@@ -38,7 +38,8 @@ const UserRegisterForm = () => {
 		setConfirmPassword(e.target.value);
 	}
 
-	function handleRegister() {
+	function handleRegister(e: any) {
+		e.preventDefault();
 		setIsLoading(true);
 		setValidated(true);
 		if (password !== confirmPassword) {
@@ -62,7 +63,12 @@ const UserRegisterForm = () => {
 
 	return (
 		<Container className='form-container'>
-			<Form className='form' noValidate validated={validated}>
+			<Form
+				className='form'
+				noValidate
+				validated={validated}
+				onSubmit={handleRegister}
+			>
 				<header>
 					<h3 className='form-title'>Register user</h3>
 				</header>
@@ -106,12 +112,7 @@ const UserRegisterForm = () => {
 					</span>
 				</Form.Group>
 				<div className='text-center'>
-					<Button
-						type='submit'
-						variant='success'
-						onClick={handleRegister}
-						disabled={isLoading}
-					>
+					<Button type='submit' variant='success' disabled={isLoading}>
 						{isLoading ? <Spinner animation='border' size='sm' /> : 'Register'}
 					</Button>
 				</div>

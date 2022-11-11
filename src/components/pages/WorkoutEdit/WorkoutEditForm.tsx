@@ -38,7 +38,7 @@ const WorkoutEditForm = () => {
 	);
 
 	function navigateToWorkoutListSuccess() {
-		navigate('/list?showMessage=success');
+		navigate('/list?showMessage=editedSuccess');
 	}
 
 	function typeWorkoutTitle(e: React.ChangeEvent<HTMLInputElement>): void {
@@ -102,7 +102,8 @@ const WorkoutEditForm = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	const editWorkout = () => {
+	const editWorkout = (e: any) => {
+		e.preventDefault();
 		setIsLoading(true);
 		Axios.put(
 			`${process.env.REACT_APP_WORKOUT_BASE_URL}/Workout/${workoutId}`,
@@ -131,7 +132,7 @@ const WorkoutEditForm = () => {
 	return (
 		<>
 			<Container className='form-container'>
-				<Form className='form'>
+				<Form className='form' onSubmit={editWorkout}>
 					<Row>
 						<Col xs={1}>
 							<Link to='/list' className='text-center'>
@@ -166,11 +167,7 @@ const WorkoutEditForm = () => {
 						handleDateChange={handleDateChange}
 					/>
 					<div className='text-center'>
-						<Button
-							variant='success'
-							onClick={editWorkout}
-							disabled={isLoading}
-						>
+						<Button type='submit' variant='success' disabled={isLoading}>
 							{isLoading ? (
 								<Spinner animation='border' size='sm' />
 							) : (

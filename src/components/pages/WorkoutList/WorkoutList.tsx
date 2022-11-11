@@ -16,10 +16,12 @@ const WorkoutList = () => {
 
 	const [showAlert, setShowAlert] = useState(false);
 
+	const [alertMessage, setAlertMessage] = useState('');
+
 	const navigate = useNavigate();
 
 	function navigateToWorkoutListSuccess() {
-		navigate('/list');
+		navigate('/list?showMessage=deletedSuccess');
 	}
 
 	function fetchWorkouts(): void {
@@ -50,8 +52,21 @@ const WorkoutList = () => {
 	useEffect(() => {
 		fetchWorkouts();
 		function updateAlertMessage() {
-			if (showMessage === 'success') {
+			if (showMessage === 'addedSuccess') {
 				setShowAlert(true);
+				setAlertMessage('Workout added successfully!');
+				setTimeout(() => {
+					setShowAlert(false);
+				}, 5000);
+			} else if (showMessage === 'editedSuccess') {
+				setShowAlert(true);
+				setAlertMessage('Workout edited successfully!');
+				setTimeout(() => {
+					setShowAlert(false);
+				}, 5000);
+			} else if (showMessage === 'deletedSuccess') {
+				setShowAlert(true);
+				setAlertMessage('Workout deleted successfully!');
 				setTimeout(() => {
 					setShowAlert(false);
 				}, 5000);
@@ -74,7 +89,7 @@ const WorkoutList = () => {
 					className={`${showAlert ? 'list-alert-shown' : 'list-alert-hidden'} `}
 					variant='success'
 				>
-					Workout added successfully!
+					{alertMessage}
 				</Alert>
 			</div>
 			<div>

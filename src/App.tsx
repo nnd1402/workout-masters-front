@@ -13,8 +13,6 @@ function App() {
 		[userName, setUserName, userLoggedIn, setUserLoggedIn]
 	);
 
-	// const themeValue = useMemo(() => ({ theme, setTheme }), [theme, setTheme]);
-
 	const toggleTheme = () => {
 		setTheme((curr) => (curr === 'light' ? 'dark' : 'light'));
 	};

@@ -28,7 +28,8 @@ const UserLoginForm = () => {
 		setPassword(e.target.value);
 	}
 
-	async function handleLogin() {
+	async function handleLogin(e: any) {
+		e.preventDefault();
 		setIsLoading(true);
 		setValidated(true);
 		setUserLoggedIn(false);
@@ -48,7 +49,12 @@ const UserLoginForm = () => {
 
 	return (
 		<Container className='form-container'>
-			<Form className='form' noValidate validated={validated}>
+			<Form
+				className='form'
+				noValidate
+				validated={validated}
+				onSubmit={handleLogin}
+			>
 				<header>
 					<h3 className='form-title'>Login</h3>
 				</header>
@@ -73,7 +79,7 @@ const UserLoginForm = () => {
 				</Form.Group>
 				<Link to='/register'>Create a new account</Link>
 				<div className='text-center'>
-					<Button variant='success' onClick={handleLogin} disabled={isLoading}>
+					<Button type='submit' variant='success' disabled={isLoading}>
 						{isLoading ? <Spinner animation='border' size='sm' /> : 'Login'}
 					</Button>
 				</div>

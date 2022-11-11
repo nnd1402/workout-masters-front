@@ -37,7 +37,7 @@ const WorkoutAddForm = () => {
 	const navigate = useNavigate();
 
 	function navigateToWorkoutListSuccess() {
-		navigate('/list?showMessage=success');
+		navigate('/list?showMessage=addedSuccess');
 	}
 
 	function typeWorkoutTitle(e: React.ChangeEvent<HTMLInputElement>): void {
@@ -62,7 +62,8 @@ const WorkoutAddForm = () => {
 		setWorkoutDescription(stateToHtml);
 	}
 
-	const addWorkout = () => {
+	const addWorkout = (e: any) => {
+		e.preventDefault();
 		setIsLoading(true);
 		handleWorkoutDescriptionState(editorState);
 
@@ -92,7 +93,7 @@ const WorkoutAddForm = () => {
 	return (
 		<>
 			<Container className='form-container'>
-				<Form className='form'>
+				<Form className='form' onSubmit={addWorkout}>
 					<Row>
 						<Col xs={1}>
 							<Link to='/list' className='text-center'>
@@ -126,7 +127,7 @@ const WorkoutAddForm = () => {
 						handleDateChange={handleDateChange}
 					/>
 					<div className='text-center'>
-						<Button variant='success' onClick={addWorkout} disabled={isLoading}>
+						<Button type='submit' variant='success' disabled={isLoading}>
 							{isLoading ? (
 								<Spinner animation='border' size='sm' />
 							) : (
