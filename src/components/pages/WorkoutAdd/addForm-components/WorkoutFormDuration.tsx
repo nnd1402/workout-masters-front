@@ -31,7 +31,7 @@ const WorkoutFormDuration = (props: WorkoutFormDurationProps) => {
 			<RangeSlider
 				value={props.workoutDuration}
 				onChange={props.handleDurationChange}
-				variant='success'
+				variant='warning'
 				step={15}
 				min={15}
 				max={90}
