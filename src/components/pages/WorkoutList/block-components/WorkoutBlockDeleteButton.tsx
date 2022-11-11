@@ -43,7 +43,7 @@ const WorkoutBlockDeleteButton = (props: WorkoutBlockDeleteButtonProps) => {
 						Close
 					</Button>
 					<Button
-						variant='primary'
+						className='styled-btn'
 						onClick={() => props.deleteWorkout(props.workoutId)}
 					>
 						Delete

@@ -77,9 +77,11 @@ const UserLoginForm = () => {
 						pattern='^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'
 					/>
 				</Form.Group>
-				<Link to='/register'>Create a new account</Link>
+				<Link className='create-new-account-link' to='/register'>
+					Create a new account
+				</Link>
 				<div className='text-center'>
-					<Button type='submit' variant='success' disabled={isLoading}>
+					<Button className='styled-btn' type='submit' disabled={isLoading}>
 						{isLoading ? <Spinner animation='border' size='sm' /> : 'Login'}
 					</Button>
 				</div>
