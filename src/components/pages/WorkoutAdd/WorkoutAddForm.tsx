@@ -68,7 +68,7 @@ const WorkoutAddForm = () => {
 		handleWorkoutDescriptionState(editorState);
 
 		Axios.post(
-			`${process.env.REACT_APP_WORKOUT_BASE_URL}/Workout`,
+			`${process.env.REACT_APP_WORKOUT_BASE_URL}/Workout/Create`,
 			{
 				title: workoutTitle,
 				duration: workoutDuration,

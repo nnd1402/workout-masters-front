@@ -62,6 +62,7 @@ const UserLoginForm = () => {
 					<Form.Label className='form-label'>Email address</Form.Label>
 					<Form.Control
 						type='email'
+						className='form-control'
 						value={userName}
 						onChange={handleOnChangeUserName}
 						pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$'
@@ -72,6 +73,7 @@ const UserLoginForm = () => {
 					<Form.Label className='form-label'>Password</Form.Label>
 					<Form.Control
 						type='password'
+						className='form-control'
 						defaultValue={password}
 						onChange={handleOnChangePassword}
 						pattern='^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'
@@ -81,7 +83,11 @@ const UserLoginForm = () => {
 					Create a new account
 				</Link>
 				<div className='text-center'>
-					<Button className='styled-btn' type='submit' disabled={isLoading}>
+					<Button
+						className='styled-btn mt-2'
+						type='submit'
+						disabled={isLoading}
+					>
 						{isLoading ? <Spinner animation='border' size='sm' /> : 'Login'}
 					</Button>
 				</div>

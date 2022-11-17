@@ -81,7 +81,7 @@ const WorkoutEditForm = () => {
 	function setFieldsOnPageLoad() {
 		if (workoutId) {
 			Axios.get(
-				`${process.env.REACT_APP_WORKOUT_BASE_URL}/Workout/${workoutId}`,
+				`${process.env.REACT_APP_WORKOUT_BASE_URL}/Workout/GetById/${workoutId}`,
 				{ headers: authHeader() }
 			)
 				.then((response) => {
@@ -106,7 +106,7 @@ const WorkoutEditForm = () => {
 		e.preventDefault();
 		setIsLoading(true);
 		Axios.put(
-			`${process.env.REACT_APP_WORKOUT_BASE_URL}/Workout/${workoutId}`,
+			`${process.env.REACT_APP_WORKOUT_BASE_URL}/Workout/Update/${workoutId}`,
 			{
 				id: workoutId,
 				title: workoutTitle,

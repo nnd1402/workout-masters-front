@@ -3,7 +3,7 @@ import axios from 'axios';
 class AuthService {
 	login(username: string, password: string) {
 		return axios
-			.post(`${process.env.REACT_APP_WORKOUT_BASE_URL}/Account/login`, {
+			.post(`${process.env.REACT_APP_WORKOUT_BASE_URL}/Account/Login`, {
 				username,
 				password
 			})
@@ -22,7 +22,7 @@ class AuthService {
 
 	register(username: string, password: string) {
 		return axios.post(
-			`${process.env.REACT_APP_WORKOUT_BASE_URL}/Account/create`,
+			`${process.env.REACT_APP_WORKOUT_BASE_URL}/Account/Register`,
 			{
 				username,
 				password

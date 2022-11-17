@@ -37,7 +37,7 @@ const Nav = () => {
 	return (
 		<Navbar className='navbar-wrapper'>
 			<Container>
-				<Link to='/list' className='navbar-title'>
+				<Link to='/login' className='navbar-title'>
 					<Navbar.Brand className='navbar-brand'>Workout Tracker</Navbar.Brand>
 				</Link>
 				<Navbar.Toggle />
@@ -60,9 +60,11 @@ const Nav = () => {
 				<Navbar.Collapse className='justify-content-end'>
 					{userLoggedIn ? (
 						<div>
-							<Navbar.Text>
-								<span className='navbar-username'>{userName}</span>
-							</Navbar.Text>
+							<Link to='/list' className='navbar-username-link'>
+								<Navbar.Text>
+									<span className='navbar-username'>{userName}</span>
+								</Navbar.Text>
+							</Link>
 							<Button
 								className='logout'
 								title='Logout'

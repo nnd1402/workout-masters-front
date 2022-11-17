@@ -112,7 +112,11 @@ const UserRegisterForm = () => {
 					</span>
 				</Form.Group>
 				<div className='text-center'>
-					<Button className='styled-btn' type='submit' disabled={isLoading}>
+					<Button
+						className='styled-btn mt-2'
+						type='submit'
+						disabled={isLoading}
+					>
 						{isLoading ? <Spinner animation='border' size='sm' /> : 'Register'}
 					</Button>
 				</div>

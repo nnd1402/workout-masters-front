@@ -1,20 +1,9 @@
 import { Button, Card, Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
-import { Link, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const RegistrationSuccessful = () => {
-	const navigateToLogin = useNavigate();
-
-	useEffect(() => {
-		const redirectToList = setTimeout(() => navigateToLogin('/login'), 5000);
-
-		return () => {
-			clearTimeout(redirectToList);
-		};
-	}, [navigateToLogin]);
-
 	return (
 		<Container className='card-container text-center'>
 			<Card className='success-card'>
@@ -24,15 +13,23 @@ const RegistrationSuccessful = () => {
 						icon={faCircleCheck}
 					/>
 				</Card.Header>
-				<Card.Body>
-					<Card.Title>Registration Successful!</Card.Title>
-					<Card.Text>Your account has been successfully created.</Card.Text>
+				<Card.Body className='success-card-body'>
+					<Card.Title>
+						<h1>Registration Successful!</h1>
+					</Card.Title>
 					<Card.Text>
-						Confirmation email has been sent and you will be redirected shortly
-						to login page. Please login after confirming your account.
+						<h2>Your account has been successfully created.</h2>
+					</Card.Text>
+					<Card.Text>
+						<h4 className=''>
+							Confirmation email has been sent to your email address. Please
+							login after confirming your account.
+						</h4>
 					</Card.Text>
 					<Link to='/login'>
-						<Button variant='primary'>Go to login</Button>
+						<Button className='styled-btn m-4' variant='primary' size='lg'>
+							Go to login
+						</Button>
 					</Link>
 				</Card.Body>
 			</Card>

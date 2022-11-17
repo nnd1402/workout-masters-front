@@ -11,7 +11,7 @@ const DefaultLayout = () => {
 			<Container className='mt-5'>
 				<Router />
 			</Container>
-			<Footer />
+			{/* <Footer /> */}
 		</>
 	);
 };

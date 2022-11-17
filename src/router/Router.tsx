@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import UserAccountConfirmation from '../components/pages/UserAccountConfirmation/UserAccountConfirmation';
 import UserLoginForm from '../components/pages/UserLogin/UserLoginForm';
 import RegistrationSuccessful from '../components/pages/UserRegister/RegistrationSuccessful';
 import UserRegisterForm from '../components/pages/UserRegister/UserRegisterForm';
@@ -15,6 +16,10 @@ const Router = () => {
 			<Route path='/register' element={<UserRegisterForm />} />
 			<Route path='/login' element={<UserLoginForm />} />
 			<Route path='/register-success' element={<RegistrationSuccessful />} />
+			<Route
+				path='/account-confirmation'
+				element={<UserAccountConfirmation />}
+			/>
 		</Routes>
 	);
 };
