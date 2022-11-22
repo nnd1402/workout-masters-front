@@ -33,15 +33,20 @@ const UserLoginForm = () => {
 		setIsLoading(true);
 		setValidated(true);
 		setUserLoggedIn(false);
+
 		await AuthService.login(userName, password)
 			.then(() => {
 				navigate('/list');
 				setIsLoading(false);
 				setUserLoggedIn(true);
 			})
-			.catch(() => {
+			.catch((err) => {
 				setShowingAlert(true);
-				setErrorMessage('Invalid email or password');
+				if (err.response.data === undefined) {
+					setErrorMessage('Server is down, please try again later');
+				} else {
+					setErrorMessage(err.response.data.toString());
+				}
 				setIsLoading(false);
 				setUserLoggedIn(false);
 			});

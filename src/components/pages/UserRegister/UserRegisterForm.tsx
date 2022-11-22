@@ -11,7 +11,6 @@ const UserRegisterForm = () => {
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
 	const [validated, setValidated] = useState(false);
-	//const { setUserLoggedIn } = useContext(UserContext);
 	const { userName, setUserName } = useContext(UserContext);
 
 	const navigate = useNavigate();
@@ -50,12 +49,15 @@ const UserRegisterForm = () => {
 			AuthService.register(userName, password)
 				.then(() => {
 					navigateRegisterSuccess();
-					//setUserLoggedIn(true);
 					setIsLoading(false);
 				})
-				.catch(() => {
+				.catch((err) => {
 					setShowingAlert(true);
-					setErrorMessage('Invalid email or password');
+					if (err.response.data === undefined) {
+						setErrorMessage('Server is down, please try again later');
+					} else {
+						setErrorMessage(err.response.data.toString());
+					}
 					setIsLoading(false);
 				});
 		}
