@@ -73,7 +73,7 @@ const WorkoutFormTitle = (props: WorkoutFormTitleProps) => {
 
 	return (
 		<Form.Group className='mb-3 form-group'>
-			<Form.Label className='add-workout-label'>Workout title</Form.Label>
+			<Form.Label className='add-workout-label'>Title</Form.Label>
 			{/* <Form.Control
 				size='lg'
 				type='text'

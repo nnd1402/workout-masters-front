@@ -74,7 +74,7 @@ const WorkoutEditFormTitle = (props: WorkoutFormTitleProps) => {
 
 	return (
 		<Form.Group className='mb-3 form-group'>
-			<Form.Label className='form-label'>Workout title</Form.Label>
+			<Form.Label className='form-label'>Title</Form.Label>
 			{/* <Form.Control
 				size='lg'
 				type='text'
@@ -85,6 +85,7 @@ const WorkoutEditFormTitle = (props: WorkoutFormTitleProps) => {
 			/> */}
 			<CreatableSelect
 				name={props.workoutTitle}
+				isLoading={isLoading}
 				placeholder='Choose your workout from predefined options or write your own title'
 				options={options}
 				onCreateOption={handleCreate}

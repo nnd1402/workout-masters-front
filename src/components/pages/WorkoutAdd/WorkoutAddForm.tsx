@@ -81,11 +81,13 @@ const WorkoutAddForm = () => {
 				navigateToWorkoutListSuccess();
 				setIsLoading(false);
 			})
-			.catch(() => {
+			.catch((err) => {
 				setShowingAlert(true);
-				setErrorMessage(
-					'There was a problem adding your workout. Please try again later.'
-				);
+				if (err.response.data === undefined) {
+					setErrorMessage('Server is down, please try again later');
+				} else {
+					setErrorMessage(err.response.data.toString());
+				}
 				setIsLoading(false);
 			});
 	};
