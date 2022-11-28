@@ -40,12 +40,8 @@ const WorkoutAddForm = () => {
 		navigate('/list?showMessage=addedSuccess');
 	}
 
-	function typeWorkoutTitle(e: React.ChangeEvent<HTMLInputElement>): void {
-		setWorkoutTitle(e.target.value);
-	}
-
-	function selectWorkoutTitle(selectedOption: { label: string }): void {
-		setWorkoutTitle(selectedOption.label);
+	function setTypedTitle(newValue: string): void {
+		setWorkoutTitle(newValue);
 	}
 
 	function handleDurationChange(e: React.ChangeEvent<HTMLInputElement>): void {
@@ -112,8 +108,7 @@ const WorkoutAddForm = () => {
 					</Row>
 					<WorkoutFormTitle
 						workoutTitle={workoutTitle}
-						typeWorkoutTitle={typeWorkoutTitle}
-						selectWorkoutTitle={selectWorkoutTitle}
+						setTypedTitle={setTypedTitle}
 					/>
 					<WorkoutFormDuration
 						workoutDuration={workoutDuration}

@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import CreatableSelect from 'react-select/creatable';
+import { options } from '../../../WorkoutOptions';
 
 type WorkoutFormTitleProps = {
 	workoutTitle: string;
-	typeWorkoutTitle: (e: React.ChangeEvent<HTMLInputElement>) => void;
-	selectWorkoutTitle: (selectedOption: { label: string }) => void;
+	setTypedTitle: (newValue: string) => void;
 };
 
 interface IProps {
@@ -22,34 +22,13 @@ interface Option {
 	readonly value: string;
 }
 
-const createOption = (label: string) => ({
-	label,
-	value: label.toLowerCase().replace(/\W/g, '')
-});
-
-const defaultOptions = [
-	createOption('Push Training'),
-	createOption('Pull Training'),
-	createOption('Arms Training'),
-	createOption('Legs Training'),
-	createOption('Calisthenics'),
-	createOption('Crossfit')
-];
-
 const WorkoutEditFormTitle = (props: WorkoutFormTitleProps) => {
-	const [isLoading, setIsLoading] = useState(false);
-	const [options, setOptions] = useState(defaultOptions);
 	const [value, setValue] = useState<Option | null>();
 
-	const handleCreate = (inputValue: string) => {
-		setIsLoading(true);
-		setTimeout(() => {
-			const newOption = createOption(inputValue);
-			setIsLoading(false);
-			setOptions((prev) => [...prev, newOption]);
-			setValue(newOption);
-		}, 1000);
-	};
+	useEffect(() => {
+		let title = props.workoutTitle;
+		setValue({ label: title, value: title });
+	}, [props.workoutTitle]);
 
 	const colorStyles = {
 		control: (styles: IStyles, state: any) => ({
@@ -72,25 +51,23 @@ const WorkoutEditFormTitle = (props: WorkoutFormTitleProps) => {
 		}
 	};
 
+	function handleTitleChange(inputTitleValue: any) {
+		setValue(inputTitleValue);
+		props.setTypedTitle(inputTitleValue.label);
+	}
+
 	return (
 		<Form.Group className='mb-3 form-group'>
 			<Form.Label className='form-label'>Title</Form.Label>
-			{/* <Form.Control
-				size='lg'
-				type='text'
-				placeholder='Enter the title of your workout'
-				className='form-control'
-				defaultValue={props.workoutTitle}
-				onChange={props.typeWorkoutTitle}
-			/> */}
 			<CreatableSelect
-				name={props.workoutTitle}
-				isLoading={isLoading}
+				isClearable
 				placeholder='Choose your workout from predefined options or write your own title'
 				options={options}
-				onCreateOption={handleCreate}
-				onChange={props.selectWorkoutTitle}
+				onChange={(param) => {
+					handleTitleChange(param);
+				}}
 				styles={colorStyles}
+				value={value}
 			/>
 		</Form.Group>
 	);

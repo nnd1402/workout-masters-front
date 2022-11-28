@@ -9,5 +9,6 @@ export const options: OptionType[] = [
 	{ value: 'Arms Training', label: 'Arms Training' },
 	{ value: 'Calisthenics Training', label: 'Calisthenics Training' },
 	{ value: 'Crossfit Training', label: 'Crossfit Training' },
-	{ value: 'Legs Training', label: 'Legs Training' }
+	{ value: 'Legs Training', label: 'Legs Training' },
+	{ value: 'Cardio Training', label: 'Cardio Training' }
 ];

@@ -41,14 +41,6 @@ const WorkoutEditForm = () => {
 		navigate('/list?showMessage=editedSuccess');
 	}
 
-	function typeWorkoutTitle(e: React.ChangeEvent<HTMLInputElement>): void {
-		setWorkoutTitle(e.target.value);
-	}
-
-	function selectWorkoutTitle(selectedOption: { label: string }): void {
-		setWorkoutTitle(selectedOption.label);
-	}
-
 	function handleDurationChange(e: React.ChangeEvent<HTMLInputElement>): void {
 		setWorkoutDuration(e.target.value);
 	}
@@ -131,6 +123,10 @@ const WorkoutEditForm = () => {
 			});
 	};
 
+	function setTypedTitle(newValue: string): void {
+		setWorkoutTitle(newValue);
+	}
+
 	return (
 		<>
 			<Container className='form-container'>
@@ -151,8 +147,7 @@ const WorkoutEditForm = () => {
 					</Row>
 					<WorkoutEditFormTitle
 						workoutTitle={workoutTitle}
-						typeWorkoutTitle={typeWorkoutTitle}
-						selectWorkoutTitle={selectWorkoutTitle}
+						setTypedTitle={setTypedTitle}
 					/>
 					<WorkoutEditFormDuration
 						workoutDuration={workoutDuration}
