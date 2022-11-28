@@ -23,7 +23,7 @@ import authHeader from '../../../services/AuthHeader';
 
 const WorkoutAddForm = () => {
 	const [workoutTitle, setWorkoutTitle] = useState('');
-	const [workoutDuration, setWorkoutDuration] = useState('');
+	const [workoutDuration, setWorkoutDuration] = useState('0');
 	const [workoutDescription, setWorkoutDescription] = useState('');
 	const [startDate, setStartDate] = useState(new Date());
 	const [editorState, setEditorState] = useState(() =>
@@ -103,7 +103,7 @@ const WorkoutAddForm = () => {
 							</Link>
 						</Col>
 						<Col xs={10}>
-							<h3 className='form-title'>Form for adding a new workout</h3>
+							<h2 className='form-title'>Add a new workout</h2>
 						</Col>
 					</Row>
 					<WorkoutFormTitle

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap');
 
 ::-webkit-scrollbar {
-	width: 10px;
+	width: 15px;
 }
 
 ::-webkit-scrollbar:track {
@@ -9,15 +9,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-	background-color: #eed400;
+	background-color: #515359;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background-color: #f4f1d6;
-}
-
-#light ::-webkit-scrollbar:track {
-	background-color: red;
+	background-color: #eed400;
 }
 
 html body .App {
@@ -30,7 +26,7 @@ body {
 }
 
 #light {
-	background-color: #f4f1d6;
+	background-color: #ededf2;
 }
 
 #dark {
@@ -43,7 +39,7 @@ body {
 }
 
 #light .navbar-wrapper {
-	background-color: #fdfd96;
+	background-color: #1c1c1c;
 }
 
 .navbar-title {
@@ -60,7 +56,7 @@ body {
 }
 
 #light .navbar-brand {
-	color: #000;
+	color: #fff;
 }
 
 .navbar-brand:hover {
@@ -78,7 +74,7 @@ body {
 }
 
 #light .navbar-username {
-	color: #000;
+	color: #fff;
 }
 
 .logout {
@@ -91,12 +87,12 @@ body {
 
 #light .logout {
 	background-color: transparent !important;
-	color: #000 !important;
+	color: #fff !important;
 }
 
 #light .logout:hover {
 	background-color: transparent !important;
-	color: #000 !important;
+	color: #eed400 !important;
 }
 
 .sign-in {
@@ -136,7 +132,7 @@ body {
 }
 
 #light .card-header {
-	background-color: #fdfd96;
+	background-color: #fff;
 }
 
 .title-list {
@@ -236,7 +232,7 @@ body {
 }
 
 #light .add-workout-button {
-	background-color: #fdfd96;
+	background-color: #fff;
 	color: #000;
 }
 
@@ -249,7 +245,7 @@ body {
 #light .add-workout-button:hover {
 	border: 1px solid #000 !important;
 	background-color: black !important;
-	color: #fdfd96 !important;
+	color: #eed400 !important;
 }
 
 .form-container {
@@ -322,12 +318,16 @@ input[type='number']::-webkit-outer-spin-button {
 	color: #eed400;
 }
 
+#light .arrow-left-icon {
+	color: #000;
+}
+
 .arrow-left-icon:hover {
 	color: #fff;
 }
 
 #light .arrow-left-icon:hover {
-	color: #000;
+	color: #eed400;
 }
 
 .list-alert-shown {
@@ -361,7 +361,7 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 #light .styled-btn {
-	background-color: #eed400 !important;
+	background-color: #fff !important;
 	color: #000 !important;
 	border-color: #000 !important;
 }

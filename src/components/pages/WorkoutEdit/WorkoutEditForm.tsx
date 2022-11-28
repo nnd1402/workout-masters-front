@@ -142,7 +142,7 @@ const WorkoutEditForm = () => {
 							</Link>
 						</Col>
 						<Col xs={10}>
-							<h3 className='form-title'>Edit the selected workout</h3>
+							<h2 className='form-title'>Edit the selected workout</h2>
 						</Col>
 					</Row>
 					<WorkoutEditFormTitle
