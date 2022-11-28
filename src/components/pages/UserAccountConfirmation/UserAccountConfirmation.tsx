@@ -33,12 +33,11 @@ const UserAccountConfirmation = () => {
 				console.log(email, token);
 				setIsConfirmed(false);
 			});
-		console.log('ovo je email:' + email, 'ovo je token:' + token);
 
-		const redirectToLogin = setTimeout(() => navigate('/login'), 5000);
+		//const redirectToLogin = setTimeout(() => navigate('/login'), 5000);
 
 		return () => {
-			clearTimeout(redirectToLogin);
+			//clearTimeout(redirectToLogin);
 		};
 	}, [email, token, navigate]);
 
@@ -53,10 +52,12 @@ const UserAccountConfirmation = () => {
 								icon={faCircleCheck}
 							/>
 						</Card.Header>
-						<Card.Body>
-							<Card.Title>Confirmation Successful!</Card.Title>
+						<Card.Body className='success-card-body'>
+							<Card.Title>
+								<h1>Confirmation Successful!</h1>
+							</Card.Title>
 							<Card.Text>
-								Your account has been successfully verified.
+								<h4>Your account has been successfully verified.</h4>
 							</Card.Text>
 							<Link to='/login'>
 								<Button className='styled-btn mt-4' variant='primary'>
@@ -75,10 +76,12 @@ const UserAccountConfirmation = () => {
 								icon={faCircleExclamation}
 							/>
 						</Card.Header>
-						<Card.Body>
-							<Card.Title>Confirmation Failed!</Card.Title>
+						<Card.Body className='success-card-body'>
+							<Card.Title>
+								<h1>Confirmation Failed!</h1>
+							</Card.Title>
 							<Card.Text>
-								Your account has not been successfully verified.
+								<h4>Your account has not been successfully verified.</h4>
 							</Card.Text>
 							<Link to='/login'>
 								<Button className='styled-btn mt-4' variant='primary'>

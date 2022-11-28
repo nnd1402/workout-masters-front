@@ -21,7 +21,7 @@ const RegistrationSuccessful = () => {
 						<h2>Your account has been successfully created.</h2>
 					</Card.Text>
 					<Card.Text>
-						<h4 className=''>
+						<h4>
 							Confirmation email has been sent to your email address. Please
 							login after confirming your account.
 						</h4>
