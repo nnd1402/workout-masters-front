@@ -37,9 +37,20 @@ const Nav = () => {
 	return (
 		<Navbar className='navbar-wrapper'>
 			<Container>
-				<Link to='/login' className='navbar-title'>
-					<Navbar.Brand className='navbar-brand'>Workout Tracker</Navbar.Brand>
-				</Link>
+				{userLoggedIn ? (
+					<Link to='/list' className='navbar-title'>
+						<Navbar.Brand className='navbar-brand'>
+							Workout Tracker
+						</Navbar.Brand>
+					</Link>
+				) : (
+					<Link to='/login' className='navbar-title'>
+						<Navbar.Brand className='navbar-brand'>
+							Workout Tracker
+						</Navbar.Brand>
+					</Link>
+				)}
+
 				<Navbar.Toggle />
 				<div className='switch-wrapper'>
 					<ReactSwitch

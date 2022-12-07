@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { Container, Form, Button, Spinner, Alert } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../../contexts/UserContext';
 import AuthService from '../../../services/AuthService';
 
@@ -113,6 +113,14 @@ const UserRegisterForm = () => {
 						Confirm password is not matched
 					</span>
 				</Form.Group>
+				<div>
+					<p>
+						Already have an account?{' '}
+						<Link className='link' to='/login'>
+							Log in
+						</Link>
+					</p>
+				</div>
 				<div className='text-center'>
 					<Button
 						className='styled-btn mt-2'

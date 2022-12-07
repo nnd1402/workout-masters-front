@@ -20,7 +20,7 @@ const WorkoutBlockDeleteButton = (props: WorkoutBlockDeleteButtonProps) => {
 			<Button
 				variant='transparent'
 				title='Delete Workout'
-				className='block-btn'
+				className='description-btn'
 				onClick={handleShow}
 			>
 				<FontAwesomeIcon className='trashcan-icon' icon={faTrash} />

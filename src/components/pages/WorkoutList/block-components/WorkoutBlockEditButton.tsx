@@ -7,8 +7,8 @@ const WorkoutBlockEditButton = (props: any) => {
 	return (
 		<>
 			<Link to={`/edit-workout/${props.workoutId}`} title='Edit Workout'>
-				<Button variant='transparent' className='block-btn'>
-					<FontAwesomeIcon className='trashcan-icon' icon={faPenToSquare} />
+				<Button variant='transparent' className='description-btn'>
+					<FontAwesomeIcon className='description-icon' icon={faPenToSquare} />
 				</Button>
 			</Link>
 		</>

@@ -223,6 +223,11 @@ body {
 	padding: 0;
 }
 
+.modal-content {
+	background-color: #121212;
+	color: #fff;
+}
+
 .add-workout-button {
 	padding: 15px;
 	margin-top: 7px;
@@ -245,7 +250,7 @@ body {
 #light .add-workout-button:hover {
 	border: 1px solid #000 !important;
 	background-color: black !important;
-	color: #eed400 !important;
+	color: #fff !important;
 }
 
 .form-container {
@@ -361,8 +366,8 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 #light .styled-btn {
-	background-color: #fff !important;
-	color: #000 !important;
+	background-color: #1c1c1c !important;
+	color: #fff !important;
 	border-color: #000 !important;
 }
 
@@ -373,8 +378,8 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 #light .styled-btn:hover {
-	background-color: #000 !important;
-	color: #fff !important;
+	background-color: #fff !important;
+	color: #000 !important;
 	border-color: #000 !important;
 }
 
@@ -383,15 +388,18 @@ input[type='range']::-webkit-slider-thumb {
 	background: #eed400 !important;
 }
 
-.block-btn {
+.description-btn {
 	background-color: transparent !important;
 	padding: 5 10px;
-	border: 2px solid #fff;
 	margin-top: 6px;
-	color: grey !important;
+	color: #fff;
 }
 
-.block-btn:hover {
+#light .description-btn {
+	color: #000;
+}
+
+.description-btn:hover {
 	background-color: lightgrey !important;
 	color: #000 !important;
 	border-color: #000 !important;
@@ -399,7 +407,19 @@ input[type='range']::-webkit-slider-thumb {
 
 .block-workout-description {
 	margin: 20px;
-	color: black;
+	color: #fff;
+}
+
+#light .block-workout-description {
+	color: #000;
+}
+
+.collapse-body {
+	background-color: #121212;
+}
+
+#light .collapse-body {
+	background-color: #fff;
 }
 
 .row-list {
@@ -562,15 +582,15 @@ input:invalid ~ span {
 	display: block;
 }
 
-.create-new-account-link {
-	color: #fff;
+.link {
+	color: #eed400;
 }
 
-#light .create-new-account-link {
-	color: #000;
+#light .link {
+	color: blue;
 }
 
-.create-new-account-link:hover {
+.link:hover {
 	color: #8b8000;
 }
 

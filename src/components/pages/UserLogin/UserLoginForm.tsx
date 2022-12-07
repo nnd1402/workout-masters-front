@@ -1,4 +1,12 @@
-import { Container, Form, Button, Spinner, Alert } from 'react-bootstrap';
+import {
+	Container,
+	Form,
+	Button,
+	Spinner,
+	Alert,
+	Row,
+	Col
+} from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import AuthService from '../../../services/AuthService';
@@ -84,9 +92,20 @@ const UserLoginForm = () => {
 						pattern='^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'
 					/>
 				</Form.Group>
-				<Link className='create-new-account-link' to='/register'>
-					Create a new account
-				</Link>
+
+				<Row>
+					<Col xs={6}>
+						<Link className='link' to='/register'>
+							Create a new account
+						</Link>
+					</Col>
+					<Col className='text-end' xs={6}>
+						<Link className='link' to='/forgot-password'>
+							Forgot password?
+						</Link>
+					</Col>
+				</Row>
+
 				<div className='text-center'>
 					<Button
 						className='styled-btn mt-2'

@@ -147,7 +147,7 @@ const WorkoutList = () => {
 						<Link
 							to='/add-workout'
 							title='Add Workout'
-							className='add-workout-button btn btn-danger'
+							className='add-workout-button btn'
 						>
 							<FontAwesomeIcon icon={faPlus} size='2xl' />
 						</Link>

@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import UserAccountConfirmation from '../components/pages/UserAccountConfirmation/UserAccountConfirmation';
+import UserForgotPasswordForm from '../components/pages/UserForgotPassword/UserForgotPasswordForm';
 import UserLoginForm from '../components/pages/UserLogin/UserLoginForm';
 import RegistrationSuccessful from '../components/pages/UserRegister/RegistrationSuccessful';
 import UserRegisterForm from '../components/pages/UserRegister/UserRegisterForm';
@@ -20,6 +21,7 @@ const Router = () => {
 				path='/account-confirmation'
 				element={<UserAccountConfirmation />}
 			/>
+			<Route path='/forgot-password' element={<UserForgotPasswordForm />} />
 			<Route path='*' element={<Navigate to='/login' />} />
 		</Routes>
 	);
