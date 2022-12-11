@@ -1,4 +1,4 @@
-import { Button, Card, Container } from 'react-bootstrap';
+import { Card, Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
@@ -17,19 +17,17 @@ const RegistrationSuccessful = () => {
 					<Card.Title>
 						<h1>Registration Successful!</h1>
 					</Card.Title>
-					<Card.Text>
+					<div>
 						<h2>Your account has been successfully created.</h2>
-					</Card.Text>
-					<Card.Text>
+					</div>
+					<div>
 						<h4>
 							Confirmation email has been sent to your email address. Please
 							login after confirming your account.
 						</h4>
-					</Card.Text>
-					<Link to='/login'>
-						<Button className='styled-btn m-4' variant='primary' size='lg'>
-							Go to login
-						</Button>
+					</div>
+					<Link className='link mt-4' to='/login'>
+						Go to login
 					</Link>
 				</Card.Body>
 			</Card>

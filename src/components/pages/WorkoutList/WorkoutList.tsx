@@ -91,8 +91,7 @@ const WorkoutList = () => {
 				<WorkoutEmptyList />
 			) : (
 				<Container>
-					<h1 className='workout-list-heading text-center'>Workout list</h1>
-					<div className='alert-wrapper text-center'>
+					<div className='alert-wrapper text-center m-2'>
 						<Alert
 							className={`${
 								showAlert ? 'list-alert-shown' : 'list-alert-hidden'
@@ -102,7 +101,9 @@ const WorkoutList = () => {
 							{alertMessage}
 						</Alert>
 					</div>
-					<div>
+					<h1 className='workout-list-heading text-center'>Workout list</h1>
+
+					<div className='mt-4'>
 						<WorkoutListFilter
 							query={query}
 							handleFilterQuery={handleFilterQuery}

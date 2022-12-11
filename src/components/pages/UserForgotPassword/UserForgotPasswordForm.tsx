@@ -1,19 +1,53 @@
+import axios from 'axios';
 import { useState } from 'react';
-import { Button, Container, Form, Spinner } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Alert, Button, Container, Form, Spinner } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
 
 const UserForgotPasswordForm = () => {
-	const [userName, setUsername] = useState('');
+	const [email, setEmail] = useState('');
 	const [validated, setValidated] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
+	const [errorMessage, setErrorMessage] = useState('');
+	const [isShowingAlert, setShowingAlert] = useState(false);
 
 	function handleOnChangeUserName(
 		e: React.ChangeEvent<HTMLInputElement>
 	): void {
-		setUsername(e.target.value);
+		setEmail(e.target.value);
 	}
 
-	function handleForgotPassword() {}
+	const navigate = useNavigate();
+	function navigateToRequestSuccess() {
+		navigate('/request-reset-password-success');
+	}
+
+	async function handleForgotPassword(e: any) {
+		e.preventDefault();
+		setValidated(true);
+		setIsLoading(true);
+		await axios
+			.post(
+				`${process.env.REACT_APP_WORKOUT_BASE_URL}/Account/ForgotPassword`,
+				{ Username: email },
+				{ headers: { 'Content-Type': 'application/json' } }
+			)
+			.then(() => {
+				setIsLoading(false);
+				navigateToRequestSuccess();
+				console.log(
+					'We’ve sent you an email with a link to reset your password.'
+				);
+			})
+			.catch((err) => {
+				setIsLoading(false);
+				setShowingAlert(true);
+				if (err.response.data === undefined) {
+					setErrorMessage('Server is down, please try again later');
+				} else {
+					setErrorMessage(err.response.data.toString());
+				}
+			});
+	}
 
 	return (
 		<Container className='form-container'>
@@ -24,14 +58,14 @@ const UserForgotPasswordForm = () => {
 				onSubmit={handleForgotPassword}
 			>
 				<header>
-					<h3 className='form-title'>Forgot Password</h3>
+					<h3 className='form-title'>Forgot Password?</h3>
 				</header>
 				<Form.Group className='mb-3' controlId='formBasicEmail'>
 					<Form.Label className='form-label'>Email address</Form.Label>
 					<Form.Control
 						type='email'
 						className='form-control'
-						value={userName}
+						value={email}
 						onChange={handleOnChangeUserName}
 						pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$'
 					/>
@@ -48,9 +82,23 @@ const UserForgotPasswordForm = () => {
 						{isLoading ? (
 							<Spinner animation='border' size='sm' />
 						) : (
-							'Reset Password'
+							'Request Password Reset Link'
 						)}
 					</Button>
+				</div>
+				<div
+					className={`${
+						isShowingAlert ? 'alert-shown' : 'alert-hidden'
+					} 'alert-fail'`}
+					onTransitionEnd={() =>
+						setTimeout(() => {
+							setShowingAlert(false);
+						}, 5000)
+					}
+				>
+					<Alert className='text-center mt-2' variant='danger'>
+						{errorMessage}
+					</Alert>
 				</div>
 			</Form>
 		</Container>

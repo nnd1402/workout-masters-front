@@ -55,8 +55,8 @@ const UserAccountConfirmation = () => {
 							</Card.Title>
 							<Card.Text>
 								<h4>
-									Your account has been successfully verified. You can now log
-									in.
+									Your account has been successfully verified and you are now
+									able to log in.
 								</h4>
 							</Card.Text>
 							<Link to='/login'>

@@ -18,8 +18,8 @@ const UserRequestNewConfirmationEmail = () => {
 
 	const navigate = useNavigate();
 
-	function navigateToLoginSuccess() {
-		navigate('/login?showMessage=emailSent');
+	function navigateToNewConfirmEmailSuccess() {
+		navigate('/request-confirmation-email-success');
 	}
 
 	async function handleSendRequest(e: any) {
@@ -34,7 +34,7 @@ const UserRequestNewConfirmationEmail = () => {
 			)
 			.then(() => {
 				setIsLoading(false);
-				navigateToLoginSuccess();
+				navigateToNewConfirmEmailSuccess();
 			})
 			.catch((err) => {
 				setIsLoading(false);

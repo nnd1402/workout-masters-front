@@ -123,6 +123,10 @@ body {
 	color: #fff;
 }
 
+.alert-wrapper {
+	font-size: 25px;
+}
+
 #light .workout-list-heading {
 	color: black;
 }
