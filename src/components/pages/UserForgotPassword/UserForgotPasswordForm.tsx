@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Col, Container, Form, Row, Spinner } from 'react-bootstrap';
+import { Button, Container, Form, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const UserForgotPasswordForm = () => {

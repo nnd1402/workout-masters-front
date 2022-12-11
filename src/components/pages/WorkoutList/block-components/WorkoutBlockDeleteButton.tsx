@@ -23,7 +23,7 @@ const WorkoutBlockDeleteButton = (props: WorkoutBlockDeleteButtonProps) => {
 				className='description-btn'
 				onClick={handleShow}
 			>
-				<FontAwesomeIcon className='trashcan-icon' icon={faTrash} />
+				<FontAwesomeIcon className='description-icon' icon={faTrash} />
 			</Button>
 
 			<Modal

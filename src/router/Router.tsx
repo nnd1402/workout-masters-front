@@ -4,6 +4,7 @@ import UserForgotPasswordForm from '../components/pages/UserForgotPassword/UserF
 import UserLoginForm from '../components/pages/UserLogin/UserLoginForm';
 import RegistrationSuccessful from '../components/pages/UserRegister/RegistrationSuccessful';
 import UserRegisterForm from '../components/pages/UserRegister/UserRegisterForm';
+import UserRequestNewConfirmationEmail from '../components/pages/UserRequestNewConfirmationEmail/UserRequestNewConfirmationEmail';
 import WorkoutAddForm from '../components/pages/WorkoutAdd/WorkoutAddForm';
 import WorkoutEditForm from '../components/pages/WorkoutEdit/WorkoutEditForm';
 import WorkoutList from '../components/pages/WorkoutList/WorkoutList';
@@ -20,6 +21,10 @@ const Router = () => {
 			<Route
 				path='/account-confirmation'
 				element={<UserAccountConfirmation />}
+			/>
+			<Route
+				path='/request-confirmation-email'
+				element={<UserRequestNewConfirmationEmail />}
 			/>
 			<Route path='/forgot-password' element={<UserForgotPasswordForm />} />
 			<Route path='*' element={<Navigate to='/login' />} />

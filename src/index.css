@@ -101,8 +101,16 @@ body {
 	text-decoration: none;
 }
 
+.sign-in:hover {
+	color: #8b8000;
+}
+
 #light .sign-in {
 	color: #fff;
+}
+
+#light .sign-in:hover {
+	color: #eed400;
 }
 
 .title {
@@ -359,6 +367,11 @@ input[type='number']::-webkit-outer-spin-button {
 	margin-bottom: -60px;
 }
 
+.alert-wrapper {
+	margin-top: 40px;
+	margin-bottom: -70px;
+}
+
 .styled-btn {
 	background-color: #1c1c1c;
 	color: #eed400;
@@ -563,6 +576,10 @@ input[type='range']::-webkit-slider-thumb {
 	align-items: center;
 	justify-content: center;
 	height: 300px;
+	background-color: red;
+}
+
+#light .fail-card-header {
 	background-color: red;
 }
 

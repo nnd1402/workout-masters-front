@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Button, Card, Container } from 'react-bootstrap';
+import { Card, Container } from 'react-bootstrap';
 import {
 	faCircleCheck,
 	faCircleExclamation
@@ -9,7 +9,6 @@ import {
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const UserAccountConfirmation = () => {
-	//const { email, token } = useParams<{ email?: string; token?: string }>();
 	const useQuery = () => new URLSearchParams(useLocation().search);
 	const query = useQuery();
 
@@ -25,12 +24,10 @@ const UserAccountConfirmation = () => {
 			.get(`${process.env.REACT_APP_WORKOUT_BASE_URL}/Account/ConfirmEmail`, {
 				params: { Email: email, token: token }
 			})
-			.then((response) => {
-				console.log(response.data);
+			.then(() => {
 				setIsConfirmed(true);
 			})
 			.catch(() => {
-				console.log(email, token);
 				setIsConfirmed(false);
 			});
 
@@ -54,15 +51,18 @@ const UserAccountConfirmation = () => {
 						</Card.Header>
 						<Card.Body className='success-card-body'>
 							<Card.Title>
-								<h1>Confirmation Successful!</h1>
+								<h1>Account confirmation successful!</h1>
 							</Card.Title>
 							<Card.Text>
-								<h4>Your account has been successfully verified.</h4>
+								<h4>
+									Your account has been successfully verified. You can now log
+									in.
+								</h4>
 							</Card.Text>
 							<Link to='/login'>
-								<Button className='styled-btn mt-4' variant='primary'>
+								<Link className='link mt-4' to='/login'>
 									Go to login
-								</Button>
+								</Link>
 							</Link>
 						</Card.Body>
 					</Card>
@@ -78,15 +78,16 @@ const UserAccountConfirmation = () => {
 						</Card.Header>
 						<Card.Body className='success-card-body'>
 							<Card.Title>
-								<h1>Confirmation Failed!</h1>
+								<h1>Account confirmation failed!</h1>
 							</Card.Title>
 							<Card.Text>
-								<h4>Your account has not been successfully verified.</h4>
+								<h5>Your account has not been successfully verified.</h5>
 							</Card.Text>
-							<Link to='/login'>
-								<Button className='styled-btn mt-4' variant='primary'>
-									Go to login
-								</Button>
+							<Card.Text>
+								<p>Please send a request for the new confirmation email.</p>
+							</Card.Text>
+							<Link className='link mt-4' to='/request-confirmation-email'>
+								Send request
 							</Link>
 						</Card.Body>
 					</Card>
