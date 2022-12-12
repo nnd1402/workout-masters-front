@@ -8,6 +8,7 @@ import WorkoutListFilter from './WorkoutListFilter';
 import Axios from 'axios';
 import authHeader from './../../../services/AuthHeader';
 import WorkoutEmptyList from './WorkoutEmptyList';
+import ReactPaginate from 'react-paginate';
 
 const WorkoutList = () => {
 	const [searchParams] = useSearchParams();
@@ -18,6 +19,54 @@ const WorkoutList = () => {
 	const [showAlert, setShowAlert] = useState(false);
 
 	const [alertMessage, setAlertMessage] = useState('');
+
+	const [query, setQuery] = useState('');
+
+	function handleFilterQuery(e: React.ChangeEvent<HTMLInputElement>): void {
+		setQuery(e.target.value);
+	}
+
+	const [pageNumber, setPageNumber] = useState(0);
+
+	const workoutsPerPage = 7;
+	const pagesVisited = pageNumber * workoutsPerPage;
+
+	const displayWorkouts = workoutList
+		.slice(pagesVisited, pagesVisited + workoutsPerPage)
+		.filter(
+			(workout: { title: string; duration: number; description: string }) =>
+				workout.title.toLowerCase().includes(query) ||
+				workout.duration.toString().includes(query) ||
+				workout.description.toLowerCase().includes(query)
+		)
+		.map(
+			(workout: {
+				id: string;
+				title: string;
+				duration: number;
+				description: string;
+				date: Date;
+			}) => {
+				return (
+					<ListGroupItem key={workout.id}>
+						<WorkoutBlock
+							workoutId={workout.id}
+							workoutTitle={workout.title}
+							workoutDuration={workout.duration}
+							workoutDescription={workout.description}
+							workoutDate={workout.date}
+							deleteWorkout={deleteWorkout}
+						/>
+					</ListGroupItem>
+				);
+			}
+		);
+
+	const pageCount = Math.ceil(workoutList.length / workoutsPerPage);
+
+	const changePage = ({ selected }: any) => {
+		setPageNumber(selected);
+	};
 
 	const navigate = useNavigate();
 
@@ -79,12 +128,6 @@ const WorkoutList = () => {
 		updateAlertMessage();
 	}, [showMessage]);
 
-	const [query, setQuery] = useState('');
-
-	function handleFilterQuery(e: React.ChangeEvent<HTMLInputElement>): void {
-		setQuery(e.target.value);
-	}
-
 	return (
 		<>
 			{workoutList.length === 0 ? (
@@ -109,41 +152,7 @@ const WorkoutList = () => {
 							handleFilterQuery={handleFilterQuery}
 						/>
 					</div>
-					<ListGroup>
-						{workoutList
-							.filter(
-								(workout: {
-									title: string;
-									duration: number;
-									description: string;
-								}) =>
-									workout.title.toLowerCase().includes(query) ||
-									workout.duration.toString().includes(query) ||
-									workout.description.toLowerCase().includes(query)
-							)
-							.map(
-								(workout: {
-									id: string;
-									title: string;
-									duration: number;
-									description: string;
-									date: Date;
-								}) => {
-									return (
-										<ListGroupItem key={workout.id}>
-											<WorkoutBlock
-												workoutId={workout.id}
-												workoutTitle={workout.title}
-												workoutDuration={workout.duration}
-												workoutDescription={workout.description}
-												workoutDate={workout.date}
-												deleteWorkout={deleteWorkout}
-											/>
-										</ListGroupItem>
-									);
-								}
-							)}
-					</ListGroup>
+					<ListGroup>{displayWorkouts}</ListGroup>
 					<div className='btn-container text-end'>
 						<Link
 							to='/add-workout'
@@ -153,6 +162,17 @@ const WorkoutList = () => {
 							<FontAwesomeIcon icon={faPlus} size='2xl' />
 						</Link>
 					</div>
+					<ReactPaginate
+						previousLabel={'Previous'}
+						nextLabel={'Next'}
+						pageCount={pageCount}
+						onPageChange={changePage}
+						containerClassName={'paginationButtons'}
+						previousLinkClassName={'previousBtn'}
+						nextLinkClassName={'nextBtn'}
+						disabledClassName={'paginationDisabled'}
+						activeClassName={'paginationActive'}
+					/>
 				</Container>
 			)}
 		</>

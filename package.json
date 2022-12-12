@@ -25,6 +25,7 @@
 		"react-datepicker": "^4.8.0",
 		"react-dom": "^18.2.0",
 		"react-draft-wysiwyg": "^1.15.0",
+		"react-paginate": "^8.1.4",
 		"react-router-dom": "^6.3.0",
 		"react-select": "^5.4.0",
 		"react-switch": "^7.0.0",

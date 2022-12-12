@@ -630,3 +630,41 @@ input:invalid ~ span {
 	color: #eed400;
 	background-color: #000;
 }
+
+.paginationButtons {
+	width: 100%;
+	height: 40px;
+	list-style: none;
+	display: flex;
+	justify-content: center;
+	color: #fff;
+}
+
+#light .paginationButtons {
+	color: #000;
+}
+
+.paginationButtons a {
+	padding: 10px;
+	margin: 8px;
+	border-radius: 10px;
+	border: 2px solid #fff;
+	color: #fff;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+#light .paginationButtons a {
+	color: #000;
+	border: 2px solid #000;
+}
+
+.paginationButtons a:hover {
+	background-color: #eed400;
+	color: #000 !important;
+}
+
+.paginationActive a {
+	background-color: #eed400;
+	color: #000 !important;
+}
