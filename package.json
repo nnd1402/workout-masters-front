@@ -61,6 +61,7 @@
 		"@types/html-to-draftjs": "^1.4.0",
 		"@types/react-datepicker": "^4.4.2",
 		"@types/react-draft-wysiwyg": "^1.13.4",
+		"react-error-overlay": "^6.0.9",
 		"react-scripts": "^5.0.1"
 	}
 }
