@@ -1,12 +1,23 @@
 import axios from 'axios';
 
+let axiosConfig = {
+	headers: {
+		'Content-Type': 'application/json;charset=UTF-8',
+		'Access-Control-Allow-Origin': '*'
+	}
+};
+
 class AuthService {
 	login(username: string, password: string) {
 		return axios
-			.post(`${process.env.REACT_APP_WORKOUT_BASE_URL}/Account/Login`, {
-				username,
-				password
-			})
+			.post(
+				`${process.env.REACT_APP_WORKOUT_BASE_URL}/Account/Login`,
+				{
+					username,
+					password
+				},
+				axiosConfig
+			)
 			.then((response) => {
 				if (response.data.token) {
 					localStorage.setItem('user', JSON.stringify(response.data));
@@ -26,7 +37,8 @@ class AuthService {
 			{
 				username,
 				password
-			}
+			},
+			axiosConfig
 		);
 	}
 
