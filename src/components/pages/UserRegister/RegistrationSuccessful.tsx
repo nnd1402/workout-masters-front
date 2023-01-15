@@ -22,8 +22,9 @@ const RegistrationSuccessful = () => {
 					</div>
 					<div>
 						<h4>
-							Confirmation email has been sent to your email address. Please
-							login after confirming your account.
+							Confirmation email has been sent to your email address. Check your
+							spam if you don't see it in your inbox and also move it out of
+							spam. Please login after confirming your account.
 						</h4>
 					</div>
 					<Link className='link mt-4' to='/login'>

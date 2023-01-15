@@ -40,13 +40,13 @@ const Nav = () => {
 				{userLoggedIn ? (
 					<Link to='/list' className='navbar-title'>
 						<Navbar.Brand className='navbar-brand'>
-							Workout Tracker
+							Workout Masters
 						</Navbar.Brand>
 					</Link>
 				) : (
 					<Link to='/login' className='navbar-title'>
 						<Navbar.Brand className='navbar-brand'>
-							Workout Tracker
+							Workout Masters
 						</Navbar.Brand>
 					</Link>
 				)}
