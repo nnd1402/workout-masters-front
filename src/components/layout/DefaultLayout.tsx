@@ -2,17 +2,21 @@ import { Container } from 'react-bootstrap';
 import 'react-datepicker/dist/react-datepicker.css';
 import Router from '../../router/Router';
 import Footer from '../footer/Footer';
-import Nav from '../header/Nav';
+import Header from '../header/Header';
 
 const DefaultLayout = () => {
 	return (
-		<>
-			<Nav />
-			<Container className='mt-5'>
+		<div>
+			<header className='header'>
+				<Header />
+			</header>
+			<main className='main'>
 				<Router />
-			</Container>
-			{/* <Footer /> */}
-		</>
+			</main>
+			<footer className='footer'>
+				<Footer />
+			</footer>
+		</div>
 	);
 };
 

@@ -61,9 +61,9 @@ const UserLoginForm = () => {
 	}
 
 	return (
-		<Container className='form-container'>
+		<div className='form-container'>
 			<Form
-				className='form'
+				className='form p-4 p-sm-3'
 				noValidate
 				validated={validated}
 				onSubmit={handleLogin}
@@ -130,7 +130,7 @@ const UserLoginForm = () => {
 					</Alert>
 				</div>
 			</Form>
-		</Container>
+		</div>
 	);
 };
 

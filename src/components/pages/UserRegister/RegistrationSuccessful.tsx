@@ -18,14 +18,14 @@ const RegistrationSuccessful = () => {
 						<h1>Registration Successful!</h1>
 					</Card.Title>
 					<div>
-						<h2>Your account has been successfully created.</h2>
+						<h3>Your account has been successfully created.</h3>
 					</div>
 					<div>
-						<h4>
+						<p>
 							Confirmation email has been sent to your email address. Check your
 							spam if you don't see it in your inbox and also move it out of
-							spam. Please login after confirming your account.
-						</h4>
+							spam if it is there. Please login after confirming your account.
+						</p>
 					</div>
 					<Link className='link mt-4' to='/login'>
 						Go to login

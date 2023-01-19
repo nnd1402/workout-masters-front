@@ -133,46 +133,51 @@ const WorkoutList = () => {
 			{workoutList.length === 0 ? (
 				<WorkoutEmptyList />
 			) : (
-				<Container>
-					<div className='alert-wrapper text-center m-2'>
-						<Alert
-							className={`${
-								showAlert ? 'list-alert-shown' : 'list-alert-hidden'
-							} `}
-							variant='success'
-						>
-							{alertMessage}
-						</Alert>
+				<Container className='workout-list-container'>
+					<div className='workout-list'>
+						<div className='alert-wrapper text-center m-2'>
+							<Alert
+								className={`${
+									showAlert ? 'list-alert-shown' : 'list-alert-hidden'
+								} `}
+								variant='success'
+							>
+								{alertMessage}
+							</Alert>
+						</div>
+						<h1 className='workout-list-heading text-center'>Workout list</h1>
+						<div className='mt-4'>
+							<WorkoutListFilter
+								query={query}
+								handleFilterQuery={handleFilterQuery}
+							/>
+						</div>
+						<ListGroup className='text-center text-lg-start'>
+							{displayWorkouts}
+						</ListGroup>
+						<div className='btn-container text-lg-end text-center'>
+							<Link
+								to='/add-workout'
+								title='Add Workout'
+								className='add-workout-button btn'
+							>
+								<FontAwesomeIcon icon={faPlus} size='2xl' />
+							</Link>
+						</div>
+						<div className='text-center'>
+							<ReactPaginate
+								previousLabel={'Previous'}
+								nextLabel={'Next'}
+								pageCount={pageCount}
+								onPageChange={changePage}
+								containerClassName={'paginationButtons'}
+								previousLinkClassName={'previousBtn'}
+								nextLinkClassName={'nextBtn'}
+								disabledClassName={'paginationDisabled'}
+								activeClassName={'paginationActive'}
+							/>
+						</div>
 					</div>
-					<h1 className='workout-list-heading text-center'>Workout list</h1>
-
-					<div className='mt-4'>
-						<WorkoutListFilter
-							query={query}
-							handleFilterQuery={handleFilterQuery}
-						/>
-					</div>
-					<ListGroup>{displayWorkouts}</ListGroup>
-					<div className='btn-container text-end'>
-						<Link
-							to='/add-workout'
-							title='Add Workout'
-							className='add-workout-button btn'
-						>
-							<FontAwesomeIcon icon={faPlus} size='2xl' />
-						</Link>
-					</div>
-					<ReactPaginate
-						previousLabel={'Previous'}
-						nextLabel={'Next'}
-						pageCount={pageCount}
-						onPageChange={changePage}
-						containerClassName={'paginationButtons'}
-						previousLinkClassName={'previousBtn'}
-						nextLinkClassName={'nextBtn'}
-						disabledClassName={'paginationDisabled'}
-						activeClassName={'paginationActive'}
-					/>
 				</Container>
 			)}
 		</>

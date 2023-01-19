@@ -9,7 +9,6 @@ const UserRequestPasswordResetSuccess = () => {
 					<Card.Title>
 						<h1>Almost there</h1>
 					</Card.Title>
-
 					<p>
 						The link for reseting your password has been sent to your email
 						address.

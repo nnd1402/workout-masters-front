@@ -35,34 +35,35 @@ const WorkoutBlock = (props: WorkoutBlockProps) => {
 		<>
 			<Accordion defaultActiveKey='0'>
 				<Card>
-					<Card.Header className='card-header'>
+					<Card.Body className='card-header'>
 						<Row>
-							<Col md={3} className='header-column'>
+							<Col className='duration-column'>
 								<h3 className='h3-duration'>{props.workoutDuration} minutes</h3>
 							</Col>
-							<Col md={4} className='header-column text-center'>
+							<Col lg={4} className='header-column text-center'>
 								<WorkoutBlockTitleSelect workoutTitle={props.workoutTitle} />
 							</Col>
-							<Col md={4}>
-								<div className='text-end'>
-									<WorkoutBlockDatePicker
-										startDate={startDate}
-										handleDateChange={handleDateChange}
-									/>
-								</div>
+							<Col lg={4}>
+								<WorkoutBlockDatePicker
+									startDate={startDate}
+									handleDateChange={handleDateChange}
+								/>
 							</Col>
-							<Col md={1} className='text-center'>
+							<Col
+								lg={1}
+								className='d-flex justify-content-center align-items-center'
+							>
 								<WorkoutBlockAccordionButton
 									open={open}
 									showDescription={showDescription}
 								/>
 							</Col>
 						</Row>
-					</Card.Header>
+					</Card.Body>
 					<Collapse className='collapse-body' in={open}>
 						<div>
 							<Col md={12}>
-								<div className='block-workout-description'>
+								<div className='block-workout-description text-start'>
 									{parsedWorkoutDescription}
 								</div>
 							</Col>

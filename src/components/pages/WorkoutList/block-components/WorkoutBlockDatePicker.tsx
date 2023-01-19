@@ -8,7 +8,7 @@ type DatePickerProps = {
 
 const WorkoutBlockDatePicker = (props: DatePickerProps) => {
 	return (
-		<div className='text-end'>
+		<div>
 			<DatePicker
 				className='datepicker-rounded text-center'
 				selected={props.startDate}

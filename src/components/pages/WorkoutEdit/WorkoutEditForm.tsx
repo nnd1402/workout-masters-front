@@ -130,7 +130,7 @@ const WorkoutEditForm = () => {
 	return (
 		<>
 			<Container className='form-container'>
-				<Form className='form' onSubmit={editWorkout}>
+				<Form className='workout-form p-4 p-sm-3' onSubmit={editWorkout}>
 					<Row>
 						<Col xs={1}>
 							<Link to='/list' className='text-center'>
@@ -164,7 +164,11 @@ const WorkoutEditForm = () => {
 						handleDateChange={handleDateChange}
 					/>
 					<div className='text-center'>
-						<Button className='styled-btn' type='submit' disabled={isLoading}>
+						<Button
+							className='edit-workout-btn'
+							type='submit'
+							disabled={isLoading}
+						>
 							{isLoading ? (
 								<Spinner animation='border' size='sm' />
 							) : (

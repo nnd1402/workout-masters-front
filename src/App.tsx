@@ -20,7 +20,7 @@ function App() {
 	return (
 		<ThemeContext.Provider value={{ theme, toggleTheme }}>
 			<UserContext.Provider value={providerValue}>
-				<div className='App' id={theme}>
+				<div id={theme}>
 					<DefaultLayout />
 				</div>
 			</UserContext.Provider>

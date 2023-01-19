@@ -1,5 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
+import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import AuthService from '../../services/AuthService';
@@ -10,7 +11,7 @@ import { UserContext } from '../../contexts/UserContext';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import ReactSwitch from 'react-switch';
 
-const Nav = () => {
+const Header = () => {
 	const { userName, setUserName } = useContext(UserContext);
 	const { userLoggedIn, setUserLoggedIn } = useContext(UserContext);
 	const { toggleTheme } = useContext(ThemeContext);
@@ -35,23 +36,8 @@ const Nav = () => {
 	}, [setUserName, setUserLoggedIn]);
 
 	return (
-		<Navbar className='navbar-wrapper'>
+		<Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
 			<Container>
-				{userLoggedIn ? (
-					<Link to='/list' className='navbar-title'>
-						<Navbar.Brand className='navbar-brand'>
-							Workout Masters
-						</Navbar.Brand>
-					</Link>
-				) : (
-					<Link to='/login' className='navbar-title'>
-						<Navbar.Brand className='navbar-brand'>
-							Workout Masters
-						</Navbar.Brand>
-					</Link>
-				)}
-
-				<Navbar.Toggle />
 				<div className='switch-wrapper'>
 					<ReactSwitch
 						onChange={toggleTheme}
@@ -67,33 +53,54 @@ const Nav = () => {
 						width={48}
 					/>
 				</div>
-
-				<Navbar.Collapse className='justify-content-end'>
+				<div className='text-center'>
 					{userLoggedIn ? (
-						<div>
-							<Link to='/list' className='navbar-username-link'>
-								<Navbar.Text>
-									<span className='navbar-username'>{userName}</span>
-								</Navbar.Text>
-							</Link>
-							<Button
-								className='logout'
-								title='Logout'
-								variant='transparent'
-								onClick={handleLogout}
-							>
-								<FontAwesomeIcon icon={faRightFromBracket} size='lg' />
-							</Button>
-						</div>
+						<Link to='/list' className='navbar-title'>
+							<Navbar.Brand className='navbar-brand sm'>
+								Workout Masters
+							</Navbar.Brand>
+						</Link>
 					) : (
-						<Link className='sign-in' to='/login'>
-							Sign in
+						<Link to='/login' className='navbar-title'>
+							<Navbar.Brand className='navbar-brand'>
+								Workout Masters
+							</Navbar.Brand>
 						</Link>
 					)}
+				</div>
+
+				<Navbar.Toggle aria-controls='responsive-navbar-nav' />
+
+				<Navbar.Collapse id='responsive-navbar-nav'>
+					<Nav className='me-auto'></Nav>
+
+					<Nav className='text-center'>
+						{userLoggedIn ? (
+							<div>
+								<Link to='/list' className='navbar-username-link'>
+									<Navbar.Text>
+										<span className='navbar-username'>{userName}</span>
+									</Navbar.Text>
+								</Link>
+								<Button
+									className='logout'
+									title='Logout'
+									variant='transparent'
+									onClick={handleLogout}
+								>
+									<FontAwesomeIcon icon={faRightFromBracket} size='lg' />
+								</Button>
+							</div>
+						) : (
+							<Link className='sign-in' to='/login'>
+								Sign in
+							</Link>
+						)}
+					</Nav>
 				</Navbar.Collapse>
 			</Container>
 		</Navbar>
 	);
 };
 
-export default Nav;
+export default Header;

@@ -91,7 +91,7 @@ const WorkoutAddForm = () => {
 	return (
 		<>
 			<Container className='form-container'>
-				<Form className='form' onSubmit={addWorkout}>
+				<Form className='workout-form p-4 p-sm-3' onSubmit={addWorkout}>
 					<Row>
 						<Col xs={1}>
 							<Link to='/list' className='text-center'>
@@ -124,7 +124,11 @@ const WorkoutAddForm = () => {
 						handleDateChange={handleDateChange}
 					/>
 					<div className='text-center'>
-						<Button className='styled-btn' type='submit' disabled={isLoading}>
+						<Button
+							className='add-workout-btn'
+							type='submit'
+							disabled={isLoading}
+						>
 							{isLoading ? (
 								<Spinner animation='border' size='sm' />
 							) : (

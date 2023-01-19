@@ -52,7 +52,7 @@ const UserForgotPasswordForm = () => {
 	return (
 		<Container className='form-container'>
 			<Form
-				className='form'
+				className='form p-4 p-sm-3'
 				noValidate
 				validated={validated}
 				onSubmit={handleForgotPassword}
@@ -75,7 +75,7 @@ const UserForgotPasswordForm = () => {
 				</Link>
 				<div className='text-center'>
 					<Button
-						className='styled-btn mt-2'
+						className='styled-btn forgot-password-btn mt-2'
 						type='submit'
 						disabled={isLoading}
 					>
