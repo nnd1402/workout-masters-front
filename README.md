@@ -1,4 +1,4 @@
-# workout-tracker-front
+# Workout Masters
 
 ## Setting Up
 
