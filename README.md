@@ -1,4 +1,4 @@
-# Workout Masters
+<h1 style="text-align: center;">Workout Masters</h1>
 
 A fitness tracking application built using React that allows users to create and manage workout plans and track progress.
 
