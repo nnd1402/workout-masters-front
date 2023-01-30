@@ -62,6 +62,9 @@ The application can be accessed by visiting http://localhost:3000 in your web br
 
 - Nenad Mihajlovic - Initial work
 
+## License
+This project is licensed under the MIT License - see the LICENSE.md file for details.
+
 ## Additional Information
 
 - The application uses <a href='https://reactrouter.com/en/main'>React Router</a> for client-side routing.
