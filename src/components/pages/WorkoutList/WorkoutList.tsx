@@ -35,9 +35,9 @@ const WorkoutList = () => {
 		.slice(pagesVisited, pagesVisited + workoutsPerPage)
 		.filter(
 			(workout: { title: string; duration: number; description: string }) =>
-				workout.title.toLowerCase().includes(query) ||
+				workout.title.toLowerCase().includes(query.toLowerCase()) ||
 				workout.duration.toString().includes(query) ||
-				workout.description.toLowerCase().includes(query)
+				workout.description.toLowerCase().includes(query.toLowerCase())
 		)
 		.map(
 			(workout: {
