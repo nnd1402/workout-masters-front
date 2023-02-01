@@ -38,6 +38,7 @@ const UserRegisterForm = () => {
 	}
 
 	function handleRegister(e: any) {
+		console.time();
 		e.preventDefault();
 		setIsLoading(true);
 		setValidated(true);
@@ -50,6 +51,7 @@ const UserRegisterForm = () => {
 
 			AuthService.register(userName, password)
 				.then(() => {
+					console.log('povratak' + new Date());
 					console.timeEnd();
 					navigateRegisterSuccess();
 					setIsLoading(false);
