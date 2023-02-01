@@ -38,7 +38,7 @@ const UserRegisterForm = () => {
 	}
 
 	async function handleRegister(e: any) {
-		console.time('register started');
+		console.time();
 		e.preventDefault();
 		setIsLoading(true);
 		setValidated(true);
@@ -49,7 +49,7 @@ const UserRegisterForm = () => {
 		} else {
 			await AuthService.register(userName, password)
 				.then(() => {
-					console.time('successful register');
+					console.timeEnd();
 					navigateRegisterSuccess();
 					setIsLoading(false);
 				})
