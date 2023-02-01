@@ -37,7 +37,8 @@ const UserRegisterForm = () => {
 		setConfirmPassword(e.target.value);
 	}
 
-	function handleRegister(e: any) {
+	async function handleRegister(e: any) {
+		console.log('entered register');
 		e.preventDefault();
 		setIsLoading(true);
 		setValidated(true);
@@ -46,12 +47,14 @@ const UserRegisterForm = () => {
 			setErrorMessage('Please match the password');
 			setIsLoading(false);
 		} else {
-			AuthService.register(userName, password)
+			await AuthService.register(userName, password)
 				.then(() => {
+					console.log('successful register');
 					navigateRegisterSuccess();
 					setIsLoading(false);
 				})
 				.catch((err) => {
+					console.log('failed register');
 					setShowingAlert(true);
 					if (err.response.data === undefined) {
 						setErrorMessage('Server is down, please try again later');

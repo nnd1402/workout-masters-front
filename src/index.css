@@ -181,7 +181,7 @@ body {
 }
 
 .card {
-	border: 1px solid black;
+	border: none;
 }
 
 .card-header {
@@ -369,6 +369,7 @@ body {
 	border-radius: 10px;
 	box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
 	width: 700px;
+	padding: 30px;
 }
 
 .workout-form {
@@ -603,7 +604,7 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 .success-card {
-	width: 100%;
+	width: 70%;
 }
 
 .editor-class {
@@ -645,17 +646,19 @@ input[type='range']::-webkit-slider-thumb {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 300px;
-	background-color: #03482a;
+	height: 200px;
+	background-color: #121212;
+	border: none;
 }
 
 #light .success-card-header {
-	background-color: #09a761;
+	background-color: #fff;
 }
 
 .success-card-body {
 	color: #fff;
 	background-color: #121212;
+	border: none;
 }
 
 #light .success-card-body {
@@ -664,9 +667,13 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 .success-registration-icon {
-	color: #fff;
+	color: #03482a;
 	width: 120px;
 	height: 120px;
+}
+
+#light .success-registration-icon {
+	color: #09a761;
 }
 
 .fail-card {
@@ -703,7 +710,7 @@ input:invalid ~ span {
 
 .link {
 	color: #eed400;
-	font-size: 15px;
+	font-size: 20px;
 }
 
 #light .link {
@@ -782,7 +789,7 @@ input:invalid ~ span {
 	}
 
 	.form {
-		width: 300px;
+		width: 390px;
 	}
 
 	.workout-form {
@@ -803,10 +810,6 @@ input:invalid ~ span {
 		width: 150px;
 	}
 
-	.link {
-		font-size: 10px;
-	}
-
 	.empty-list-title {
 		font-size: 40px;
 	}
@@ -821,5 +824,23 @@ input:invalid ~ span {
 
 	.list-alert-hidden {
 		display: none;
+	}
+
+	.success-card {
+		border: none;
+		background-color: #000;
+	}
+
+	#light .success-card {
+		border: none;
+		background-color: #fff;
+	}
+
+	.success-card .link {
+		font-size: 15px;
+	}
+
+	.link {
+		font-size: 13px;
 	}
 }

@@ -1,12 +1,4 @@
-import {
-	Container,
-	Form,
-	Button,
-	Spinner,
-	Alert,
-	Row,
-	Col
-} from 'react-bootstrap';
+import { Form, Button, Spinner, Alert, Row, Col } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import AuthService from '../../../services/AuthService';
@@ -63,7 +55,7 @@ const UserLoginForm = () => {
 	return (
 		<div className='form-container'>
 			<Form
-				className='form p-4 p-sm-3'
+				className='form'
 				noValidate
 				validated={validated}
 				onSubmit={handleLogin}

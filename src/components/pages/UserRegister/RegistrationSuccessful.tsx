@@ -18,13 +18,9 @@ const RegistrationSuccessful = () => {
 						<h1>Registration Successful!</h1>
 					</Card.Title>
 					<div>
-						<h3>Your account has been successfully created.</h3>
-					</div>
-					<div>
 						<p>
-							Confirmation email has been sent to your email address. Check your
-							spam if you don't see it in your inbox and also move it out of
-							spam if it is there. Please login after confirming your account.
+							Please check your spam folder, and mark as not spam to be able to
+							follow the verification link
 						</p>
 					</div>
 					<Link className='link mt-4' to='/login'>
