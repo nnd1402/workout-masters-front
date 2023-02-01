@@ -1,6 +1,6 @@
 import { Form, Button, Spinner, Alert, Row, Col } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import AuthService from '../../../services/AuthService';
 import { UserContext } from '../../../contexts/UserContext';
 
@@ -27,6 +27,16 @@ const UserLoginForm = () => {
 	): void {
 		setPassword(e.target.value);
 	}
+
+	function handlePing() {
+		AuthService.ping().then(() => {
+			console.log('site pinged');
+		});
+	}
+
+	useEffect(() => {
+		handlePing();
+	}, []);
 
 	async function handleLogin(e: any) {
 		e.preventDefault();
