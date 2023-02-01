@@ -37,8 +37,7 @@ const UserRegisterForm = () => {
 		setConfirmPassword(e.target.value);
 	}
 
-	async function handleRegister(e: any) {
-		console.time();
+	function handleRegister(e: any) {
 		e.preventDefault();
 		setIsLoading(true);
 		setValidated(true);
@@ -47,10 +46,9 @@ const UserRegisterForm = () => {
 			setErrorMessage('Please match the password');
 			setIsLoading(false);
 		} else {
-			console.log('pre poziva');
-			console.timeStamp();
-			console.time();
-			await AuthService.register(userName, password)
+			console.log('pre poziva' + new Date());
+
+			AuthService.register(userName, password)
 				.then(() => {
 					console.timeEnd();
 					navigateRegisterSuccess();
