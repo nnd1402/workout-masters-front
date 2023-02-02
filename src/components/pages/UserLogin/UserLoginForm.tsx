@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import AuthService from '../../../services/AuthService';
 import { UserContext } from '../../../contexts/UserContext';
+import PingSiteService from '../../../services/PingSiteService';
 
 const UserLoginForm = () => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -29,9 +30,7 @@ const UserLoginForm = () => {
 	}
 
 	function handlePing() {
-		AuthService.ping().then(() => {
-			console.log('site pinged');
-		});
+		PingSiteService.ping();
 	}
 
 	useEffect(() => {
