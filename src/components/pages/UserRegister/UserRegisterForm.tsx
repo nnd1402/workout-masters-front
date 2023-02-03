@@ -72,7 +72,7 @@ const UserRegisterForm = () => {
 	return (
 		<Container className='form-container'>
 			<Form
-				className='form p-4 p-sm-3'
+				className='form'
 				noValidate
 				validated={validated}
 				onSubmit={handleRegister}
