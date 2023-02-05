@@ -78,7 +78,7 @@ const UserResetPasswordForm = () => {
 					<h3 className='form-title'>Change your password</h3>
 				</header>
 				<Form.Group className='mb-3' controlId='formBasicPassword'>
-					<Form.Label className='form-label'>Password:</Form.Label>
+					<Form.Label className='form-label'>New Password:</Form.Label>
 					<Form.Control
 						type='password'
 						defaultValue={password}
