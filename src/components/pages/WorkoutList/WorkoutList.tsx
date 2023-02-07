@@ -145,7 +145,7 @@ const WorkoutList = () => {
 								{alertMessage}
 							</Alert>
 						</div>
-						<h1 className='workout-list-heading text-center'>Workout list</h1>
+						<h3 className='workout-list-heading text-center'>Workout list</h3>
 						<div className='mt-4'>
 							<WorkoutListFilter
 								query={query}
@@ -164,7 +164,7 @@ const WorkoutList = () => {
 								<FontAwesomeIcon icon={faPlus} size='2xl' />
 							</Link>
 						</div>
-						<div className='text-center'>
+						<div className='pagination-container text-center'>
 							<ReactPaginate
 								previousLabel={'Previous'}
 								nextLabel={'Next'}
