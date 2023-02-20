@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import WorkoutListFilter from './WorkoutListFilter';
 import Axios from 'axios';
-import { AxiosResponse } from 'axios';
 import authHeader from './../../../services/AuthHeader';
 import WorkoutEmptyList from './WorkoutEmptyList';
 import ReactPaginate from 'react-paginate';
@@ -22,6 +21,8 @@ const WorkoutList = () => {
 	const [alertMessage, setAlertMessage] = useState('');
 
 	const [query, setQuery] = useState('');
+
+	const [loading, setLoading] = useState(true);
 
 	function handleFilterQuery(e: React.ChangeEvent<HTMLInputElement>): void {
 		setQuery(e.target.value);
@@ -115,18 +116,6 @@ const WorkoutList = () => {
 		navigate('/list?showMessage=deletedSuccess');
 	}
 
-	//Define a function to fetch the list of workouts
-	function fetchWorkouts(): void {
-		Axios.get<Workout[]>(
-			`${process.env.REACT_APP_WORKOUT_BASE_URL}/Workout/ListByUser`,
-			{
-				headers: authHeader()
-			}
-		).then((response: AxiosResponse<Workout[]>) => {
-			setWorkoutList(response.data);
-		});
-	}
-
 	//Define a function to delete the workout item
 	function deleteWorkout(id: string): void {
 		Axios.delete(
@@ -148,6 +137,14 @@ const WorkoutList = () => {
 	}
 
 	useEffect(() => {
+		async function fetchWorkouts(): Promise<void> {
+			const response = await Axios.get(
+				`${process.env.REACT_APP_WORKOUT_BASE_URL}/Workout/ListByUser`,
+				{ headers: authHeader() }
+			);
+			setWorkoutList(response.data);
+			setLoading(false);
+		}
 		fetchWorkouts();
 		function updateAlertMessage() {
 			if (showMessage === 'addedSuccess') {
@@ -171,65 +168,66 @@ const WorkoutList = () => {
 			}
 		}
 		updateAlertMessage();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [showMessage]);
 
-	function renderEmptyWorkoutList() {
-		if (workoutList.length === 0) {
-			return <WorkoutEmptyList />;
-		}
-
-		return (
-			<Container className='workout-list-container'>
-				<div className='workout-list'>
-					<div className='alert-wrapper text-center m-2'>
-						<Alert
-							className={`${
-								showAlert ? 'list-alert-shown' : 'list-alert-hidden'
-							} `}
-							variant='success'
-						>
-							{alertMessage}
-						</Alert>
-					</div>
-					<h3 className='workout-list-heading text-center'>Workout list</h3>
-					<div className='mt-4'>
-						<WorkoutListFilter
-							query={query}
-							handleFilterQuery={handleFilterQuery}
-						/>
-					</div>
-					<ListGroup className='text-center text-lg-start'>
-						{workouts}
-					</ListGroup>
-					<div className='btn-container text-lg-end text-center'>
-						<Link
-							to='/add-workout'
-							title='Add Workout'
-							className='add-workout-button btn'
-						>
-							<FontAwesomeIcon icon={faPlus} size='2xl' />
-						</Link>
-					</div>
-					<div className='pagination-container text-center'>
-						<ReactPaginate
-							previousLabel={'Previous'}
-							nextLabel={'Next'}
-							pageCount={pageCount}
-							onPageChange={changePage}
-							containerClassName={'paginationButtons'}
-							previousLinkClassName={'previousBtn'}
-							nextLinkClassName={'nextBtn'}
-							disabledClassName={'paginationDisabled'}
-							activeClassName={'paginationActive'}
-						/>
-					</div>
-				</div>
-			</Container>
-		);
+	if (loading) {
+		return <div>Loading...</div>;
 	}
 
-	return <>{renderEmptyWorkoutList()}</>;
+	return (
+		<div>
+			{workoutList.length > 0 ? (
+				<Container className='workout-list-container'>
+					<div className='workout-list'>
+						<div className='alert-wrapper text-center m-2'>
+							<Alert
+								className={`${
+									showAlert ? 'list-alert-shown' : 'list-alert-hidden'
+								} `}
+								variant='success'
+							>
+								{alertMessage}
+							</Alert>
+						</div>
+						<h3 className='workout-list-heading text-center'>Workout list</h3>
+						<div className='mt-4'>
+							<WorkoutListFilter
+								query={query}
+								handleFilterQuery={handleFilterQuery}
+							/>
+						</div>
+						<ListGroup className='text-center text-lg-start'>
+							{workouts}
+						</ListGroup>
+						<div className='btn-container text-lg-end text-center'>
+							<Link
+								to='/add-workout'
+								title='Add Workout'
+								className='add-workout-button btn'
+							>
+								<FontAwesomeIcon icon={faPlus} size='2xl' />
+							</Link>
+						</div>
+						<div className='pagination-container text-center'>
+							<ReactPaginate
+								previousLabel={'Previous'}
+								nextLabel={'Next'}
+								pageCount={pageCount}
+								onPageChange={changePage}
+								containerClassName={'paginationButtons'}
+								previousLinkClassName={'previousBtn'}
+								nextLinkClassName={'nextBtn'}
+								disabledClassName={'paginationDisabled'}
+								activeClassName={'paginationActive'}
+							/>
+						</div>
+					</div>
+				</Container>
+			) : (
+				<WorkoutEmptyList />
+			)}
+		</div>
+	);
 };
 
 export default WorkoutList;
