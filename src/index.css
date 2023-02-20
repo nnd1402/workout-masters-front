@@ -190,7 +190,11 @@ body {
 }
 
 .accordion {
-	background-color: black;
+	background-color: #eed400;
+}
+
+#light .accordion {
+	background-color: #ededed;
 }
 
 .list-group-item {
@@ -213,7 +217,7 @@ body {
 }
 
 #light .card-header {
-	background-color: #fff;
+	background-color: #ededed;
 }
 
 .title-list {
@@ -555,7 +559,7 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 #light .collapse-body {
-	background-color: #fff;
+	background-color: #f9f9f9;
 }
 
 .row-list {
